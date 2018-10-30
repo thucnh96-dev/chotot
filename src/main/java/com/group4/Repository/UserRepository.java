@@ -1,12 +1,17 @@
 package com.group4.Repository;
-
 import java.util.UUID;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+
 
 import com.group4.entity.User;
-@Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
 
+import java.lang.String;
+import java.util.List;
+
+
+public interface UserRepository extends CrudRepository<User, UUID> , PagingAndSortingRepository<User, UUID> {
+	List<User> findByName(String name);
+	
+	
 }
