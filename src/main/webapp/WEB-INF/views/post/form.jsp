@@ -19,7 +19,7 @@
           </div>
           <div class="header-right" style="padding: 20px;">
             <div class="dropdown" style="width: fit-content; margin: 0 auto;">
-              <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin chào&nbsp;<% if(user) { %> <%= user.User.Username %> <% } %>&nbsp;^^&nbsp;
+              <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin chào&nbsp;&nbsp;^^&nbsp;
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 
@@ -41,20 +41,11 @@
       
       <nav id="open--menu"><ul><li><a href="#menu">Menu</a></li></ul></nav>
       
-      <nav id="menu">
-          <h2 id="h2--menu">Menu</h2>
-          <ul>
-              <li><a href="/">Trang chủ</a></li>
-              <li><a href="/danh-muc/5af85f65419cadab24fbc6ad">Danh mục</a></li>
-              <li><a href="/kenh-nguoi-ban">Kênh Người Bán</a></li>
-              <li><a href="/gioi-thieu">Giới thiệu</a></li>
-              <li><a href="/lien-he">Liên hệ</a></li>
-          </ul>
-      </nav>
+     <%@include file="/WEB-INF/views/include/menu.jsp" %>
       
 
   <hr>
-  <h1 class="text-center"><%= chuto %></h1>
+  <h1 class="text-center">gty</h1>
   <div class="container" style="margin-bottom: 25px;box-shadow: 1px 1px 1px;">
     <div class="wapper">
       <div id="danger-duration" class="alert alert-danger" style="position: absolute; top: 0; left: 30%; display: none;">
@@ -155,7 +146,7 @@
                     <div class="input-group">
                       <input type="number" class="form-control" id="Quantity" min="1" placeholder="Số lượng" name="Quantity" required>
                       <span class="input-group-addon"><b id="unit">Sản phẩm</b></span>
-                      <input type="hidden" id="first" name="id" value="<%= first_type_id %>" size="1" hidden readonly>
+                      <input type="hidden" id="first" name="id" value="" hidden readonly>
                     </div>
                   </div>
                 </div>
