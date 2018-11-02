@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.group4.entity.Distric;
 @Repository
 public interface DistricRepository extends JpaRepository<Distric, Integer> {
+<<<<<<< HEAD
+=======
+	Distric findByName(String name);
+>>>>>>> feature/trungthuc
 }
