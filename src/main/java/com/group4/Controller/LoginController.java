@@ -3,12 +3,15 @@ package com.group4.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class testControllerJSP {
-@GetMapping(value="/index")
+@RequestMapping("/login")
+public class LoginController {
+	
+	
+	@GetMapping
 	public String honme(ModelMap mm) {
-	mm.addAttribute("meet", "trungthuc");
-		return "index";
+		return "login";
 	}
 }
