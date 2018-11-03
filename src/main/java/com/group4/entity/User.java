@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User implements Serializable {
+	private static final long serialVersionUID = 5242398560830588069L;
 	@Id
 	@Column(columnDefinition = "BINARY(16) NOT NULL")
 	@GeneratedValue(strategy = GenerationType.AUTO)
