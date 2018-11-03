@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/error")
+public class ErrorController {
 
 	@GetMapping
-	public String honme(ModelMap mm) {
-		return "login";
+	public String error(ModelMap mm) {
+		mm.addAttribute("meet", "trungthuc");
+		return "error/404";
 	}
-
 }
