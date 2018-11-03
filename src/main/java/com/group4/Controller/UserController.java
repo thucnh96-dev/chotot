@@ -5,7 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class testControllerJSP {
+public class UserController {
 @GetMapping(value="/login")
 	public String honme(ModelMap mm) {
 	mm.addAttribute("meet", "trungthuc");
