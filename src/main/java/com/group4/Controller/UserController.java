@@ -1,43 +1,32 @@
+
 package com.group4.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
-@GetMapping(value="/login")
-	public String honme(ModelMap mm) {
-	mm.addAttribute("meet", "trungthuc");
-		return "auth/login";
+
+	@GetMapping(value = "/register")
+	public String register(ModelMap mm) {
+		mm.addAttribute("meet", "trungthuc");
+		return "auth/register";
 	}
 
-@GetMapping(value="/register")
-public String regis(ModelMap mm) {
-mm.addAttribute("meet", "trungthuc");
-	return "auth/register";
-}
-@GetMapping(value="/findpass")
-public String findpass(ModelMap mm) {
-mm.addAttribute("meet", "trungthuc");
-	return "auth/findpass";
-}
+	@PostMapping(value = "/register")
+	public String createUser(ModelMap mm) {
+		mm.addAttribute("meet", "trungthuc");
+		return "redirect:/";
+	}
 
-@GetMapping(value="/eeror")
-public String eror(ModelMap mm) {
-mm.addAttribute("meet", "trungthuc");
-	return "error/404";
-}
+	@GetMapping(value = "/forgotPassword")
+	public String forgotPassword(ModelMap mm) {
+		mm.addAttribute("meet", "trungthuc");
+		return "auth/forgotpassword";
+	}
 
-@GetMapping(value="/postform")
-public String ff(ModelMap mm) {
-mm.addAttribute("meet", "trungthuc");
-	return "post/form";
-}
-
-@GetMapping(value="/home")
-public String ffd(ModelMap mm) {
-mm.addAttribute("meet", "trungthuc");
-	return "home/home";
-}
 }
