@@ -30,9 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 @Override
 public void configure(HttpSecurity httpSecurity) throws Exception {
 	httpSecurity.authorizeRequests().
-	antMatchers("/resources/**","/auth/register","/loginfalse").permitAll()
-	.antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-	.antMatchers("/user/**").hasAnyAuthority("USER").anyRequest().authenticated()
+	antMatchers("/resources/**","/","/auth/register","/loginfalse","/post/**").permitAll()
+	.antMatchers("/admin/**").hasAuthority("ADMIN")
+	.antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated()
 	.and()
 	.formLogin()
 	.loginPage("/login")
@@ -42,6 +42,8 @@ public void configure(HttpSecurity httpSecurity) throws Exception {
 	.and()
 	.logout()
 	.permitAll()
+	.and()
+	.rememberMe().key("chotot").rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24*7)
 	.and()
 	.exceptionHandling().accessDeniedPage("/403");
 }
