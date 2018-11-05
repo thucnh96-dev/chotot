@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -48,11 +49,34 @@ public class User implements Serializable {
 	private String username;
 	@Column
 	private boolean isActive = true;
+	private String passsword;
 	
+	@Transient
+	private String confimpassword;
+	
+	public String getPasssword() {
+		return passsword;
+	}
+
+
+	public void setPasssword(String passsword) {
+		this.passsword = passsword;
+	}
+
+
+	public String getConfimpassword() {
+		return confimpassword;
+	}
+
+
+	public void setConfimpassword(String confimpassword) {
+		this.confimpassword = confimpassword;
+	}
 	private String token;
 	public String getToken() {
 		return token;
 	}
+	
 
 	public void setToken(String token) {
 		this.token = token;
@@ -61,6 +85,17 @@ public class User implements Serializable {
 	@JoinTable(name="user_role",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="role_id"))
 	private Set<Role>roles;
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+    
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Column
 	private Timestamp createdAt;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user",fetch = FetchType.EAGER)
