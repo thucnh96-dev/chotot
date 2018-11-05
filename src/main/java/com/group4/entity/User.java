@@ -3,6 +3,7 @@ package com.group4.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -44,9 +48,19 @@ public class User implements Serializable {
 	private String username;
 	@Column
 	private boolean isActive = true;
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	
+	private String token;
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="user_role",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="role_id"))
+	private Set<Role>roles;
+
 	@Column
 	private Timestamp createdAt;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user",fetch = FetchType.EAGER)
@@ -107,13 +121,7 @@ public class User implements Serializable {
 		this.isActive = isActive;
 	}
 
-	public Role getRole() {
-		return role;
-	}
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 	public Timestamp getCreatedAt() {
 		return createdAt;

@@ -1,6 +1,7 @@
 package com.group4.Repository;
 import java.util.UUID;
 
+
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -12,6 +13,8 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, UUID> , PagingAndSortingRepository<User, UUID> {
 	List<User> findByName(String name);
+	User findByUsername(String usename);
+	User findByToken(String token);
 	
 	
 }
