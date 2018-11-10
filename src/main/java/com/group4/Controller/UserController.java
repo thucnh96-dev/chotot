@@ -46,6 +46,7 @@ public class UserController extends AbtractController {
 		mm.addAttribute("user", new User());
 		return "auth/register";
 	}
+	
 
 	@PostMapping(value = "/register")
 	public String createUser(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,RedirectAttributes redirectAttributes, ModelMap mm) {
@@ -58,6 +59,7 @@ public class UserController extends AbtractController {
 		Role r=roleRopository.findByName("ADMIN");
 		user.setRoles(new HashSet<Role>(Arrays.asList(r)));
 		user.setPasssword(bCryptPasswordEncoder.encode(user.getPasssword()));
+		user.setActive(true);
 		userService.save(user);
 		securityService.autologin(user.getUsername(), user.getPasssword());
 		redirectAttributes.addFlashAttribute("userinfo", user);
@@ -75,6 +77,12 @@ public class UserController extends AbtractController {
 	public String forgotPassword(ModelMap mm) {
 		mm.addAttribute("meet", "trungthuc");
 		return "auth/forgotpassword";
+	}
+	
+	@GetMapping(value = "/login")
+	public String login(ModelMap mm) {
+	
+		return "auth/login";
 	}
 
 }

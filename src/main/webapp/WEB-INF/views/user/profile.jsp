@@ -15,17 +15,17 @@
       </div>
       <div class="header-right" style="padding: 20px;">
         <div class="dropdown" style="width: fit-content; margin: 0 auto;">
-          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin chào&nbsp;Tueh  &nbsp;^^&nbsp;
+          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin chào&nbsp; ${userinfo.name} &nbsp;^^&nbsp;
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
           
               <li><a class="" href="/thong-tin-ca-nhan">Thông tin tài khoản</a></li>
               <li class="divider"></li>
-              <li><a class="" href="/dang-xuat">Thoát</a></li>
+              <li><a class="" href="/logout">Thoát</a></li>
            
-              <li><a class="" href="/dang-nhap">Đăng nhập</a></li>
+              <li><a class="" href="/login">Đăng nhập</a></li>
               <li class="divider"></li>
-              <li><a class="" href="/dang-ky">Đăng ký</a></li>
+              <li><a class="" href="/register">Đăng ký</a></li>
          
           </ul>
         </div>
@@ -60,7 +60,7 @@
                 <img src="../images/user.png" class="img-circle media-object" style="width:60px;">
               </div>
               <div class="media-body">
-                <h4 class="media-heading">tuyendola97</h4>
+                <h4 class="media-heading"> ${userinfo.name}</h4>
                 <p>Chuyên bán bưởi</p>
               </div>
             </div>
@@ -68,13 +68,13 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-5">
-              <input type="email" class="form-control" id="email" placeholder="@gmail.com" name="email" disabled>
+              <input type="email" value="${userinfo.email}" class="form-control" id="email" placeholder="@gmail.com" name="email" disabled>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Password:</label>
             <div class="col-sm-5">
-              <input type="password" class="form-control" id="pwd" placeholder="*******" name="pwd" disabled>
+              <input type="password" value="${userinfo.password }" class="form-control" id="pwd" placeholder="*******" name="pwd" disabled>
             </div>
           </div>
           <div class="form-group">
@@ -86,7 +86,7 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Số điện thoại:</label>
             <div class="col-sm-5">
-              <input type="tel" class="form-control" id="user-phone" placeholder="0369999031 ">
+              <input type="tel" class="form-control" value="${password.phone }" id="user-phone" placeholder="0369999031 ">
             </div>
           </div>
           <br><br>

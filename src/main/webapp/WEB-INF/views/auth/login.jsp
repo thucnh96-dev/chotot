@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +24,13 @@
               <p><a href="/lay-mat-khau">Bấm vào đây</a></p>
               <div class="clearfix"> </div>
             </div>
+            <c:if test="${param.error}">
+            <span>Tai khoan hoạc mat khau khong dung</span>
+            </c:if>
+            
         
 
-            <form action="/dang-nhap" method="post">
+            <form action="/login" method="post">
               <div class="log-input">
                 <div class="log-input-left">
                   <input type="text" name="email" class="user" placeholder="Nhập Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" required/>
@@ -36,6 +42,14 @@
               <div class="log-input">
                 <div class="log-input-left">
                   <input type="password" name="password" class="lock" placeholder="Mật khẩu" min="6" maxlength="35" pattern=".{6,35}" required/>
+                </div>
+                <span class="checkbox2">
+           </span>
+                <div class="clearfix"> </div>
+              </div>
+                 <div class="log-input">
+                <div class="log-input-left">
+                  <input type="checkbox" name="chotot" /> Remember me
                 </div>
                 <span class="checkbox2">
            </span>
