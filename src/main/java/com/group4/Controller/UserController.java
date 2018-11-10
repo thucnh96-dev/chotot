@@ -56,7 +56,7 @@ public class UserController extends AbtractController {
 		if (bindingResult.hasErrors()) {
 			return "auth/register";
 		}
-		Role r=roleRopository.findByName("ADMIN");
+		Role r=roleRopository.findByName("USER");
 		user.setRoles(new HashSet<Role>(Arrays.asList(r)));
 		user.setPasssword(bCryptPasswordEncoder.encode(user.getPasssword()));
 		user.setActive(true);
