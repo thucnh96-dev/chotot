@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +12,19 @@
 				<div id="page-wrapper" class="sign-in-wrapper">
 					<div class="graphs">
 						<div class="sign-up">
-							<h1>Register</h1>
+							<h1>Thông tin cá nhân !</h1>
 							<p class="creating">Có kinh nghiệm trong việc tạo ra các thiết kế sáng tạo, chúng tôi cung cấp các giải pháp thiết kế.</p>
 							<h2>Thông tin cá nhân</h2>
-						
-							<form action="/dang-ky" method="post">
+							
+							<form:form action="" modelAttribute="user" method="post">
+							<form:hidden path="id"/>
 								<div class="sign-u">
 									<div class="sign-up1">
 										<h4>Họ tên* :</h4>
 									</div>
 									<div class="sign-up2">
-										<input type="text" name="username" placeholder="Họ tên" maxlength="35" pattern=".{1,35}" required/>
+										<form:input type="text" path="name" placeholder="Họ tên" maxlength="100" pattern=".{1,35}" />
+										<form:errors path="name" cssClass="error" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -30,7 +33,8 @@
 										<h4>Địa chỉ Email* :</h4>
 									</div>
 									<div class="sign-up2">
-										<input type="text" name="email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" required/>
+										<form:input type="text" path="email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" required/>
+										<form:errors path="email" cssClass="error" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -39,7 +43,8 @@
 										<h4>Số điện thoại* :</h4>
 									</div>
 									<div class="sign-up2">
-										<input type="text" name="phone" placeholder="Số điện thoại" pattern="[0-9]{9,16}" required/>
+										<form:input type="text" path="phone" placeholder="Số điện thoại" pattern="[0-9]{9,16}" required/>
+										<form:errors path="phone" cssClass="error" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -48,7 +53,8 @@
 										<h4>Mật khẩu* :</h4>
 									</div>
 									<div class="sign-up2">
-										<input type="password" name="password" maxlength="35" placeholder="Mật khẩu" pattern=".{6,35}" required/>
+										<form:input type="password" path="passsword" maxlength="35" placeholder="Mật khẩu" pattern=".{6,35}" required/>
+										<form:errors path="passsword" cssClass="error" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -57,11 +63,11 @@
 										<h4>Xác nhận mật khẩu* :</h4>
 									</div>
 									<div class="sign-up2">
-											<input type="password" name="confirmPassword" maxlength="35" placeholder="Nhập lại mật khẩu" pattern=".{6,35}" required/>
+											<form:input type="password" path="confimpassword" maxlength="35" placeholder="Nhập lại mật khẩu" pattern=".{6,35}" required/>
+									        <form:errors path="confimpassword" cssClass="error" />
 									</div>
 									<div class="clearfix"> </div>
-								</div>
-								<input type="hidden" name="_csrf" value="">
+								</div>																						
 								<div class="sub_home">
 									<div class="sub_home_left">
 											<input type="submit" value="Tạo">
@@ -71,6 +77,14 @@
 									</div>
 									<div class="clearfix"> </div>
 								</div>
+							
+							</form:form>
+							
+								
+								
+								
+								
+							
 						</form>
 						</div>
 					</div>
