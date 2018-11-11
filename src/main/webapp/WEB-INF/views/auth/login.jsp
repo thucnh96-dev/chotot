@@ -41,7 +41,7 @@
               </div>
               <div class="log-input">
                 <div class="log-input-left">
-                  <input type="password" name="password" class="lock" placeholder="Mật khẩu" min="8" maxlength="35" pattern=".{8,35}" required/>
+                  <input type="password" name="passsword" class="lock" placeholder="Mật khẩu" min="8" maxlength="35" pattern=".{8,35}" required/>
                 </div>
                 <span class="checkbox2">
            </span>

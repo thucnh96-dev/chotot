@@ -1,6 +1,8 @@
 package com.group4.Controller;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
@@ -53,6 +55,7 @@ public class authController {
 			return "auth/register";
 		}
 		Role r=roleRopository.findByName("USER");
+		user.setCreatedAt(new Timestamp(new Date().getTime()));
 		user.setRoles(new HashSet<Role>(Arrays.asList(r)));
 		user.setPasssword(bCryptPasswordEncoder.encode(user.getPasssword()));
 		user.setActive(true);

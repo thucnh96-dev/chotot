@@ -11,6 +11,7 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+
 	public Role() {
 		// TODO Auto-generated constructor stub
 	}
@@ -26,4 +27,5 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }
