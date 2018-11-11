@@ -35,35 +35,17 @@ public class UserController extends AbtractController {
 	@Autowired
 	RoleRopository roleRopository;
 	@Autowired
-BCryptPasswordEncoder bCryptPasswordEncoder;
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	SecurityService securityService;
 
-	@PostMapping(value = "/register")
-	public String createUser(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,RedirectAttributes redirectAttributes, ModelMap mm) {
-		if (!(user.getPasssword().equals(user.getConfimpassword()))) {
-			bindingResult.rejectValue("confimpassword", "Enter confirmPassword fail !");
-		}
-		if (bindingResult.hasErrors()) {
-			return "auth/register";
-		}
-		Role r=roleRopository.findByName("USER");
-		user.setRoles(new HashSet<Role>(Arrays.asList(r)));
-		user.setPasssword(bCryptPasswordEncoder.encode(user.getPasssword()));
-		user.setActive(true);
-		userService.save(user);
-		securityService.autologin(user.getUsername(), user.getPasssword());
-		redirectAttributes.addFlashAttribute("userinfo", user);
-		return "redirect:/auth/"+user.getId()+"";
-	}
 
-	
-	@GetMapping(value="/{id}")
-	public String userProfile(@PathVariable("id") UUID id,Model mm) {
-		Optional<User> user=userService.findById(id);
+
+	@GetMapping(value = "/{id}")
+	public String userProfile(@PathVariable("id") UUID id, Model mm) {
+		Optional<User> user = userService.findById(id);
 		mm.addAttribute("userinfo", user.get());
 		return "user/profile";
 	}
-
 
 }
