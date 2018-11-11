@@ -30,10 +30,10 @@
             
         
 
-            <form action="/login" method="post">
+            <form:form action="/login" method="post">
               <div class="log-input">
                 <div class="log-input-left">
-                  <input type="text" name="username" class="user" placeholder="Nhập Email"  required/>
+                  <input type="text" name="username" class="user" placeholder="Nhập username"  required/>
                 </div>
                 <span class="checkbox2">
            </span>
@@ -41,7 +41,7 @@
               </div>
               <div class="log-input">
                 <div class="log-input-left">
-                  <input type="password" name="password" class="lock" placeholder="Mật khẩu" min="6" maxlength="35" pattern=".{6,35}" required/>
+                  <input type="password" name="password" class="lock" placeholder="Mật khẩu" min="8" maxlength="35" pattern=".{8,35}" required/>
                 </div>
                 <span class="checkbox2">
            </span>
@@ -57,7 +57,7 @@
               </div>
               <input type="hidden" name="_csrf" value="">
               <input type="submit" value="Đăng nhập">
-            </form>
+            </form:form>
           </div>
           <div class="new_people">
             <h2>Cho Người Mới</h2>

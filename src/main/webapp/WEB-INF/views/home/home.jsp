@@ -4,13 +4,13 @@
 <html lang="en">
 <head>
   <!-- meta css info  -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div id="header_all" class="header">
     <div class="container">
       <div class="logo">
-        <a href="/"><span><img class="img-responsive image-circle" src="../Admin(js,css,img,font)/images/admin.jpg" alt="logo" height="64" width="64" style="float: left;">Chợ Tốt</span>&nbsp;Văn Lang</a>
+        <a href="/"><span><img class="img-responsive image-circle" src="./Admin(js,css,img,font)/images/admin.jpg" alt="logo" height="64" width="64" style="float: left;">Chợ Tốt</span>&nbsp;Văn Lang</a>
       </div>
       <div class="header-right" style="padding: 20px;">
         <div class="dropdown" style="width: fit-content; margin: 0 auto;">
@@ -68,7 +68,7 @@
       <hr class="hidden-md hidden-lg hr">
       <div class="flex text-center hidden-xs hidden-sm">
         <img class="hoavan" src="/images/hoavan.png" alt="hoala">
-        <img class="hoavan" src="../images/hoavan.PNG" alt="hoala">
+        <img class="hoavan" src="./images/hoavan.PNG" alt="hoala">
       </div>
       <div class="trending-ads">
         <div class="container">
@@ -110,7 +110,7 @@
         <div class="foo-grids">
           <div class="col-md-6 footer-grid footer-top">
             <div class="col-sm-offset-3 col-sm-7">
-              <!-- <a href="/"><img class="lazy-logo" style="max-width: 79%;" data-original="../images/chotot.png" alt="Logo"></a> -->
+              <!-- <a href="/"><img class="lazy-logo" style="max-width: 79%;" data-original="./images/chotot.png" alt="Logo"></a> -->
               <h4 class="footer-head">Liên hệ</h4>
               <span class="hq">Trụ sở chính</span>
               <address>
@@ -261,14 +261,14 @@
 
 </footer>
 <!-- js -->
-<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- js -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://chototvanlang.herokuapp.com/socket.io/socket.io.js"></script>
-<script src="./js/lazyload.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/bootstrap-select.js"></script>
-<script src="./js/hiddenporo.js"></script>
+
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-select.js"></script>
+<script src="/js/hiddenporo.js"></script>
 <script>
   $(document).ready(function(){$("div.lazy-product, img.lazy-logo, img.lazy-cate, div.lazy-sale, div.lazy-ngung, img.lazy-member, div.lazy-details, div.lazy-lq").lazyload({effect:"fadeIn"});var a=$("#first-disabled2");$("#special").on("click",function(){a.find("option:selected").prop("disabled",!0),a.selectpicker("refresh")}),$("#special2").on("click",function(){a.find("option:disabled").prop("disabled",!1),a.selectpicker("refresh")}),$("#basic2").selectpicker({liveSearch:!0,maxOptions:1}),function(b){b(function(){var c=b("body"),d=b("#menu");d.wrapInner("<div class=\"inner\"></div>"),d._locked=!1,d._lock=function(){return!d._locked&&(d._locked=!0,window.setTimeout(function(){d._locked=!1},350),!0)},d._show=function(){d._lock()&&c.addClass("is-menu-visible")},d._hide=function(){d._lock()&&c.removeClass("is-menu-visible")},d._toggle=function(){d._lock()&&c.toggleClass("is-menu-visible")},d.appendTo(c).on("click",function(e){e.stopPropagation()}).on("click","a",function(e){var f=b(this).attr("href");e.preventDefault(),e.stopPropagation(),d._hide();"#menu"==f||window.setTimeout(function(){window.location.href=f},350)}).append("<a id=\"close--menu\" class=\"close\" href=\"#menu\">Close</a>"),c.on("click","a[href=\"#menu\"]",function(e){e.stopPropagation(),e.preventDefault(),d._toggle()}).on("click",function(){d._hide()}).on("keydown",function(e){27==e.keyCode&&d._hide()})})}(jQuery)});
 function GoogleMaps(){var a={lat:10.762936,lng:106.693335},b=new google.maps.Map(document.getElementById('map'),{zoom:15,center:a}),c=new google.maps.Marker({position:a,map:b})}
