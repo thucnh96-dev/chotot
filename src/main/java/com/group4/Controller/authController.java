@@ -4,12 +4,15 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +23,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.group4.Heper.EmailHepper;
+import com.group4.Heper.EmailSender;
 import com.group4.Repository.RoleRopository;
 import com.group4.Service.SecurityService;
 import com.group4.Service.UserService;
@@ -39,6 +46,8 @@ public class authController {
     RoleRopository roleRopository ;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder ;
+    @Autowired
+    EmailHepper  emailHepper ;
 	@GetMapping(value = "/register")
 	public String register(ModelMap mm) {
 		mm.addAttribute("user", new User());
@@ -71,6 +80,58 @@ public class authController {
 	public String forgotPassword(ModelMap mm) {
 		mm.addAttribute("meet", "trungthuc");
 		return "auth/forgotpassword";
+	}
+	@PostMapping(value = "/forgotPassword")
+	public ModelAndView  forgotPassword(@RequestParam("email") String email,HttpRequest request,ModelAndView modelAndView ) {
+		User forgot=userService.findByemail(email);
+		String res="http://localhost:8080";
+		if (forgot==null) {
+			modelAndView.addObject("errorMessage", "Not email in data!");
+		}
+		forgot.setToken(UUID.randomUUID().toString());
+		userService.save(forgot);
+		SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+		simpleMailMessage.setFrom("thucnhpd02000@fpt.edu.vn");
+		simpleMailMessage.setTo(forgot.getEmail());
+		simpleMailMessage.setSubject("Forgot password request!");
+		simpleMailMessage.setText("Click link forgot your password <br>"
+				+ " <a  href="+res+"reset?token="+forgot.getToken()+">click me !</a> ");
+		simpleMailMessage.setReplyTo("thucnhpd02000@fpt.edu.vn");
+		emailHepper.sendEmail(simpleMailMessage);
+		modelAndView.addObject("successMessage", "A password reset link has been sent to " + forgot.getEmail());
+		modelAndView.setViewName("auth/forgotpassword");
+		return modelAndView;
+		
+	}
+	@GetMapping(value="reset")
+	public ModelAndView reset(ModelAndView modelAndView, @RequestParam("token") String token) {
+		User u = userService.findByToken(token);
+		if (u != null) {
+			modelAndView.addObject("token", token);
+		} else {
+			modelAndView.addObject("errorMessage", "Oops!fdsf  This is an invalid password reset link.");
+		}
+		modelAndView.setViewName("auth/resetpassword");
+		return modelAndView;
+	}
+	@PostMapping(value = "/reset")
+	public ModelAndView resetpass(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams,BindingResult result,
+			RedirectAttributes redir) {
+		User u = userService.findByToken(requestParams.get("token"));
+		System.out.println(u.getEmail());
+	
+		if (u != null) {
+			u.setToken(null);
+			u.setPasssword(bCryptPasswordEncoder.encode(requestParams.get("password")) );
+			userService.save(u);
+			redir.addFlashAttribute("successMessage", "You have successfully reset your password.  You may now login.");
+			modelAndView.setViewName("redirect:/login");
+			return modelAndView;
+		} else {
+			modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link.");
+			modelAndView.setViewName("auth/resetpassword");
+		}
+		return modelAndView;
 	}
 	
 	@GetMapping(value = "/login")

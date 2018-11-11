@@ -18,6 +18,8 @@ public interface UserService {
     User save(User p);
 
     void deleteById(UUID id);
+    User findByemail(String email);
+    User findByToken(String token);
 
     List<User> findByName(String name);
 }

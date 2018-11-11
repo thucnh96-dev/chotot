@@ -15,6 +15,7 @@ public interface UserRepository extends CrudRepository<User, UUID> , PagingAndSo
 	List<User> findByName(String name);
 	User findByUsername(String username);
 	User findByToken(String token);
+	User findByEmail(String token);
 	
 	
 }

@@ -50,6 +50,18 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findAll(pageable);
 	}
 
+	@Override
+	public User findByemail(String email) {
+		User u=userRepository.findByEmail(email);
+		return u;
+	}
+
+	@Override
+	public User findByToken(String token) {
+		User u=userRepository.findByToken(token);
+		return u;
+	}
+
 	
 
 }
