@@ -62,7 +62,7 @@
           <div class="new_people">
             <h2>Cho Người Mới</h2>
             <p>Có kinh nghiệm trong việc tạo ra các thiết kế sáng tạo, chúng tôi cung cấp các giải pháp thiết kế.</p>
-            <a href="/dang-ky">Đăng ký ngay!</a>
+            <a href="/auth/register">Đăng ký ngay!</a>
           </div>
         </div>
       </div>

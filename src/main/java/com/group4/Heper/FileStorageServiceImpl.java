@@ -54,7 +54,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 		FileOutputStream fout = new FileOutputStream(f);
 		fout.write(file.getBytes());
 		fout.close();
-		BufferedImage image = ImageIO.read(f);
+	/*	BufferedImage image = ImageIO.read(f);
 		int height = image.getHeight();
 		int width = image.getWidth();
 		if (width > 300 || height > 300) {
@@ -64,7 +64,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 		}
 
 		if (f.exists())
-			f.delete();
+			f.delete();*/
 
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {

@@ -3,7 +3,7 @@ package com.group4.untils;
 public class AppConstants {
 	public static final String EMPLOYEE_URI = "/employees";
 	public static final String POST_JSON_PARAM = "empJson";
-	public static final String POST_FILE_PARAM = "file";
+	public static final String POST_FILE_PARAM = "productImgAdd";
 	public static final String SUCCESS_CODE = "EMP-200";
 	public static final String SUCCESS_MSG = "Employee created successfully";
 	public static final String FILE_SEPERATOR = "_";
