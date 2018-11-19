@@ -11,7 +11,7 @@ import com.group4.entity.*;
 
 public interface SubCategoryService {
 	Page<SubCategory> findAll(Pageable pageable);
-
+	List<SubCategory>findAll();
 	Optional<SubCategory> findById(UUID id);
 
 	SubCategory save(SubCategory p);

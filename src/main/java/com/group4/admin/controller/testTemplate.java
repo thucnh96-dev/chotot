@@ -10,4 +10,10 @@ public class testTemplate {
 		
 		return "admin/home";
 	}
+
+@GetMapping(value="test/post")
+public String post() {
+	
+	return "post/form";
+}
 }

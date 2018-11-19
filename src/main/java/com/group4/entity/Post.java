@@ -49,6 +49,33 @@ public class Post {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="post",fetch = FetchType.EAGER)
 	private List<PostPhoto> photos;
 	
+	private String status;
+	private int quantity;
+	private String info;
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public List<PostPhoto> getPhotos() {
 		return photos;
@@ -61,6 +88,7 @@ public class Post {
 	public Post() {
 		super();
 	}
+	
 
 	public Post(UUID id, String title, Address address, SubCategory subCategory, String description, double price,
 			User user, boolean isAccept, Timestamp createdAt) {

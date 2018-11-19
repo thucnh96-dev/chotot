@@ -48,6 +48,12 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 		return subCategoryRepository.findAll(pageable);
 	}
 
+	@Override
+	public List<SubCategory> findAll() {
+		// TODO Auto-generated method stub
+		return (List<SubCategory>) subCategoryRepository.findAll();
+	}
+
 	
 
 }

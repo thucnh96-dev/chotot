@@ -22,7 +22,7 @@ public abstract class AbtractController {
 	
 	protected User getCurentUser(Authentication authentication) {
 		authentication=SecurityContextHolder.getContext().getAuthentication();
-		User user=(User) userService.findByName(authentication.getName());
+		User user=(User) userService.findByUsername(authentication.getName());
 		return user;
 	}
 
