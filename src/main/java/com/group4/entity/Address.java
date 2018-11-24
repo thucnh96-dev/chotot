@@ -20,30 +20,12 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty(value = "_id", access = JsonProperty.Access.READ_ONLY)
 	private UUID id;
-	
+
+	private String address;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "wardId")
+	@JoinColumn(name = "ward_id")
 	private Ward ward;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "districId")
-	private Distric distric;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cityId")
-	private City city;
-
-	public Address() {
-		super();
-	}
-
-	public Address(UUID id, Ward ward, Distric distric, City city) {
-		super();
-		this.id = id;
-		this.ward = ward;
-		this.distric = distric;
-		this.city = city;
-	}
 
 	public UUID getId() {
 		return id;
@@ -51,6 +33,14 @@ public class Address {
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Ward getWard() {
@@ -61,20 +51,8 @@ public class Address {
 		this.ward = ward;
 	}
 
-	public Distric getDistric() {
-		return distric;
-	}
-
-	public void setDistric(Distric distric) {
-		this.distric = distric;
-	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
+	public Address() {
+		super();
 	}
 
 }

@@ -3,6 +3,7 @@ package com.group4.Controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.sound.midi.Soundbank;
@@ -14,11 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.group4.Heper.FileStorageService;
+import com.group4.Service.CityService;
 import com.group4.Service.PostPhotoService;
 import com.group4.Service.PostService;
 import com.group4.Service.SubCategoryService;
@@ -28,53 +31,62 @@ import com.group4.entity.PostPhoto;
 import com.group4.entity.User;
 
 @Controller
-@RequestMapping(value="/post")
+@RequestMapping(value = "/post")
 public class PostController extends AbtractController {
 
-	@Autowired PostService postService;
-	@Autowired PostPhotoService postPhotoService;
-	@Autowired SubCategoryService subCategoryService;
-	@Autowired UserService userService;
-	@Autowired FileStorageService  fileStorageService ;
-	
-	
-	@GetMapping(value="/new")
-	public String createNew(Model model,Authentication authentication) {
-		User user=this.getCurentUser(authentication);
-		System.out.println(user.getEmail()); 
-		if (user==null) 
-		return "redirect:/auth/login";
-		
+	@Autowired
+	PostService postService;
+	@Autowired
+	PostPhotoService postPhotoService;
+	@Autowired
+	SubCategoryService subCategoryService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	FileStorageService fileStorageService;
+	@Autowired
+	CityService cityService;
+
+	@GetMapping(value = "/new")
+	public String createNew(Model model, Authentication authentication) {
+		User user = this.getCurentUser(authentication);
+		System.out.println(user.getEmail());
+		if (user == null) {
+			return "redirect:/auth/login";
+		}
+
+		model.addAttribute("CITYS", cityService.findAll());
 		model.addAttribute("post", new Post());
 		model.addAttribute("subcate", subCategoryService.findAll());
 		return "post/form";
 	}
-	
-	@GetMapping(value="/{id}")
+
+	@GetMapping(value = "/{id}")
 	public String createNew(@PathVariable("id") UUID id, Model model) {
-		model.addAttribute("posts",postService.findById(id));
-	  System.out.println("oke");
+		model.addAttribute("posts", postService.findById(id));
+		System.out.println("oke");
 		return "";
 	}
-	
-	
-	
-	@GetMapping(value="/new/upload")
-	public String createNew(@ModelAttribute("post") Post post,@RequestParam("productImgAdd") MultipartFile[] file, Model model,Authentication uthentication) throws IOException {
+
+	@PostMapping(value = "/new/upload")
+	public String createNew(@ModelAttribute("post") Post post, @RequestParam("images") MultipartFile[] file,
+			Model model, Authentication uthentication) throws IOException {
 		post.setCreatedAt(new Timestamp(new Date().getTime()));
 		post.setAccept(false);
 		post.setUser(this.getCurentUser(uthentication));
-		/*post.setPhotos(photos);*/
-		postService.save(post);
-		PostPhoto p=new PostPhoto();
-		p.setPost(post);
-		p.setName(fileStorageService.storeFile(file));
-		postPhotoService.save(p);
+		/* post.setPhotos(photos); */
+		Post postSave = postService.save(post);
+		if (postSave == null) {
+
+		}
+		for (int i = 0; i < file.length; i++) {
+			PostPhoto p = new PostPhoto();
+			p.setPost(postSave);
+			p.setName(fileStorageService.storeFile(file[i]));
+			postPhotoService.save(p);
+		}
+//		
 		return "post/form";
 	}
-	
-	
-	
 
-	
 }

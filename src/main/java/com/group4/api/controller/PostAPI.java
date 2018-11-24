@@ -42,7 +42,7 @@ public class PostAPI {
 	) throws JsonParseException, JsonMappingException, IOException {
 		String fileName = null;
 		for (MultipartFile upload: file) {
-			fileName = fileStorageService.storeFile(file);
+//			fileName = fileStorageService.storeFile(file);
 		}			
 		Post post=mapper.readValue(postjson, Post.class);
 		postService.save(post);

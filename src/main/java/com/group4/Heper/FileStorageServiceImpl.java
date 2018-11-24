@@ -40,9 +40,10 @@ public class FileStorageServiceImpl implements FileStorageService {
 	}
 
 	@Override
-	public String storeFile(MultipartFile[] files) throws IOException {
-
-		for(MultipartFile file :files) {
+	public String storeFile(MultipartFile file) throws IOException {
+//		if (file.) {
+//			
+//		}
 		if (!(file.getOriginalFilename().endsWith(AppConstants.PNG_FILE_FORMAT)
 				|| file.getOriginalFilename().endsWith(AppConstants.JPEG_FILE_FORMAT)
 				|| file.getOriginalFilename().endsWith(AppConstants.JPG_FILE_FORMAT)))
@@ -78,8 +79,6 @@ public class FileStorageServiceImpl implements FileStorageService {
 		} catch (IOException ex) {
 			throw new FileStorageException(String.format(AppConstants.FILE_STORAGE_EXCEPTION, fileName), ex);
 		}
-		}
-		return null;
 	}
 
 	@Override

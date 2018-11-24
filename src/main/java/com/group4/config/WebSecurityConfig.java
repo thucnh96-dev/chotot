@@ -30,15 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 @Override
 public void configure(HttpSecurity httpSecurity) throws Exception {
 	httpSecurity.authorizeRequests().
-	antMatchers("/resources/**","/","/auth/register","/loginfalse","/post/**","/login","/test/**","/adminv1/**","/css/**","/js/**").permitAll()
+	antMatchers("/resources/**","/","/auth/register","/loginfalse","/post/**","/login","/test/**","/adminv1/**","/css/**","/js/**","/api/**").permitAll()
 	.antMatchers("/admin/**").hasAuthority("ADMIN")
 	.antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated()
 	.and().csrf().disable()
 	.formLogin()
 	.loginPage("/login").failureUrl("/login?error=true")
 	.defaultSuccessUrl("/")
-//	.successHandler(new CustomAuthenticationSuccess())
-//	.failureHandler(new CustomAuthenticationFalse())
+////	.successHandler(new CustomAuthenticationSuccess())
+////	.failureHandler(new CustomAuthenticationFalse())
 	.usernameParameter("username").passwordParameter("passsword")	
 	.and()
 	.logout()

@@ -4,11 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.group4.entity.Distric;
-import com.group4.entity.City;
+import com.group4.entity.Ward;
 import java.util.List;
 @Repository
-public interface DistricRepository extends JpaRepository<Distric, Integer> {
+public interface WardRepository extends JpaRepository<Ward, Integer> {
 
 	Distric findByName(String name);
-	List<Distric> findByCity(City city);
+	List<Ward> findByDistric(Distric distric);
 }

@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import com.group4.entity.Category;
 
 public interface CategoryService {
-	Page<Category> findAll(Pageable pageable);
+	List<Category> findAll();
 
 	Optional<Category> findById(UUID id);
 
