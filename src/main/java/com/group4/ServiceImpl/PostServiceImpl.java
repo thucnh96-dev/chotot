@@ -9,14 +9,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
+import com.group4.Repository.AdressRepository;
 import com.group4.Repository.PostRepository;
 import com.group4.Service.PostService;
+import com.group4.entity.Address;
 import com.group4.entity.Post;
 @Service
 public class PostServiceImpl implements PostService{
 	@Autowired
 	private PostRepository postRepository;
+	@Autowired
+	private AdressRepository adressRepository;
 	
 	@Override
 	public Optional<Post> findById(UUID id) {
@@ -26,7 +29,6 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public Post save(Post p) {
-		
 		return postRepository.save(p);
 	}
 

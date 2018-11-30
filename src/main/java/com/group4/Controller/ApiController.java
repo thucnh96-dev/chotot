@@ -1,5 +1,7 @@
 package com.group4.Controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.group4.Service.DistrictService;
 import com.group4.Service.WardService;
 import com.group4.entity.City;
 import com.group4.entity.Distric;
+import com.group4.entity.Reponse;
 import com.group4.entity.Ward;
 
 @RestController
@@ -23,21 +26,33 @@ public class ApiController {
 	@Autowired
 	DistrictService districtService;
 
-
-
 	@GetMapping("/city/{id}/districts")
-	public List<Distric> getDistrictByCity(@PathVariable int id) {
+	public List<Reponse> getDistrictByCity(@PathVariable int id) {
 		City city = new City();
 		city.setId(id);
 		List<Distric> districs = districtService.findByCity(city);
-		return districs;
+		List<Reponse> district = new ArrayList<>();
+		for (int i = 0; i < districs.size(); i++) {
+			Reponse repon = new Reponse();
+			repon.setId(districs.get(i).getId());
+			repon.setName(districs.get(i).getPrefix() +" "+ districs.get(i).getName());
+			district.add(repon);
+		}
+		return district;
 	}
 
 	@GetMapping("/district/{id}/wards")
-	public List<Ward> getwardsByDistric(@PathVariable int id) {
+	public List<Reponse> getwardsByDistric(@PathVariable int id) {
 		Distric distric = new Distric();
 		distric.setId(id);
-		List<Ward> wards = wardService.findByDistrict(distric);
+		List<Ward> wardArr = wardService.findByDistrict(distric);
+		List<Reponse> wards = new ArrayList<>();
+		for (int i = 0; i < wardArr.size(); i++) {
+			Reponse repon = new Reponse();
+			repon.setId(wardArr.get(i).getId());
+			repon.setName(wardArr.get(i).getPrefix() +" "+ wardArr.get(i).getName());
+			wards.add(repon);
+		}
 		return wards;
 	}
 }

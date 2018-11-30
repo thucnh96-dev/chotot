@@ -3,10 +3,7 @@ package com.group4.Controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
-
-import javax.sound.midi.Soundbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,14 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.group4.Heper.FileStorageService;
+import com.group4.Service.AddressService;
 import com.group4.Service.CityService;
 import com.group4.Service.PostPhotoService;
 import com.group4.Service.PostService;
 import com.group4.Service.SubCategoryService;
 import com.group4.Service.UserService;
+import com.group4.entity.Address;
 import com.group4.entity.Post;
 import com.group4.entity.PostPhoto;
 import com.group4.entity.User;
+import com.group4.entity.Ward;
 
 @Controller
 @RequestMapping(value = "/post")
@@ -36,6 +36,8 @@ public class PostController extends AbtractController {
 
 	@Autowired
 	PostService postService;
+	@Autowired
+	AddressService addressService;
 	@Autowired
 	PostPhotoService postPhotoService;
 	@Autowired
@@ -70,11 +72,25 @@ public class PostController extends AbtractController {
 
 	@PostMapping(value = "/new/upload")
 	public String createNew(@ModelAttribute("post") Post post, @RequestParam("images") MultipartFile[] file,
-			Model model, Authentication uthentication) throws IOException {
+			@RequestParam int ward_id, @RequestParam String address_string, Model model, Authentication uthentication)
+			throws IOException {
+		System.out.println(file.length);
+		Ward ward = new Ward();
+		ward.setId(ward_id);
+		Address add = new Address();
+		add.setAddress(address_string);
+
+		add.setWard(ward);
+		Address address = addressService.save(add);
+
 		post.setCreatedAt(new Timestamp(new Date().getTime()));
 		post.setAccept(false);
+		
+		post.setAddress(address);
+		
 		post.setUser(this.getCurentUser(uthentication));
 		/* post.setPhotos(photos); */
+
 		Post postSave = postService.save(post);
 		if (postSave == null) {
 
@@ -85,7 +101,7 @@ public class PostController extends AbtractController {
 			p.setName(fileStorageService.storeFile(file[i]));
 			postPhotoService.save(p);
 		}
-//		
+		
 		return "post/form";
 	}
 
