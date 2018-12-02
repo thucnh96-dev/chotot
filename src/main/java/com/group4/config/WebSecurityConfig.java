@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 @Override
 public void configure(HttpSecurity httpSecurity) throws Exception {
 	httpSecurity.authorizeRequests().
-	antMatchers("/resources/**","/","/auth/register","/loginfalse","/post/**","/login","/test/**","/adminv1/**","/css/**","/js/**","/api/**").permitAll()
+	antMatchers("/resources/**","/","/auth/**","/loginfalse","/post/**","/login","/test/**","/adminv1/**","/css/**","/js/**","/api/**").permitAll()
 	.antMatchers("/admin/**").hasAuthority("ADMIN")
 	.antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated()
 	.and().csrf().disable()

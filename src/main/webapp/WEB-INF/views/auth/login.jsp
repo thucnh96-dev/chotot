@@ -21,12 +21,13 @@
               <span class="checkbox1">
               <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Quên Mật khẩu ?</label>
            </span>
-              <p><a href="/lay-mat-khau">Bấm vào đây</a></p>
+              <p><a href="/auth/forgotPassword">Bấm vào đây</a></p>
               <div class="clearfix"> </div>
             </div>
             <c:if test="${param.error}">
             <span>Tai khoan hoạc mat khau khong dung</span>
             </c:if>
+            <p>${successMessage}</p>
             
         
 
