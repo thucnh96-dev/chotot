@@ -1,5 +1,6 @@
 package com.group4.ServiceImpl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import com.group4.Repository.PostRepository;
 import com.group4.Service.PostService;
 import com.group4.entity.Address;
 import com.group4.entity.Post;
+import com.group4.entity.User;
 @Service
 public class PostServiceImpl implements PostService{
 	@Autowired
@@ -44,6 +46,23 @@ public class PostServiceImpl implements PostService{
 	public Page<Post> findAll(Pageable pageable) {
 		
 		return postRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Post> findAllByUser(User user) {
+	
+		return postRepository.findAllByUser(user);
+	}
+
+	@Override
+	public Page<Post> findAllByIsAcceptTrue(Pageable pageable) {	
+		return postRepository.findAllByIsAcceptTrue(pageable);
+	}
+
+	@Override
+	public Page<Post> findAllByIsAcceptFalse(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByIsAcceptFalse(pageable);
 	}
 
 	

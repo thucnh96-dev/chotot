@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="/adminv1/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/adminv1/images/favicon.png" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  
 </head>
 
 <body>
@@ -157,7 +160,8 @@
                 <div class="card-body">
                   <h4 class="card-title">Duyệt bài</h4>
                   <div class="table-responsive">
-                    <table class="table table-bordered">
+                  
+                    <table class="table table-bordered" id="postactive">
                       <thead>
                         <tr>
                           <th>
@@ -432,6 +436,8 @@
                         </tr>
                       </tbody>
                     </table>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -596,10 +602,28 @@
   <!-- inject:js -->
   <script src="/adminv1/js/off-canvas.js"></script>
   <script src="/adminv1/js/misc.js"></script>
+
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="/adminv1/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+  
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#postactive').DataTable();
+    } );
+    </script>
+     
+     <script type="text/javascript">
+     function activePost(int id){
+    	 $.ajax({
+    			url:'/admin/ative/'+id+',
+    			success: function (data) {
+    				alert(data);
+    			}
+    		});	 
+     }
+    </script>
 </body>
 
 </html>
