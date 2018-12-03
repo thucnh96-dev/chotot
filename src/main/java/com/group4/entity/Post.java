@@ -43,7 +43,7 @@ public class Post {
 	@JoinColumn(name = "authorId")
 	private User user;
 	
-	private boolean isAccept;
+	private boolean isAccept = false;
 	
 	private Timestamp createdAt;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="post",fetch = FetchType.EAGER)

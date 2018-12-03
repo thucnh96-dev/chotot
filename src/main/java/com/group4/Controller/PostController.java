@@ -84,7 +84,7 @@ public class PostController extends AbtractController {
 		Address address = addressService.save(add);
 
 		post.setCreatedAt(new Timestamp(new Date().getTime()));
-		post.setAccept(false);
+		//post.setAccept(false);
 		
 		post.setAddress(address);
 		
