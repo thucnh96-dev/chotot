@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,4 +77,12 @@ public class ApiController {
 		List<Post> posts = postService.findAll();
 		return posts.get(2).getPhotos().get(0).getPost().getId();
 	}
+//	,@RequestParam UUID wardId, @RequestParam String sort
+	@PostMapping("/search")
+	public String searchPost (@RequestParam(value= "keywork") String keywork) {
+		System.out.println(keywork);
+		return keywork;
+		
+	}
+	
 }

@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -10,6 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css">
+<script type="text/javascript" src="/js/custom.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -20,22 +25,22 @@
     <div class="container">
       <div class="logo">
         <a href="/"><span><img class="img-responsive image-circle" src="../Admin(js,css,img,font)/images/admin.jpg" alt="logo"
-              height="64" width="64" style="float: left;">Chợ Tốt</span>&nbsp;Văn Lang</a>
+              height="64" width="64" style="float: left;">Chá»£ Tá»t</span>&nbsp;VÄn Lang</a>
       </div>
       <div class="header-right" style="padding: 20px;">
         <div class="dropdown" style="width: fit-content; margin: 0 auto;">
           <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin
-            chào&nbsp;Tuen&nbsp;^^&nbsp;
+            chÃ o&nbsp;Tuen&nbsp;^^&nbsp;
             <span class="caret"></span></button>
           <ul class="dropdown-menu">
 
-            <li><a class="" href="/thong-tin-ca-nhan">Thông tin tài khoản</a></li>
+            <li><a class="" href="/thong-tin-ca-nhan">ThÃ´ng tin tÃ i khoáº£n</a></li>
             <li class="divider"></li>
-            <li><a class="" href="/dang-xuat">Thoát</a></li>
+            <li><a class="" href="/dang-xuat">ThoÃ¡t</a></li>
 
-            <li><a class="" href="/dang-nhap">Đăng nhập</a></li>
+            <li><a class="" href="/dang-nhap">ÄÄng nháº­p</a></li>
             <li class="divider"></li>
-            <li><a class="" href="/dang-ky">Đăng ký</a></li>
+            <li><a class="" href="/dang-ky">ÄÄng kÃ½</a></li>
 
           </ul>
         </div>
@@ -50,12 +55,12 @@
 
       </div>
       <div class="col-lg-8">
-        <h4>Mua bán, rao vặt nhanh chóng, uy tín tại Chợ tốt Toàn quốc</h4>
+        <h4 id="loadName">${CATEGORY.name} Toàn quốc 2018 Giá Rẻ</h4>
         <form action="" method="post" class="form-horizontal">
           <div class="input-group col-lg-11">
-            <input class="form-control py-2" type="search" value="search" id="example-search-input">
+            <input class="form-control py-2" type="search"  id="search-input">
             <span class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">
+              <button class="btn btn-outline-secondary" type="button" onclick="search()">
                 <i class="fa fa-search"></i>
               </button>
             </span>
@@ -73,7 +78,7 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="addressId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div class="modal fade" id="addressId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" id="modal_address"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -84,10 +89,15 @@
                     <!-- <span aria-hidden="true">&times;</span> -->
 
                   </div>
-                  <ul class="list-group modal-body">
-                    <a href="#" style="text-decoration: none;">
+                  <ul class="list-group modal-body" id="address">
+                    <a href="#" style="text-decoration: none;" >
                       <li class="list-group-item ">Toan Quoc <i class="fa fa-angle-right fa-5 pull-right"></i></li>
                     </a>
+                    <c:forEach var="CITY" items="${CITYS}">
+                     <a href="#" style="text-decoration: none;" onclick="addressShow(${CITY.id})">
+                      <li class="list-group-item ">${CITY.name} <i class="fa fa-angle-right fa-5 pull-right"></i></li>
+                    </a>
+                    </c:forEach>
 
 
                   </ul>
@@ -99,12 +109,12 @@
           <div class="col-lg-5">
             <div class="dropdown">
               <button type="button" class="btn btn-lg btn-block dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-                tat ca danh muc
+                ${CATEGORY.name}
               </button>
               <div class="dropdown-menu ">
-                <a class="dropdown-item" href="#">Link 1</a>
-                <a class="dropdown-item" href="#">Link 2</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+               <c:forEach items="${CATEGORY.getSubcategories()}" var="SUB">
+                <a class="dropdown-item" href="#" id="subcategory" value="${SUB.id}" >${SUB.name}</a>
+               </c:forEach>
               </div>
             </div>
           </div>
@@ -211,14 +221,22 @@
 
         </div>
         <br/>
-        <div class="media">
-            <img class="media-left" width="120" height="120" alt="Image" src="https://dantricdn.com/2017/ung-dung-xu-ly-anh-7-1503691269626.jpg">
+        <div id="body_content">
+          <c:forEach items="${POSTS}" var="POST">
+          <div class="media">
+            <img class="media-left" width="120" height="120" alt="Image" src="/upload/danhmuc.jpg">
             <div class="media-body">
-               <h4 class="card-title">Ban gi do ne</h4>
-               <p class="card-text">Copy</p>
-               <a class="btn btn-primary my-3 btn-block" href="/contact/">Contact Us</a>
+               <h3 class="card-title">${POST.title}</h3>
+               <p class="card-text">${POST.price}</p>
+               <br/>
+               <p class="card-text">${POST.getUser().getName()} |${POST.getAddress().getWard().getCity().getName()}</p>
             </div>
-         </div>
+             </div>
+             <br/>
+             <hr/>
+          </c:forEach>
+          </div>
+        
     
       </div>
       <div class="col-lg-2"></div>
@@ -231,12 +249,12 @@
           <div class="col-md-6 footer-grid footer-top">
             <div class="col-sm-offset-3 col-sm-7">
               <!-- <a href="/"><img class="lazy-logo" style="max-width: 79%;" data-original="../images/chotot.png" alt="Logo"></a> -->
-              <h4 class="footer-head">Liên hệ</h4>
-              <span class="hq">Trụ sở chính</span>
+              <h4 class="footer-head">LiÃªn há»</h4>
+              <span class="hq">Trá»¥ sá» chÃ­nh</span>
               <address>
                 <ul class="location">
                   <li><span class="glyphicon glyphicon-map-marker"></span></li>
-                  <li>LẦU 7 VĂN PHÒNG KHOA CNTT Đại học Văn Lang</li>
+                  <li>Láº¦U 7 VÄN PHÃNG KHOA CNTT Äáº¡i há»c VÄn Lang</li>
                   <div class="clearfix"></div>
                 </ul>
                 <ul class="location">
@@ -264,7 +282,7 @@
     <div class="footer-bottom text-center">
       <div class="container">
         <div class="footer-logo">
-          <a href="/"><span>Chợ Tốt</span>&nbsp;Văn Lang</a>
+          <a href="/"><span>Chá»£ Tá»t</span>&nbsp;VÄn Lang</a>
         </div>
         <div class="footer-social-icons">
           <ul>
@@ -276,14 +294,14 @@
           </ul>
         </div>
         <div class="copyrights">
-          <p> © 2018 Chợ tốt Văn Lang. All Rights Reserved |&nbsp;<span id="Id_online"></span>&nbsp;| Design by <a href="mailto:w.a.f-group@gmail.com">
+          <p> Â© 2018 Chá»£ tá»t VÄn Lang. All Rights Reserved |&nbsp;<span id="Id_online"></span>&nbsp;| Design by <a href="mailto:w.a.f-group@gmail.com">
               W.A.F Group</a></p>
         </div>
         <div class="clearfix"></div>
       </div>
     </div>
 
-    <div class="text-center pull-right hello top hidden-xs" title="Lên TOP">
+    <div class="text-center pull-right hello top hidden-xs" title="LÃªn TOP">
       <span>
         <i class="fa fa-angle-double-up" aria-hidden="true"></i>
       </span>
@@ -291,14 +309,14 @@
 
 
     <div class="text-center pull-right hello caht" data-toggle="collapse" data-target="#chat" aria-expanded="true"
-      title="Tính năng đang được phát triển">
+      title="TÃ­nh nÄng Äang ÄÆ°á»£c phÃ¡t triá»n">
       <span>
         <i class="fa fa-users" aria-hidden="true"></i>
       </span>
     </div>
 
     <div class="text-center pull-right hello caht" data-toggle="collapse" data-target="#chat" aria-expanded="true"
-      title="Tính năng đang được phát triển">
+      title="TÃ­nh nÄng Äang ÄÆ°á»£c phÃ¡t triá»n">
       <span>
         <i class="fa fa-users" aria-hidden="true"></i>
       </span>
@@ -315,7 +333,7 @@
 
     <div id="chat" class="col-sm-offset-8 col-sm-4 navbar-fixed-bottom collapse">
 
-      <input id="userCon" type="hidden" value="<%= user._id %>#<%= user.User.Username %>" size="1" readonly disabled>
+     <!--  <input id="userCon" type="hidden" value=">" size="1" readonly disabled>-->
 
       <div class="col-sm-12">
         <!-- <div class="panel panel-success">
@@ -353,13 +371,13 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th colspan="2" class="text-danger">Tài khoản chưa được kích hoạt
+              <th colspan="2" class="text-danger">TÃ i khoáº£n chÆ°a ÄÆ°á»£c kÃ­ch hoáº¡t
                 <span style="cursor: pointer;" data-toggle="collapse" data-target="#chat" aria-expanded="false" class="pull-right"><i
                     class="fa fa-times-circle-o" aria-hidden="true"></i></span>
               </th>
             </tr>
             <tr>
-              <th colspan="2">Vui lòng liên hệ</th>
+              <th colspan="2">Vui lÃ²ng liÃªn há»</th>
             </tr>
           </thead>
           <tbody>
@@ -368,26 +386,27 @@
               <td><a href="mailto:chototvlu@gmail.com">Chototvl@gmail.com</a></td>
             </tr>
             <tr>
-              <td>Số điện thoại</td>
+              <td>Sá» Äiá»n thoáº¡i</td>
               <td>0909090909</td>
             </tr>
             <tr>
               <td>VPK</td>
-              <td>LẦU 7 VĂN PHÒNG KHOA CNTT Đại học Văn Lang</td>
+              <td>Láº¦U 7 VÄN PHÃNG KHOA CNTT Äáº¡i há»c VÄn Lang</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="pull-right col-sm-5 well">
-        <a href="/dang-nhap">Vui lòng đăng nhập</a>
+        <a href="/dang-nhap">Vui lÃ²ng ÄÄng nháº­p</a>
       </div>
 
     </div>
 
   </footer>
 <!-- js -->
-<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- js -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
