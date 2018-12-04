@@ -3,18 +3,25 @@ package com.group4.Controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group4.Service.CityService;
 import com.group4.Service.DistrictService;
+import com.group4.Service.PostService;
 import com.group4.Service.WardService;
 import com.group4.entity.City;
 import com.group4.entity.Distric;
+import com.group4.entity.Post;
+import com.group4.entity.PostPhoto;
 import com.group4.entity.Reponse;
 import com.group4.entity.Ward;
 
@@ -25,6 +32,8 @@ public class ApiController {
 	WardService wardService;
 	@Autowired
 	DistrictService districtService;
+	@Autowired
+	PostService postService;
 
 	@GetMapping("/city/{id}/districts")
 	public List<Reponse> getDistrictByCity(@PathVariable int id) {
@@ -54,5 +63,17 @@ public class ApiController {
 			wards.add(repon);
 		}
 		return wards;
+	}
+	@GetMapping("/posts")
+	public UUID getPost() {
+//		if (page <= 0) {
+//			throw new NotFoundException("page is invalid");
+//		}
+//		if (limit <= 0) {
+//			throw new NotFoundException("Limit is invalid");
+//		}
+		
+		List<Post> posts = postService.findAll();
+		return posts.get(2).getPhotos().get(0).getPost().getId();
 	}
 }

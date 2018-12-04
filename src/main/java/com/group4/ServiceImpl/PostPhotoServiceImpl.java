@@ -1,5 +1,6 @@
 package com.group4.ServiceImpl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.group4.Repository.PostPhotoRepository;
 import com.group4.Service.PostPhotoService;
+import com.group4.entity.Post;
 import com.group4.entity.PostPhoto;
 @Service
 public class PostPhotoServiceImpl implements PostPhotoService {
@@ -29,6 +31,11 @@ public class PostPhotoServiceImpl implements PostPhotoService {
 	public void delete(UUID uuid) {
 		postPhotoRepository.deleteById(uuid);
 		
+	}
+	@Override
+	public List<PostPhoto> findByPost(Post post) {
+		// TODO Auto-generated method stub
+		return postPhotoRepository.findByPost(post);
 	}
 
 }

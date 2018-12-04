@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,17 +51,18 @@
       <div class="categories">
         <div class="container">
           <h2 id="categories--h2">Danh mục</h2>
-          
+          <c:forEach var="CATEGORY" items="${CATEGORIES}">
             <div class="col-md-3 focus-grid">
-              <a href="/danh-muc/">
+              <a href="/find/${CATEGORY.id}">
                 <div class="focus-border">
                   <div class="focus-layout">
-                    <div class="focus-image"><i class=""></i></div>
-                    <h4 class="clrchg"></h4>
+                    <div class="focus-image"><img width="140" height="140" alt="avatar" src="/upload/${CATEGORY.photo}"></div>
+                    <h4 class="clrchg">${CATEGORY.name}</h4>
                   </div>
                 </div>
               </a>
-            </div>
+            </div>${CATEGORY.photo}
+            </c:forEach>
          
             <div class="clearfix"></div>
         </div>

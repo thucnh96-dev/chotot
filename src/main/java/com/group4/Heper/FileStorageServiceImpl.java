@@ -72,7 +72,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 			if (fileName.contains(AppConstants.INVALID_FILE_DELIMITER)) {
 				throw new FileStorageException(AppConstants.INVALID_FILE_PATH_NAME + fileName);
 			}
-			String newFileName = System.currentTimeMillis() + AppConstants.FILE_SEPERATOR + fileName;
+			String newFileName = System.currentTimeMillis() + AppConstants.FILE_SEPERATOR + fileName.replaceAll(" ", "");
 			Path targetLocation = this.fileStorageLocation.resolve(newFileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 			return newFileName;
