@@ -19,6 +19,10 @@ import com.group4.entity.Post;
 public class AdminHomeController extends AdminAbtractController {
 	@Autowired
 	PostService postService;
+	
+	
+	
+
     
 	@GetMapping(value="/actives")
 	@ResponseBody

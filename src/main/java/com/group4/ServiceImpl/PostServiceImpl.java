@@ -1,5 +1,6 @@
 package com.group4.ServiceImpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.group4.Repository.AdressRepository;
@@ -63,6 +65,42 @@ public class PostServiceImpl implements PostService{
 	public Page<Post> findAllByIsAcceptFalse(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return postRepository.findAllByIsAcceptFalse(pageable);
+	}
+
+	@Override
+	public List<Post> findAllByCreatedAtBetween(Date start, Date end) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByCreatedAtBetween(start, end);
+	}
+
+	@Override
+	public Page<Post> findAllByUserAndIsAcceptTrue(User user, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByUserAndIsAcceptTrue(user, pageable);
+	}
+
+	@Override
+	public Page<Post> findAllByUserAndIsAcceptFalse(User user, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByUserAndIsAcceptFalse(user, pageable);
+	}
+
+	@Override
+	public Page<Post> findAllByUser( User user,Specification<Post> spec,Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByUser( user,spec,pageable);
+	}
+
+	@Override
+	public Page<Post> findAll(Specification<Post> spec, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAll(spec, pageable);
+	}
+
+	@Override
+	public Page<Post> findAllByUser(User user, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAllByUser(user, pageable);
 	}
 
 	

@@ -20,6 +20,7 @@ import com.group4.entity.Post;
 
 public class UserPostExcel extends AbstractXlsView {
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -32,11 +33,12 @@ public class UserPostExcel extends AbstractXlsView {
 		Row row = null;
 		CellStyle cellStyle = workbook.createCellStyle();
 		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		@SuppressWarnings("unchecked")
 		List<Post> list = (List<Post>) model.get("list");
 		sheet = workbook.createSheet("your-post");
 		row = sheet.createRow(0);
 		int columnIndex = 0;
-		while (columnIndex < 9) {
+		while (columnIndex < 10) {
 
 			if (columnIndex == 0) {
 				sheet.setColumnWidth(columnIndex, 3000);
@@ -56,8 +58,9 @@ public class UserPostExcel extends AbstractXlsView {
 				sheet.setColumnWidth(columnIndex, 3000);
 			} else if (columnIndex == 8) {
 				sheet.setColumnWidth(columnIndex, 3000);
-			}
-			else if (columnIndex == 9) {
+			}else if (columnIndex == 9) {
+				sheet.setColumnWidth(columnIndex, 3000);
+			}else if (columnIndex == 10) {
 				sheet.setColumnWidth(columnIndex, 3000);
 			}
 
@@ -65,15 +68,16 @@ public class UserPostExcel extends AbstractXlsView {
 		}
 		row = sheet.createRow(0);
 		row.createCell(0).setCellValue("ID post");
-		row.createCell(1).setCellValue("Title");
-		row.createCell(2).setCellValue("Description");
-		row.createCell(3).setCellValue("Info");
-		row.createCell(4).setCellValue("Price");
-		row.createCell(5).setCellValue("Quantity");
-		row.createCell(6).setCellValue("CreatedAt");
-		row.createCell(7).setCellValue("Category");
-		row.createCell(8).setCellValue("Username");
-		row.createCell(9).setCellValue("Active");
+		row.createCell(1).setCellValue("Tiêu đề");
+		row.createCell(2).setCellValue("Nội dung");
+		row.createCell(3).setCellValue("Thông tin");
+		row.createCell(4).setCellValue("Giá");
+		row.createCell(5).setCellValue("Số Lượng");
+		row.createCell(6).setCellValue("Ngày đăng");
+		row.createCell(7).setCellValue("Danh mục");
+		row.createCell(8).setCellValue("Tài khoản");
+		row.createCell(9).setCellValue("Hình thức");
+		row.createCell(10).setCellValue("Trạng thái");
 		int rowindex = 1;
 		for (Post post : list) {
 			row = sheet.createRow(rowindex);
@@ -86,7 +90,8 @@ public class UserPostExcel extends AbstractXlsView {
 			row.createCell(6).setCellValue(post.getCreatedAt());
 			row.createCell(7).setCellValue(post.getSubCategory().getName());
 			row.createCell(8).setCellValue(post.getUser().getUsername());
-			row.createCell(9).setCellValue(post.isAccept());
+			row.createCell(9).setCellValue(post.getStatus());
+			row.createCell(10).setCellValue(post.isAccept()? "Đã duyệt": "Locked");
 			rowindex++;
 		}
 		   try {
