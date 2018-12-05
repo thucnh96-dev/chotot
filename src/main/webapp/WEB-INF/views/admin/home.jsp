@@ -34,23 +34,7 @@ border:1px solid #999;
 padding:10px;margin:1px 0px 0px 1px;display:inline-block}
 span.selected{background:#ccf;}
 </style>
-  <script type="text/javascript">
-     function activePost(id = null){
-    	 console.log(id)
-   /*   $.ajax({
- 			url: '/admin/ative/' + id, // Endpoint to call
- 			data: null,
- 			dataType: 'json',
- 			error: function(error) { // Handle error from server
- 				callback(error);
- 			console.log(error)
- 			},
- 			success: function(data) {
- 				callback(null,data);	
- 			},
- 			type: 'get' // Method
- 		});	 */
-     }
+  <script src="/js/custom.js">
     </script>
 </head>
 
@@ -237,7 +221,7 @@ span.selected{background:#ccf;}
 																<a class="dropdown-item" href="#"> 
 																<i class="fa fa-reply fa-fw"></i>Xem
 																</a>
-																 <a class="dropdown-item" href="#"  onclick='activePost(${data.id})'> 
+																 <a class="dropdown-item" href="#"  onclick="activePost('${data.id}', this);"> 
 																<i class="fa fa-history fa-fw"></i>Duyệt
 																</a>
 																<div class="dropdown-divider"></div>

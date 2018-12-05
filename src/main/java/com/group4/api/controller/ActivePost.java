@@ -33,7 +33,10 @@ public class ActivePost {
 		}
 		Post postIs = p.get();
 		postIs.setAccept(true);
-		postService.save(postIs);
+		Post post = postService.save(postIs);
+		if (post == null) {
+			return "ERR";
+		}
 		return "Active";
 	}
 	
