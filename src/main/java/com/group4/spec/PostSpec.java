@@ -1,6 +1,5 @@
 package com.group4.spec;
 
-import java.util.UUID;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -60,7 +59,7 @@ public class PostSpec {
         return new Specification<Post>() {
             @Override
             public Predicate toPredicate(Root<Post> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.notEqual(root.get("id"), 0);
+                return criteriaBuilder.isNotNull(root.get("description"));
             }
         };
     }

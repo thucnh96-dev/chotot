@@ -35,11 +35,20 @@ public class AdminUserPost extends AbtractController {
 
 		int page = res.get("page") == null ? 0  : Integer.parseInt(res.get("page").toString());
 		int size = res.get("size") == null ? 10 : Integer.parseInt(res.get("size").toString());
-
-		Page<Post> data = postService.findAllByUser(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));		
-        List<Post> listpost=postService.findAllByUser(this.getCurentUser(authentication));
+        
+		Page<Post> data = postService.findAllByUser(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
+		Page<Post> datapostactive
+		=postService.findAllByUserAndIsAcceptTrue(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
+		Page<Post> datapostnotactive
+		=postService.findAllByUserAndIsAcceptFalse(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
         model.addAttribute("DATA", data);
-        model.addAttribute("DATAVIEW", listpost);
+        model.addAttribute("total", data.getTotalPages());
+        model.addAttribute("totalac", datapostactive.getTotalPages()==0 ?0: datapostactive.getTotalPages());
+        model.addAttribute("totalnot", datapostnotactive.getTotalPages()==0 ?0: datapostnotactive.getTotalPages());
+        model.addAttribute("DATAVIEWA", datapostactive);
+        model.addAttribute("DATAVIEWN", datapostnotactive);
 		return view;
 	}
+	
+	
 }

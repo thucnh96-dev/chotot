@@ -24,7 +24,7 @@ import com.group4.entity.SubCategory;
 import com.group4.spec.PostSpec;
 
 @Controller
-@RestController
+
 @RequestMapping(value="/admin/post/content")
 public class AdminPostController extends AbtractController {
 	@Autowired
@@ -49,33 +49,19 @@ public class AdminPostController extends AbtractController {
 	     String searchusername =  nullcheck.stringCheck(res, "user_name");
 	     if(searchCnt>0) size=searchCnt;
 		
-	     Specification<Post> spec=null;
-	     spec= PostSpec.defualtWhere();
+	     Specification<Post> spec=Specification.where(PostSpec.defualtWhere());
 	     
+	     System.out.println(PostSpec.defualtWhere().toString());
 	     if (!"".equals(searchDescription)) {
-			spec=spec.and(PostSpec.likeDescription(searchDescription));
+	    	spec=spec.and(PostSpec.likeDescription(searchDescription));
 		 }
-//	     if (!"".equals(searchTitle)) {
-//			spec=spec.or(PostSpec.likeTitle(searchTitle));
-//		 }
-//	 
-//	     if (!"".equals(searchusername)) {
-//		    	spec=spec.or(PostSpec.likeUser(searchusername));
-//			 }
-//	     if (!"".equals(namesubcate)) {
-//		    	spec=spec.or(PostSpec.equalCategory(namesubcate));
-//			 }
-	     System.out.println("start page");
+	     
+
  	     Page<Post> data=postService.findAll(spec,  PageRequest.of(page,size));
  	     for(Post p:data.getContent()) {
  	    	 System.out.println(p.getTitle());
  	     }
- 	     System.out.println(data.getSize()+"is");
- 	     System.out.println("end page");
- 	     List<SubCategory> sub=subCategoryService.findAll();
- 	     model.addAttribute("SUB", sub);
- 	     model.addAttribute("data", data);
- 	    
+ 
 		return views;
 	}
 }
