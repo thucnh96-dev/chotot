@@ -7,4 +7,7 @@ public abstract class AdminAbtractController {
 protected PageRequest postActive(int page,int size) {
 	return PageRequest.of(page, size, Sort.Direction.DESC, "id");
 }
+protected PageRequest postUnActive(int page,int size) {
+	return PageRequest.of(page, size, Sort.Direction.DESC, "id");
+}
 }

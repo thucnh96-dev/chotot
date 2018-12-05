@@ -1,8 +1,14 @@
 package com.group4.admin.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,43 +31,37 @@ import com.group4.spec.PostSpec;
 
 @Controller
 
-@RequestMapping(value="/admin/post/content")
+@RequestMapping(value = "/admin/post/content")
 public class AdminPostController extends AbtractController {
 	@Autowired
-	PostService postService ;
+	PostService postService;
 	@Autowired
-	UserService uerService ;
+	UserService uerService;
 	@Autowired
-	SubCategoryService subCategoryService ;
-    
+	SubCategoryService subCategoryService;
+
 	@GetMapping("")
 	public String data(@RequestParam HashMap<String, Object> res, Model model) {
-	
-		String views="admin/post/list";
-		int page= res.get("page")==null ?0: Integer.parseInt(res.get("page").toString());
-		int size= res.get("size")==null ?10: Integer.parseInt(res.get("size").toString());
+		String views = "admin/post/list";
+		int page = res.get("page") == null ? 0 : Integer.parseInt(res.get("page").toString());
+		int size = res.get("size") == null ? 10 : Integer.parseInt(res.get("size").toString());
+        List<SubCategory> sub=subCategoryService.findAll();
+        model.addAttribute("SUB", sub);
 		
-		// param url size
-	     int searchCnt=nullcheck.intCheck(res, "searchCnt");	     
-	     String namesubcate =    nullcheck.stringCheck(res, "idsubcate");
-	     String searchDescription =  nullcheck.stringCheck(res, "search_des");
-	     String searchTitle =  nullcheck.stringCheck(res, "search_title");
-	     String searchusername =  nullcheck.stringCheck(res, "user_name");
-	     if(searchCnt>0) size=searchCnt;
+		int searchCnt = nullcheck.intCheck(res, "searchCnt");
+		String subcate = nullcheck.stringCheck(res, "subcate");
+		String text = nullcheck.stringCheck(res, "text");
+		String username = nullcheck.stringCheck(res, "username");
+		if (searchCnt > 0)
+			size = searchCnt;
+		Page<Post> datas = postService.findAll(PostSpec.likeTitle(text, username, subcate), PageRequest.of(page, size));
 		
-	     Specification<Post> spec=Specification.where(PostSpec.defualtWhere());
-	     
-	     System.out.println(PostSpec.defualtWhere().toString());
-	     if (!"".equals(searchDescription)) {
-	    	spec=spec.and(PostSpec.likeDescription(searchDescription));
-		 }
-	     
-
- 	     Page<Post> data=postService.findAll(spec,  PageRequest.of(page,size));
- 	     for(Post p:data.getContent()) {
- 	    	 System.out.println(p.getTitle());
- 	     }
- 
+		List<Post> list=datas.getContent();
+		for (Post p : datas.getContent()) {
+			System.out.println(p.getTitle());
+		}
+		 model.addAttribute("datas", list);
+		 model.addAttribute("data", datas);
 		return views;
 	}
 }

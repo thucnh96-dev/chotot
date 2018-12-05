@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -182,8 +183,7 @@
 										<table class="table table-bordered" id="postactive">
 											<thead>
 												<tr>
-													<th>Tiêu đề</th>
-													<th>Nội dung</th>
+													<th>Tiêu đề</th>													
 													<th>Thông tin</th>
 													<th>Giá</th>
 													<th>Số Lượng</th>
@@ -195,37 +195,36 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="item" items="${data.content})">
-												<%-- 	<tr>
-														<td>${item.title} </td>
-														<td>${item.description}</td>
-														<td>${item.info}</td>
-														<td class="text-danger">
-														<i class="mdi mdi-arrow-down"> ${item.price} </i>
-														</td>
-														<td>${item.quantity}</td>
-														<td>${item.createdAt}</td>
-														<td>${item.subCategory.name}</td>
-														<td>${item.status}</td>
-														<td>${item.isAccept} </td>
-
-														<td>
-															<div class="btn-group dropdown">
-																<button type="button"
-																	class="btn btn-success dropdown-toggle btn-sm"
-																	data-toggle="dropdown" aria-haspopup="true"
-																	aria-expanded="false">Chức năng</button>
-																<div class="dropdown-menu">
-																	<a class="dropdown-item" href="#"> <i
-																		class="fa fa-reply fa-fw"></i>Xem
-																	</a> <a class="dropdown-item" href="#"> <i
-																		class="fa fa-history fa-fw"></i>Xóa
-																	</a>
-																	<div class="dropdown-divider"></div>
-																</div>
+												<c:forEach var="p"  items="${datas}">
+												 <tr>
+													
+													<td>${p.getTitle()}</td>
+													<td>${p.getDescription()}</td>
+													<td>${p.getPrice()}</td>
+													<td class="text-danger">
+													 <i class="mdi mdi-arrow-down">${p.getQuantity()}</i>
+													</td>
+													<td>${p.createdAt}</td>
+													<td>${p.subCategory.name}</td>
+													<td>${p.getStatus()}</td>
+													<td>${p.isAccept()}</td>
+													<td>
+														<div class="btn-group dropdown">
+															<button type="button"
+																class="btn btn-success dropdown-toggle btn-sm"
+																data-toggle="dropdown" aria-haspopup="true"
+																aria-expanded="false">Chức năng</button>
+															<div class="dropdown-menu">
+																<a class="dropdown-item" href="#"> <i
+																	class="fa fa-reply fa-fw"></i>Xem
+																</a> <a class="dropdown-item" href="#"> <i
+																	class="fa fa-history fa-fw"></i>Xóa
+																</a>
+																<div class="dropdown-divider"></div>
 															</div>
-														</td>
-													</tr> --%>
+														</div>
+													</td>
+												</tr>
 												</c:forEach>
 											</tbody>
 										</table>

@@ -15,10 +15,7 @@
 			<i class="fa fa-search"></i>
 			<h3 class="box-title">Search</h3>
 			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool"
-					data-widget="collapse">
-					<i class="fa fa-minus"></i>
-				</button>
+			
 			</div> 
 		</div>
 
@@ -27,34 +24,34 @@
 				<form action="" method="get" class="form-inline">
 					<div class="form-group">
 						<select class="form-control" name="searchCnt">
-							<option value="10" >10
+							<option value="10" selected="<%=request.getParameter("size")=="10" || request.getParameter("searchCnt") =="10"%>" >10
 								Post</option>
-							<option value="20" >20
+							<option value="20" selected="<%=request.getParameter("size")=="20" || request.getParameter("searchCnt") =="20"%>">20
 								Post</option>
-							<option value="30" >30
+							<option value="30" selected="<%=request.getParameter("size")=="30" || request.getParameter("searchCnt") =="30"%>">30
 								Post</option>
-							<option value="50" >50
+							<option value="50" selected="<%=request.getParameter("size")=="50" || request.getParameter("searchCnt") =="50"%>">50
 								Post</option>
-							<option value="100">100
+							<option value="100"selected="<%=request.getParameter("size")=="100" || request.getParameter("searchCnt") =="100"%>">100
 								Post</option>
 						</select>
 					</div>
 					<div class="form-group">
-						<select class="form-control w100p" name="idsubcate">
+						<select class="form-control w100p" name="subcate">
 							<option value="">Danh mục</option>
 							<c:forEach items="${SUB}" var="sub">
-								<option value="${sub.name}" selected="${subcateid}">${sub.name}</option>
+								<option value="${sub.name}" selected="<%=request.getParameter("subcate")%>">${sub.name}</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="search_title"
-							placeholder="title" value="<%=request.getParameter("search_title")==null? "":request.getParameter("search_title")%>" autocomplete="off">
+						<input type="text" class="form-control" name="text"
+							placeholder="text" value="<%=request.getParameter("text")==null? "":request.getParameter("text")%>" autocomplete="off">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" name="search_des"
-							placeholder="description" value="<%=request.getParameter("search_des")==null? "" :request.getParameter("search_des")%>" autocomplete="off">
+						<input type="text" class="form-control" name="username"
+							placeholder="Username" value="<%=request.getParameter("username")==null? "" :request.getParameter("username")%>" autocomplete="off">
 					</div>
 
 					<!--<div class="input-group">
