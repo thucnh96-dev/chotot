@@ -19,6 +19,8 @@ import com.group4.Service.CityService;
 import com.group4.Service.PostService;
 import com.group4.entity.Category;
 import com.group4.entity.Post;
+
+import jnr.ffi.types.key_t;
 @Controller
 @RequestMapping("/find")
 public class FindController {
@@ -47,6 +49,15 @@ public class FindController {
 			map.addAttribute("CITYS", cityService.findAll());
 		return "find/find";
 
+	}
+	@GetMapping()
+	public String search(@RequestParam String keywork, @RequestParam int city,  @RequestParam int district ,  @RequestParam int ward, ModelMap map) {
+		if (ward > 0) {
+			
+		}
+		
+		return null;
+		
 	}
 
 }

@@ -77,12 +77,6 @@ public class ApiController {
 		List<Post> posts = postService.findAll();
 		return posts.get(2).getPhotos().get(0).getPost().getId();
 	}
-//	,@RequestParam UUID wardId, @RequestParam String sort
-	@PostMapping("/search")
-	public String searchPost (@RequestParam(value= "keywork") String keywork) {
-		System.out.println(keywork);
-		return keywork;
-		
-	}
+
 	
 }
