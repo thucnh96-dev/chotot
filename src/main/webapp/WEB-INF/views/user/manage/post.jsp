@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Admin</title>
+<title>Star adminv1 Free Bootstrap adminv1 Dashboard Template</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="/adminv1/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -25,27 +24,17 @@
 <!-- endinject -->
 <link rel="shortcut icon" href="/adminv1/images/favicon.png" />
 
-<style type="text/css">
-.pagination-div{user-select: none;}
-.pagination-div span
-{
-border-radius:3px;
-border:1px solid #999;
-padding:10px;margin:1px 0px 0px 1px;display:inline-block}
-span.selected{background:#ccf;}
-</style>
-  <script src="/js/custom.js">
-    </script>
+
 </head>
 
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
-		<%@include file="/WEB-INF/views/admin/include/navbar.jsp"%>
+		<%@include file="/WEB-INF/views/user/manage/include/navbar.jsp"%>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- inclue menu -->
-			<%@include file="/WEB-INF/views/admin/include/sidebar.jsp"%>
+			<%@include file="/WEB-INF/views/user/manage/include/sidebar.jsp"%>
 
 			<!-- partial -->
 			<div class="main-panel">
@@ -74,15 +63,15 @@ span.selected{background:#ccf;}
 											<i class="mdi mdi-cube text-danger icon-lg"></i>
 										</div>
 										<div class="float-right">
-											<p class="mb-0 text-right">Total Revenue</p>
+											<p class="mb-0 text-right">Bạn đã tổng</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+												<h3 class="font-weight-medium text-right mb-0">${total} -> bài đăng</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
 										<i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>
-										65% lower growth
+										Bài đăng
 									</p>
 								</div>
 							</div>
@@ -96,15 +85,15 @@ span.selected{background:#ccf;}
 											<i class="mdi mdi-receipt text-warning icon-lg"></i>
 										</div>
 										<div class="float-right">
-											<p class="mb-0 text-right">Orders</p>
+											<p class="mb-0 text-right">Đã duyệt</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">3455</h3>
+												<h3 class="font-weight-medium text-right mb-0">${totalac} -> bài đăng</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
 										<i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i>
-										Product-wise sales
+										Bài đăng
 									</p>
 								</div>
 							</div>
@@ -118,15 +107,18 @@ span.selected{background:#ccf;}
 											<i class="mdi mdi-poll-box text-success icon-lg"></i>
 										</div>
 										<div class="float-right">
-											<p class="mb-0 text-right">Sales</p>
+											<p class="mb-0 text-right">Chưa được duyệt</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">5693</h3>
+												<h3 class="font-weight-medium text-right mb-0">
+												${totalnot} -> bài đăng
+											
+												</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
 										<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>
-										Weekly Sales
+										Bài đăng
 									</p>
 								</div>
 							</div>
@@ -140,15 +132,15 @@ span.selected{background:#ccf;}
 											<i class="mdi mdi-account-location text-info icon-lg"></i>
 										</div>
 										<div class="float-right">
-											<p class="mb-0 text-right">Employees</p>
+											<p class="mb-0 text-right">Bài đăng đang sẵn sàng</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">246</h3>
+												<h3 class="font-weight-medium text-right mb-0">${totalac} -> bài đăng</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
 										<i class="mdi mdi-reload mr-1" aria-hidden="true"></i>
-										Product-wise sales
+										Bài đăng
 									</p>
 								</div>
 							</div>
@@ -156,89 +148,64 @@ span.selected{background:#ccf;}
 					</div>
 
 					<div class="row">
-						<div class="col-md-12 grid-margin">
-							<div class="card">
-								<div class="card-body">
-									<div class="row d-none d-sm-flex mb-4">
-										<div class="col-4">
-											<h5 class="text-primary">Unique Visitors</h5>
-											<p>34657</p>
-										</div>
-										<div class="col-4">
-											<h5 class="text-primary">Bounce Rate</h5>
-											<p>45673</p>
-										</div>
-										<div class="col-4">
-											<h5 class="text-primary">Active session</h5>
-											<p>45673</p>
-										</div>
-									</div>
-									<div class="chart-container">
-										<canvas id="dashboard-area-chart" height="80"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-lg-12 grid-margin">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Duyệt bài</h4>
+									<h4 class="card-title">Quản lý bài post</h4>
 									<div class="table-responsive">
+
+
+										<%@include file="/WEB-INF/views/admin/post/search.jsp"%>
 
 										<table class="table table-bordered" id="postactive">
 											<thead>
 												<tr>
-													<th>#</th>
-													<th>Người bán</th>
-													<th>Danh mục</th>
-													<th>Số tiền</th>
-													<th>Số lượng</th>
+													<th>Tiêu đề</th>													
+													<th>Thông tin</th>
+													<th>Giá</th>
+													<th>Số Lượng</th>
 													<th>Ngày đăng</th>
-													<th>Tác vụ</th>
+													<th>Danh mục</th>
+													<th>Hình thức</th>
+													<th>Trạng thái</th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
-											<c:forEach var="data" varStatus="i" items="${pdata.content}">
+											<c:forEach var="p" items="${DATA.content}">
 												<tr>
-													<td class="font-weight-medium">${i.count }</td>
-													<td>${data.user.name }</td>
-													<td>${data.subCategory.name }</td>
-													<td>${data.price }</td>
+													
+													<td>${p.title}</td>
+													<td>${p.description}</td>
+													<td>${p.price}</td>
 													<td class="text-danger">
-													    ${data.quantity }<i class="mdi mdi-arrow-down"></i>
+													 <i class="mdi mdi-arrow-down">${p.quantity}</i>
 													</td>
-													<td>${data.createdAt }</td>
+													<td>${p.createdAt}</td>
+													<td>${p.subCategory.name}</td>
+													<td>${p.status}</td>
+													<td>${p.isAccept()}</td>
 													<td>
 														<div class="btn-group dropdown">
 															<button type="button"
 																class="btn btn-success dropdown-toggle btn-sm"
 																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false">Xét duyệt</button>
+																aria-expanded="false">Chức năng</button>
 															<div class="dropdown-menu">
-															
-																<a class="dropdown-item" href="#"> 
-																<i class="fa fa-reply fa-fw"></i>Xem
-																</a>
-																 <a class="dropdown-item" href="#"  onclick="activePost('${data.id}', this);"> 
-																<i class="fa fa-history fa-fw"></i>Duyệt
+																<a class="dropdown-item" href="#"> <i
+																	class="fa fa-reply fa-fw"></i>Xem
+																</a> <a class="dropdown-item" href="#"> <i
+																	class="fa fa-history fa-fw"></i>Xóa
 																</a>
 																<div class="dropdown-divider"></div>
-																<a class="dropdown-item" href="#"> 
-																<i class="fa fa-check text-success fa-fw"></i>Báo cáo															
-																</a> 
-																<a class="dropdown-item" href="#"> 
-																<i class="fa fa-times text-danger fa-fw"></i>Xóa ngay
-																</a>
 															</div>
 														</div>
 													</td>
 												</tr>
-			                             </c:forEach>       
+												</c:forEach>
 											</tbody>
 										</table>
-                  <%@include file="/WEB-INF/views/admin/include/page.jsp"%>
+
 
 									</div>
 								</div>
@@ -249,14 +216,13 @@ span.selected{background:#ccf;}
 						<div class="col-12 grid-margin">
 							<div class="card">
 								<div class="card-body">
-									<h5 class="card-title mb-4">Ban Quản trị</h5>
+									<h5 class="card-title mb-4">Xét duyệt Tickets</h5>
 									<div class="fluid-container">
 										<div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
 											<div class="col-md-1">
 												<img class="img-sm rounded-circle mb-4 mb-md-0"
 													src="/adminv1/images/faces/face1.jpg" alt="profile image">
 											</div>
-											<!--  ban -->
 											<div class="ticket-details col-md-9">
 												<div class="d-flex">
 													<p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">James
@@ -310,7 +276,6 @@ span.selected{background:#ccf;}
 												<img class="img-sm rounded-circle mb-4 mb-md-0"
 													src="/adminv1/images/faces/face2.jpg" alt="profile image">
 											</div>
-											<!--  endban -->
 											<div class="ticket-details col-md-9">
 												<div class="d-flex">
 													<p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Stella
@@ -416,7 +381,7 @@ span.selected{background:#ccf;}
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<%@include file="/WEB-INF/views/include/footer.jsp"%>
+				<%@include file="/WEB-INF/views/user/manage/include/footer.jsp"%>
 				<!-- partial -->
 			</div>
 			<!-- main-panel ends -->
@@ -438,11 +403,9 @@ span.selected{background:#ccf;}
 	<!-- endinject -->
 	<!-- Custom js for this page-->
 	<script src="/adminv1/js/dashboard.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- End custom js for this page-->
 
-	
-     
+
 </body>
 
 </html>

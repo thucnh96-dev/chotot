@@ -20,7 +20,6 @@ import com.group4.Service.PostService;
 import com.group4.entity.Category;
 import com.group4.entity.Post;
 
-import jnr.ffi.types.key_t;
 @Controller
 @RequestMapping("/find")
 public class FindController {

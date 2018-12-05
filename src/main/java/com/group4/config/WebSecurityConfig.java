@@ -50,5 +50,5 @@ public void configure(HttpSecurity httpSecurity) throws Exception {
 }
 public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 	authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-}
+	}
 }

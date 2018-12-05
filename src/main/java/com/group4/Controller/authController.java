@@ -82,9 +82,9 @@ public class authController {
 		return "auth/forgotpassword";
 	}
 	@PostMapping(value = "/forgotPassword")
-	public ModelAndView  forgotPassword(@RequestParam("email") String email,HttpRequest request,ModelAndView modelAndView ) {
+	public ModelAndView  forgotPassword(@RequestParam("email") String email,ModelAndView modelAndView ) {
 		User forgot=userService.findByemail(email);
-		String res="http://localhost:8080";
+		String res="http://localhost:8080/auth/reset?token=";
 		if (forgot==null) {
 			modelAndView.addObject("errorMessage", "Not email in data!");
 		}
@@ -95,7 +95,7 @@ public class authController {
 		simpleMailMessage.setTo(forgot.getEmail());
 		simpleMailMessage.setSubject("Forgot password request!");
 		simpleMailMessage.setText("Click link forgot your password <br>"
-				+ " <a  href="+res+"reset?token="+forgot.getToken()+">click me !</a> ");
+				+ " <a  href="+res+forgot.getToken()+"> click me !</a> ");
 		simpleMailMessage.setReplyTo("thucnhpd02000@fpt.edu.vn");
 		emailHepper.sendEmail(simpleMailMessage);
 		modelAndView.addObject("successMessage", "A password reset link has been sent to " + forgot.getEmail());
@@ -103,11 +103,13 @@ public class authController {
 		return modelAndView;
 		
 	}
-	@GetMapping(value="reset")
+	@GetMapping(value="/reset")
 	public ModelAndView reset(ModelAndView modelAndView, @RequestParam("token") String token) {
 		User u = userService.findByToken(token);
+		System.out.println(u.getUsername());
+
 		if (u != null) {
-			modelAndView.addObject("token", token);
+			modelAndView.addObject("token", u.getToken());
 		} else {
 			modelAndView.addObject("errorMessage", "Oops!fdsf  This is an invalid password reset link.");
 		}
@@ -115,14 +117,14 @@ public class authController {
 		return modelAndView;
 	}
 	@PostMapping(value = "/reset")
-	public ModelAndView resetpass(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams,BindingResult result,
+	public ModelAndView resetpass(ModelAndView modelAndView, @RequestParam("token")String token,@RequestParam("password")String password,
 			RedirectAttributes redir) {
-		User u = userService.findByToken(requestParams.get("token"));
+		User u = userService.findByToken(token);
 		System.out.println(u.getEmail());
 	
 		if (u != null) {
 			u.setToken(null);
-			u.setPasssword(bCryptPasswordEncoder.encode(requestParams.get("password")) );
+			u.setPasssword(bCryptPasswordEncoder.encode(password) );
 			userService.save(u);
 			redir.addFlashAttribute("successMessage", "You have successfully reset your password.  You may now login.");
 			modelAndView.setViewName("redirect:/login");

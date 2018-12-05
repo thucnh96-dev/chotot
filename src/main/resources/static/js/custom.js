@@ -72,3 +72,11 @@ function search() {
 	
 }
 
+function activePost(id, btn) {
+	var table = document.getElementById("postactive");
+	var row = btn.parentNode.parentNode.parentNode.parentNode;
+	request(` http://localhost:8080/admin/ative/${id}`, "GET", null, function(err, data) {
+			row.parentNode.removeChild(row);
+	});
+
+}
