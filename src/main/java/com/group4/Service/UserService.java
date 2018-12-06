@@ -21,6 +21,6 @@ public interface UserService {
     void deleteById(UUID id);
     User findByemail(String email);
     User findByToken(String token);
-
+    User findByPhone(String phone);
     List<User> findByName(String name);
 }

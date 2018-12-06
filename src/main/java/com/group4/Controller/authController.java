@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,21 @@ public class authController {
 
 	@PostMapping(value = "/register")
 	public String createUser(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,RedirectAttributes redirectAttributes, ModelMap mm) {
+		
+		
+		User exitsUsername=userService.findByUsername(user.getUsername());
+		System.out.println(exitsUsername);
+		if (exitsUsername!=null) {
+			bindingResult.rejectValue("username", "exitsUsername");
+		}
+		User exitsPhone=userService.findByPhone(user.getPhone());
+		if (exitsPhone!=null) {
+			bindingResult.rejectValue("phone", "exitsPhone");
+		}
+		User exitsEmail=userService.findByemail(user.getEmail());
+		if (exitsEmail!=null) {
+			bindingResult.rejectValue("email", "exitsEmail");
+		}
 		if (!(user.getPasssword().equals(user.getConfimpassword()))) {
 			bindingResult.rejectValue("confimpassword", "matchpassword");
 		}
@@ -71,7 +87,7 @@ public class authController {
 		userService.save(user);
 		securityService.autologin(user.getUsername(), user.getPasssword());
 		redirectAttributes.addFlashAttribute("userinfo", user);
-		return "redirect:/user/"+user.getId()+"";
+		return "redirect:/user/profile";
 	}
 	
 
@@ -141,4 +157,6 @@ public class authController {
 	
 		return "auth/login";
 	}
+	
+
 }

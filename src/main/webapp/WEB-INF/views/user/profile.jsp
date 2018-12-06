@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- meta css info  -->
   <link rel="stylesheet" href="/css/style.css">
-
+<title>${userinfo.name}</title>
 </head>
 <body>
   <div id="header_all" class="header">
@@ -52,7 +53,10 @@
     <div class="row">
       <main>
         <h1 class="text-center">Thông tin cá nhân</h1><br>
+        <p style="color: #0000cc;">${succesMessage}</p>
         <br>
+       
+       <form action="/user/update" method="post">
         <div class="col-sm-offset-2 form-horizontal">
           <div class="form-group">
             <div class="col-sm-offset-1 media">
@@ -61,7 +65,7 @@
               </div>
               <div class="media-body">
                 <h4 class="media-heading"> ${userinfo.name}</h4>
-                <p>Chuyên bán bưởi</p>
+                <p>Thành viên</p>
               </div>
             </div>
           </div>
@@ -78,19 +82,32 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Thông tin:</label>
+            <label class="control-label col-sm-2" for="email">Tài khoản</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="user-info" placeholder="tuyendola97" name="user-info">
+              <input type="text" value="${userinfo.username}"  class="form-control" id="user-info"  name="user-info">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Số điện thoại:</label>
             <div class="col-sm-5">
-              <input type="tel" class="form-control" value="${userinfo.phone}" id="user-phone" placeholder="0369999031 ">
+              <input type="tel" name="tphone" class="form-control" value="${userinfo.phone}" id="user-phone" placeholder="0369999031 ">
             </div>
+          </div>
+           <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Họ tên:</label>
+            <div class="col-sm-5">
+              <input type="text" name="tname" class="form-control" value="${userinfo.name}" id="user-phone" placeholder="0369999031 ">
+            </div>
+          </div>
+            <div class="form-group">         
+          
+              <input type="submit" class="btn btn-primary"  value="OK" >
+           
           </div>
           <br><br>
         </div>
+        </form>
+        <a href="/user/changepass">Thay đổi mật khẩu! </a>
       </main>
     </div>
   </div>
