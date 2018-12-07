@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.group4.entity.Category;
 import com.group4.entity.SubCategory;
 import com.group4.Repository.*;
 import com.group4.Service.SubCategoryService;
@@ -52,6 +53,12 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 	public List<SubCategory> findAll() {
 		// TODO Auto-generated method stub
 		return (List<SubCategory>) subCategoryRepository.findAll();
+	}
+
+	@Override
+	public List<SubCategory> findByCategory(Category category) {
+		// TODO Auto-generated method stub
+		return subCategoryRepository.findByCategory(category);
 	}
 
 	

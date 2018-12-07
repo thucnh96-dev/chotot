@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -143,6 +144,15 @@ System.out.println(photos.get(i).getId());
 		}
 
 		return "post/form";
+	}
+	@GetMapping(value = "/view/{id}")
+	public String viewPost(@PathVariable UUID id, ModelMap modelMap) {
+		Post post = postService.findById(id).get();
+		modelMap.addAttribute("POST", post);
+		List<PostPhoto> photos = postPhotoService.findByPost(post);
+		modelMap.addAttribute("PHOTOS", photos);
+		return "post/view";
+		
 	}
 
 }

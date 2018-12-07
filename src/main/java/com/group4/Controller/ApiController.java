@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.group4.Heper.QueryHelper;
+import com.group4.Repository.PostRepository;
 import com.group4.Service.CityService;
 import com.group4.Service.DistrictService;
 import com.group4.Service.PostService;
+import com.group4.Service.SubCategoryService;
 import com.group4.Service.WardService;
+import com.group4.entity.Address;
+import com.group4.entity.Category;
 import com.group4.entity.City;
 import com.group4.entity.Distric;
 import com.group4.entity.Post;
 import com.group4.entity.PostPhoto;
 import com.group4.entity.Reponse;
+import com.group4.entity.SubCategory;
 import com.group4.entity.Ward;
 
 @RestController
@@ -35,6 +42,10 @@ public class ApiController {
 	DistrictService districtService;
 	@Autowired
 	PostService postService;
+	@Autowired
+	PostRepository postRepository;
+	@Autowired
+	SubCategoryService subCategoryService;
 
 	@GetMapping("/city/{id}/districts")
 	public List<Reponse> getDistrictByCity(@PathVariable int id) {
@@ -45,7 +56,7 @@ public class ApiController {
 		for (int i = 0; i < districs.size(); i++) {
 			Reponse repon = new Reponse();
 			repon.setId(districs.get(i).getId());
-			repon.setName(districs.get(i).getPrefix() +" "+ districs.get(i).getName());
+			repon.setName(districs.get(i).getPrefix() + " " + districs.get(i).getName());
 			district.add(repon);
 		}
 		return district;
@@ -60,23 +71,25 @@ public class ApiController {
 		for (int i = 0; i < wardArr.size(); i++) {
 			Reponse repon = new Reponse();
 			repon.setId(wardArr.get(i).getId());
-			repon.setName(wardArr.get(i).getPrefix() +" "+ wardArr.get(i).getName());
+			repon.setName(wardArr.get(i).getPrefix() + " " + wardArr.get(i).getName());
 			wards.add(repon);
 		}
 		return wards;
 	}
-	@GetMapping("/posts")
-	public UUID getPost() {
-//		if (page <= 0) {
-//			throw new NotFoundException("page is invalid");
-//		}
-//		if (limit <= 0) {
-//			throw new NotFoundException("Limit is invalid");
-//		}
-		
-		List<Post> posts = postService.findAll();
-		return posts.get(2).getPhotos().get(0).getPost().getId();
+
+	@GetMapping("/categories/{id}/subcategories")
+	public List<Reponse> getSubcategories(@PathVariable UUID id) {
+		Category category = new Category();
+		List<Reponse> reponse = new ArrayList<>();
+		category.setId(id);
+		List<SubCategory> list = subCategoryService.findByCategory(category);
+		for (int i = 0; i < list.size(); i++) {
+			Reponse repon = new Reponse();
+			repon.setUuId(list.get(i).getId());
+			repon.setName(list.get(i).getName());
+			reponse.add(repon);
+		}
+		return reponse;
 	}
 
-	
 }

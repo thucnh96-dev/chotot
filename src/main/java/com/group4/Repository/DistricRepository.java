@@ -11,4 +11,5 @@ public interface DistricRepository extends JpaRepository<Distric, Integer> {
 
 	Distric findByName(String name);
 	List<Distric> findByCity(City city);
+//	findby
 }

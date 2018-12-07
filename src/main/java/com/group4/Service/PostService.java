@@ -29,4 +29,5 @@ public interface PostService {
     Page<Post> findAllByUserAndIsAcceptTrue(User user,Pageable pageable);
     Page<Post> findAllByUserAndIsAcceptFalse(User user,Pageable pageable);
     Page<Post> findAll(Specification<Post> spec, Pageable pageable);
+    List<Post> search(String text, int city, int district, int wrad, UUID cate, UUID subcate);
 }

@@ -79,8 +79,6 @@
  <!-- js -->
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- js -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://chototvanlang.herokuapp.com/socket.io/socket.io.js"></script>
 <script src="/js/lazyload.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-select.js"></script>

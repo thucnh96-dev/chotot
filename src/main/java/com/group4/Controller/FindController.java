@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.group4.Service.CategoryService;
 import com.group4.Service.CityService;
 import com.group4.Service.PostService;
-import com.group4.entity.Category;
+//import com.group4.entity.Category;
 import com.group4.entity.Post;
 
 @Controller
@@ -49,14 +49,15 @@ public class FindController {
 		return "find/find";
 
 	}
-	@GetMapping()
-	public String search(@RequestParam String keywork, @RequestParam int city,  @RequestParam int district ,  @RequestParam int ward, ModelMap map) {
-		if (ward > 0) {
-			
-		}
+	@GetMapping
+	public String search(ModelMap map ) {
 		
-		return null;
-		
+			map.addAttribute("POSTS", postService.findAll());
+			map.addAttribute("CATEGORIES", categoryService.findAll());
+			map.addAttribute("CITYS", cityService.findAll());
+		return "find/find";
+
 	}
+
 
 }

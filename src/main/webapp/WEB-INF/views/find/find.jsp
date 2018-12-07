@@ -73,7 +73,7 @@
           <div class="col-lg-5">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-lg btn-block dropdown-toggle dropdown-toggle-split" data-toggle="modal"
-              data-target="#addressId">
+              data-target="#addressId" name="exampleModalLongTitle">
               Toan quoc
             </button>
 
@@ -83,7 +83,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLongTitle">Chon khu vuc</h2>
+                    <h2 class="modal-title" name="exampleModalLongTitle">Chon khu vuc</h2>
                     <i class="fa fa-close close " aria-hidden="true" data-dismiss="modal"></i>
                     <!-- <button type="button" class="close mr-12" data-dismiss="modal"> -->
                     <!-- <span aria-hidden="true">&times;</span> -->
@@ -91,10 +91,10 @@
                   </div>
                   <ul class="list-group modal-body" id="address">
                     <a href="#" style="text-decoration: none;" >
-                      <li class="list-group-item ">Toan Quoc <i class="fa fa-angle-right fa-5 pull-right"></i></li>
+                      <li class="list-group-item " name="exampleModalLongTitle">Toan Quoc <i class="fa fa-angle-right fa-5 pull-right"></i></li>
                     </a>
                     <c:forEach var="CITY" items="${CITYS}">
-                     <a href="#" style="text-decoration: none;" onclick="addressShow(${CITY.id})">
+                     <a href="#" style="text-decoration: none;" onclick="addressShow('${CITY.id}', '${CITY.name}')">
                       <li class="list-group-item ">${CITY.name} <i class="fa fa-angle-right fa-5 pull-right"></i></li>
                     </a>
                     </c:forEach>
@@ -108,12 +108,22 @@
           </div>
           <div class="col-lg-5">
             <div class="dropdown">
-              <button type="button" class="btn btn-lg btn-block dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-                ${CATEGORY.name}
+            <c:set var="CATE" value="Danh Muc"></c:set>
+            <c:if test="${CATEGORY != null}">
+            <c:set var="CATE" value="${CATEGORY.name}"></c:set>
+            </c:if>
+              <button type="button" class="btn btn-lg btn-block dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" id="btn_name_Cate">
+                ${CATE}
               </button>
-              <div class="dropdown-menu ">
+              <div class="dropdown-menu " >
+              <c:if test="${CATEGORY==null}">
+              <c:forEach items="${CATEGORIES}" var="CATE">
+                <a class="dropdown-item" href="#" id="subcategory" value="${CATE.id}" onclick="btnCate('${CATE.id}', '${CATE.name}')">${CATE.name}</a>
+               </c:forEach>
+              
+              </c:if>
                <c:forEach items="${CATEGORY.getSubcategories()}" var="SUB">
-                <a class="dropdown-item" href="#" id="subcategory" value="${SUB.id}" >${SUB.name}</a>
+                <a class="dropdown-item" href="#" id="subcategory" value="${SUB.id}" onclick="btnSubcate('${SUB.id}', '${SUB.name}')" >${SUB.name}</a>
                </c:forEach>
               </div>
             </div>
@@ -224,7 +234,7 @@
         <div id="body_content">
           <c:forEach items="${POSTS}" var="POST">
           <div class="media">
-            <img class="media-left" width="120" height="120" alt="Image" src="/upload/danhmuc.jpg">
+           <a href="/post/view/${POST.id}"> <img class="media-left" width="120" height="120" alt="Image" src="/upload/danhmuc.jpg"></a>
             <div class="media-body">
                <h3 class="card-title">${POST.title}</h3>
                <p class="card-text">${POST.price}</p>

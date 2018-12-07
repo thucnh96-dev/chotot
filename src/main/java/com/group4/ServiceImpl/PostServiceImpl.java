@@ -13,20 +13,36 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.group4.Repository.AdressRepository;
+import com.group4.Repository.CityRepository;
+import com.group4.Repository.DistricRepository;
 import com.group4.Repository.PostRepository;
 import com.group4.Repository.SubCategoryRepository;
+import com.group4.Repository.WardRepository;
 import com.group4.Service.PostService;
+import com.group4.entity.Address;
 import com.group4.entity.Category;
+import com.group4.entity.City;
+import com.group4.entity.Distric;
 import com.group4.entity.Post;
 import com.group4.entity.SubCategory;
 
 import com.group4.entity.User;
+import com.group4.entity.Ward;
+
 @Service
 public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostRepository postRepository;
 	@Autowired
 	private SubCategoryRepository subCategoryRepository;
+	@Autowired
+	private AdressRepository addressReposity;
+	@Autowired
+	private DistricRepository districtReposity;
+	@Autowired
+	private WardRepository wardRepository;
+	@Autowired
+	private CityRepository cityRepository;
 
 	@Override
 	public Optional<Post> findById(UUID id) {
@@ -62,13 +78,14 @@ public class PostServiceImpl implements PostService {
 		}
 		return posts;
 	}
+
 	public List<Post> findAllByUser(User user) {
-	
+
 		return postRepository.findAllByUser(user);
 	}
 
 	@Override
-	public Page<Post> findAllByIsAcceptTrue(Pageable pageable) {	
+	public Page<Post> findAllByIsAcceptTrue(Pageable pageable) {
 		return postRepository.findAllByIsAcceptTrue(pageable);
 	}
 
@@ -97,9 +114,9 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Page<Post> findAllByUser( User user,Specification<Post> spec,Pageable pageable) {
+	public Page<Post> findAllByUser(User user, Specification<Post> spec, Pageable pageable) {
 		// TODO Auto-generated method stub
-		return postRepository.findAllByUser( user,spec,pageable);
+		return postRepository.findAllByUser(user, spec, pageable);
 	}
 
 	@Override
@@ -114,5 +131,43 @@ public class PostServiceImpl implements PostService {
 		return postRepository.findAllByUser(user, pageable);
 	}
 
+	@Override
+	public List<Post> search(String text, int city, int district, int wrad, UUID cate, UUID subcate) {
+		List<Post> posts = new ArrayList<>();
+		List<UUID> postIds = new ArrayList<>();
+		boolean isReturn = false;
+		if (city != 0 & district == 0 & wrad == 0) {
+			posts = postRepository.findAllByCity(city);
+			isReturn = true;
+		}
+		if (district != 0 & city != 0) {
+			posts = postRepository.findAllByDistrict(district);
+			isReturn = true;
+		}
+
+		if (wrad != 0) {
+			isReturn = true;
+			posts = postRepository.findAllByward(wrad);
+		}
+		if (cate != null & subcate == null) {
+			isReturn = true;
+			posts.addAll(postRepository.findAllByCategory(cate));
+		}
+		if (subcate != null) {
+			isReturn = true;
+			SubCategory subCategory = new SubCategory();
+			subCategory.setId(subcate);
+			posts.addAll(postRepository.findBySubCategory(subCategory));
+		}
+		for (int i = 0; i < posts.size(); i++) {
+			postIds.add(posts.get(i).getId());
+		}
+		if (postIds.size() == 0 & isReturn == false) {
+			posts = postRepository.findAllByTitle(text);
+			return posts;
+		}
+		posts = postRepository.findAllByTitle(text, postIds);System.out.println(posts.size());
+		return posts;
+	}
 
 }
