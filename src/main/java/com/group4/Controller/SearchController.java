@@ -3,6 +3,8 @@ package com.group4.Controller;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,7 +34,8 @@ public class SearchController {
 	public String search(@RequestParam("keywork") String keywork, @RequestParam(defaultValue = "0") int city,
 			@RequestParam(defaultValue = "0") int district, @RequestParam(defaultValue = "0") int ward,
 			@RequestParam(defaultValue = "") String cateId, @RequestParam(defaultValue = "") String subcateId,
-			ModelMap map) {
+			ModelMap map, HttpSession session) {
+		session.setAttribute("title", "Tim Kiem");
 		UUID cate = null;
 		System.out.println(!cateId.equals(""));
 		if (!cateId.equals("")) {

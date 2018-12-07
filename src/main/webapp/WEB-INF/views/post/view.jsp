@@ -5,11 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-
-  <!-- Bootstrap CSS -->
+    <%@include file="/WEB-INF/views/include/title.jsp" %>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css">
@@ -19,33 +15,7 @@
 
 </head>
 <body>
-	<div id="header_all" class="header">
-		<div class="container">
-			<div class="logo">
-				<a href="/"><span><img
-						class="img-responsive image-circle" src="../images/favicon.png"
-						alt="logo" height="64" width="64" style="float: left;">Chá»£
-						Tá»t</span>&nbsp;VÄn Lang</a>
-			</div>
-			<%--       <div class="header-right" style="padding: 20px;">
-        <div class="dropdown" style="width: fit-content; margin: 0 auto;">
-          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Xin chÃ o&nbsp;<% if(user) { %> <%= user.User.Username %> <% } %>&nbsp;^^&nbsp;
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <!-- <% if(user) {%> -->
-              <li><a class="" href="/thong-tin-ca-nhan">ThÃ´ng tin tÃ i khoáº£n</a></li>
-              <li class="divider"></li>
-              <li><a class="" href="/dang-xuat">ThoÃ¡t</a></li>
-            <!-- <% } else {%> -->
-              <li><a class="" href="/dang-nhap">ÄÄng nháº­p</a></li>
-              <li class="divider"></li>
-              <li><a class="" href="/dang-ky">ÄÄng kÃ½</a></li>
-            <!-- <% } %> -->
-          </ul>
-        </div>
-      </div> --%>
-		</div>
-	</div>
+ <%@include file="/WEB-INF/views/include/header.jsp" %>
 
 	<!-- Navbar -->
 
@@ -321,127 +291,7 @@
 	<hr>
 
 	<!--//single-page-->
-	<footer>
-		<div id="footer-all">
-			<div>
-				<div class="foo-grids">
-					<div class="col-md-6 footer-grid footer-top">
-						<div class="col-sm-offset-3 col-sm-7">
-							<!-- <a href="/"><img class="lazy-logo" style="max-width: 79%;" data-original="../images/chotot.png" alt="Logo"></a> -->
-							<h4 class="footer-head">LiÃªn há»</h4>
-							<span class="hq">Trá»¥ sá» chÃ­nh</span>
-							<address>
-								<ul class="location">
-									<li><span class="glyphicon glyphicon-map-marker"></span></li>
-									<li>Láº¦U 7 VÄN PHÃNG KHOA CNTT Äáº¡i há»c VÄn Lang</li>
-									<div class="clearfix"></div>
-								</ul>
-								<ul class="location">
-									<li><span class="glyphicon glyphicon-earphone"></span></li>
-									<li>+0 561 111 235</li>
-									<div class="clearfix"></div>
-								</ul>
-								<ul class="location">
-									<li><span class="glyphicon glyphicon-envelope"></span></li>
-									<li><a href="mailto:chototvlu@example.com">chototvlu@example.com</a></li>
-									<div class="clearfix"></div>
-								</ul>
-							</address>
-						</div>
-					</div>
-					<div class="col-md-6 footer-grid center">
-						<div class="row">
-							<div id="map" style="width: 100%; height: 45vh;"></div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom text-center">
-			<div class="container">
-				<div class="footer-logo">
-					<a href="/"><span>Chá»£ Tá»t</span>&nbsp;VÄn Lang</a>
-				</div>
-				<div class="footer-social-icons">
-					<ul>
-						<li><a class="facebook" href="#"><span>Facebook</span></a></li>
-						<li><a class="twitter" href="#"><span>Twitter</span></a></li>
-						<li><a class="flickr" href="#"><span>Flickr</span></a></li>
-						<li><a class="googleplus" href="#"><span>Google+</span></a></li>
-						<li><a class="dribbble" href="#"><span>Dribbble</span></a></li>
-					</ul>
-				</div>
-				<div class="copyrights">
-					<p>
-						Â© 2018 Chá»£ tá»t VÄn Lang. All Rights Reserved |&nbsp;<span
-							id="Id_online"></span>&nbsp;| Design by <a
-							href="mailto:w.a.f-group@gmail.com"> W.A.F Group</a>
-					</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-
-		<div class="text-center pull-right hello top hidden-xs"
-			title="LÃªn TOP">
-			<span> <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-			</span>
-		</div>
-
-		<div class="text-center pull-right hello caht" data-toggle="collapse"
-			data-target="#chat" aria-expanded="true"
-			title="TÃ­nh nÄng Äang ÄÆ°á»£c phÃ¡t triá»n">
-			<span> <i class="fa fa-users" aria-hidden="true"></i>
-			</span>
-		</div>
-		
-
-		<div id="chat"
-			class="col-sm-offset-8 col-sm-4 navbar-fixed-bottom collapse">
-			
-			<div class="col-sm-12">
-		
-			</div>
-			
-			<div class="table-responsive well">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th colspan="2" class="text-danger">TÃ i khoáº£n chÆ°a
-								ÄÆ°á»£c kÃ­ch hoáº¡t <span style="cursor: pointer;"
-								data-toggle="collapse" data-target="#chat" aria-expanded="false"
-								class="pull-right"><i class="fa fa-times-circle-o"
-									aria-hidden="true"></i></span>
-							</th>
-						</tr>
-						<tr>
-							<th colspan="2">Vui lÃ²ng liÃªn há»</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Email</td>
-							<td><a href="mailto:chototvlu@gmail.com">Chototvl@gmail.com</a></td>
-						</tr>
-						<tr>
-							<td>Sá» Äiá»n thoáº¡i</td>
-							<td>0909090909</td>
-						</tr>
-						<tr>
-							<td>VPK</td>
-							<td>Láº¦U 7 VÄN PHÃNG KHOA CNTT Äáº¡i há»c VÄn Lang</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="pull-right col-sm-5 well">
-				<a href="/dang-nhap">Vui lÃ²ng ÄÄng nháº­p</a>
-			</div>
-
-		</div>
-
-	</footer>
+<%@include file="/WEB-INF/views/include/footer.jsp" %>
 
 
 	<script src="/js/view-detail.js"></script>

@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -52,7 +54,8 @@ public class PostController extends AbtractController {
 	CityService cityService;
 
 	@GetMapping(value = "/new")
-	public String createNew(Model model, Authentication authentication) {
+	public String createNew(Model model, Authentication authentication, HttpSession session) {
+		session.setAttribute("title", "Them bai dang moi");
 		User user = this.getCurentUser(authentication);
 		System.out.println(user.getEmail());
 		if (user == null) {
@@ -66,7 +69,8 @@ public class PostController extends AbtractController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public String createNew(@PathVariable("id") UUID id, Model model, Authentication uthentication) {
+	public String createNew(@PathVariable("id") UUID id, Model model, Authentication uthentication, HttpSession session) {
+		session.setAttribute("title", "Cap nhat bai dang");
 		User user = this.getCurentUser(uthentication);
 		Post post = postService.findById(id).get();
 		System.out.println(user.getPosts().get(0).getId());
@@ -146,7 +150,8 @@ System.out.println(photos.get(i).getId());
 		return "post/form";
 	}
 	@GetMapping(value = "/view/{id}")
-	public String viewPost(@PathVariable UUID id, ModelMap modelMap) {
+	public String viewPost(@PathVariable UUID id, ModelMap modelMap, HttpSession session) {
+		session.setAttribute("title", "Chi tiet bai dang");
 		Post post = postService.findById(id).get();
 		modelMap.addAttribute("POST", post);
 		List<PostPhoto> photos = postPhotoService.findByPost(post);

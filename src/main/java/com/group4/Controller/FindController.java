@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +33,8 @@ public class FindController {
 	CategoryService categoryService;
 
 	@GetMapping("/{id}")
-	public String searchByCategory(@PathVariable UUID id,@RequestParam(defaultValue = "1") int page,ModelMap map ) {
+	public String searchByCategory(@PathVariable UUID id,@RequestParam(defaultValue = "1") int page,ModelMap map, HttpSession session) {
+		session.setAttribute("title", "Tim Kiem");
 			Pageable pageable = PageRequest.of(page - 1, 20);
 			List<Post> postss = new ArrayList<>();
 			List<List<Post>> posts = postService.findByCategory(id, pageable);
@@ -50,8 +53,8 @@ public class FindController {
 
 	}
 	@GetMapping
-	public String search(ModelMap map ) {
-		
+	public String search(ModelMap map, HttpSession session ) {
+		session.setAttribute("title", "Tim Kiem");
 			map.addAttribute("POSTS", postService.findAll());
 			map.addAttribute("CATEGORIES", categoryService.findAll());
 			map.addAttribute("CITYS", cityService.findAll());

@@ -14,4 +14,5 @@ public interface SubCategoryRepository extends CrudRepository<SubCategory, UUID>
 	List<SubCategory> findByName(String name);
 
 	List<SubCategory> findByCategory(Category category);
+	  
 }
