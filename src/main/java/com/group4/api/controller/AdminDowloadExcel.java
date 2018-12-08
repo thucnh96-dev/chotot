@@ -22,6 +22,13 @@ public class AdminDowloadExcel {
 	@Autowired
 	PostService postService;
 	
+	@GetMapping
+	public View dowloadAll(Model model) {
+	List<Post>	 data=postService.findAll();
+	model.addAttribute("listdate", data);
+	return new AdminPostExcel();
+	}
+	
 	@GetMapping(value="/{start}/{end}")
 	public View dowloadExcel(@PathVariable("start") Date date,@PathVariable("end") Date end,Model model) {
 		Timestamp convertStart=new Timestamp(date.getTime());
@@ -30,4 +37,5 @@ public class AdminDowloadExcel {
 		model.addAttribute("listdate", listPostDate);
 		return new AdminPostExcel();
 	}
+
 }

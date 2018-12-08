@@ -74,6 +74,18 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByPhone(phone);
 	}
 
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return userRepository.count();
+	}
+
+	@Override
+	public List<User> findByRolesIsAdmin() {
+		// TODO Auto-generated method stub
+		return userRepository.findByRolesIsAdmin();
+	}
+
 	
 
 }

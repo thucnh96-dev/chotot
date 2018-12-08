@@ -80,16 +80,16 @@ public class AdminPostExcel extends AbstractXlsView {
 		for (Post post : list) {
 			row = sheet.createRow(rowindex);
 			row.createCell(0).setCellValue(post.getId().toString());
-			row.createCell(0).setCellValue(post.getUser().getName());
-			row.createCell(1).setCellValue(post.getTitle());
-			row.createCell(2).setCellValue(post.getDescription());
-			row.createCell(3).setCellValue(post.getInfo());
-			row.createCell(4).setCellValue(post.getPrice());
-			row.createCell(5).setCellValue(post.getQuantity());
-			row.createCell(6).setCellValue(post.getCreatedAt());
-			row.createCell(7).setCellValue(post.getSubCategory().getName());
-			row.createCell(8).setCellValue(post.getUser().getUsername());
-			row.createCell(9).setCellValue(post.isAccept()? "Đã duyệt": "Locked");
+			row.createCell(1).setCellValue(post.getUser().getName());
+			row.createCell(2).setCellValue(post.getTitle());
+			row.createCell(3).setCellValue(post.getDescription());
+			row.createCell(4).setCellValue(post.getInfo());
+			row.createCell(5).setCellValue(post.getPrice());
+			row.createCell(6).setCellValue(post.getQuantity());
+			row.createCell(7).setCellValue(post.getCreatedAt());
+			row.createCell(8).setCellValue(post.getSubCategory().getName());
+			row.createCell(9).setCellValue(post.getUser().getUsername());
+			row.createCell(10).setCellValue(post.isAccept());
 			rowindex++;
 		}
 		   try {

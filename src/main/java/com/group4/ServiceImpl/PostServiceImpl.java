@@ -103,6 +103,18 @@ public class PostServiceImpl implements PostService{
 		return postRepository.findAllByUser(user, pageable);
 	}
 
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return postRepository.count();
+	}
+
+	@Override
+	public List<Post> findAll() {
+		// TODO Auto-generated method stub
+		return postRepository.findAll();
+	}
+
 	
 
 }

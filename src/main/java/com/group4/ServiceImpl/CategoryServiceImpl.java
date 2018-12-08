@@ -49,6 +49,12 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryRepository.findAll();
 	}
 
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return categoryRepository.count();
+	}
+
 	
 
 }

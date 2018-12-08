@@ -20,4 +20,5 @@ public interface CategoryService {
     void deleteById(UUID id);
 
     List<Category> findByName(String name);
+    long count();
 }

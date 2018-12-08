@@ -13,7 +13,7 @@ import com.group4.entity.*;
 
 public interface PostService {
 	Page<Post> findAll(Pageable pageable);
-
+    List<Post> findAll();
 	Optional<Post> findById(UUID id);
 
 	Post save(Post p);
@@ -28,4 +28,5 @@ public interface PostService {
     Page<Post> findAllByUserAndIsAcceptTrue(User user,Pageable pageable);
     Page<Post> findAllByUserAndIsAcceptFalse(User user,Pageable pageable);
     Page<Post> findAll(Specification<Post> spec, Pageable pageable);
+    long count();
 }

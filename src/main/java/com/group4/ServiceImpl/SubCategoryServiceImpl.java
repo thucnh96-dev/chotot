@@ -54,6 +54,12 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 		return (List<SubCategory>) subCategoryRepository.findAll();
 	}
 
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return subCategoryRepository.count();
+	}
+
 	
 
 }

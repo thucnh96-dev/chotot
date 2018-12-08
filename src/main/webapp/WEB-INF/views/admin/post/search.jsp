@@ -57,8 +57,12 @@
 					<!--<div class="input-group">
                             <input name="search_start_date">
                         </div>-->
+                        
 					<div class="form-group">
 						<input type="submit" class="form-control btn btn-info" value="Tìm kiếm">
+					</div>
+					<div class="form-group">
+						<input type="button" class="form-control btn btn-info" onclick="location.href='/admin/dowload'" value="Dowload.xlsx">
 					</div>
 
 				</form>

@@ -17,6 +17,6 @@ public interface SubCategoryService {
 	SubCategory save(SubCategory p);
 
     void deleteById(UUID id);
-
+    long count();
     List<SubCategory> findByName(String name);
 }

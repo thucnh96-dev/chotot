@@ -23,4 +23,6 @@ public interface UserService {
     User findByToken(String token);
     User findByPhone(String phone);
     List<User> findByName(String name);
+    long count();
+    List<User>findByRolesIsAdmin();
 }
