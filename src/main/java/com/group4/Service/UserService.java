@@ -23,6 +23,10 @@ public interface UserService {
     User findByToken(String token);
     User findByPhone(String phone);
     List<User> findByName(String name);
+<<<<<<< HEAD
     long count();
     List<User>findByRolesIsAdmin();
+=======
+    List<User> findByPhone(String phone);
+>>>>>>> feature/trantuyen
 }

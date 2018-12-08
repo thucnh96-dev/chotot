@@ -31,6 +31,14 @@ public class Category implements Serializable {
 	private String photo;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="category",fetch = FetchType.EAGER)
 	private List<SubCategory> subcategories;
+	public List<SubCategory> getSubcategories() {
+		return subcategories;
+	}
+
+	public void setSubcategories(List<SubCategory> subcategories) {
+		this.subcategories = subcategories;
+	}
+
 	public UUID getId() {
 		return id;
 	}

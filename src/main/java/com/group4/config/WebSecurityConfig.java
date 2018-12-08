@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 @Override
 public void configure(HttpSecurity httpSecurity) throws Exception {
 	httpSecurity.authorizeRequests().
-	antMatchers("/resources/**","/","/auth/**","/loginfalse","/post/**","/login","/test/**","/adminv1/**","/css/**","/js/**","/api/**").permitAll()
+	antMatchers("/resources/**","/","/auth/register","/loginfalse","/login","/test/**","/adminv1/**","/css/**","/js/**","/api/**", "/find/**", "/upload/**", "/posts", "/search/**", "/categories/**", "/post/view/**").permitAll()
 	.antMatchers("/admin/**").hasAuthority("ADMIN")
 	.antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated()
 	.and().csrf().disable()
@@ -50,5 +50,5 @@ public void configure(HttpSecurity httpSecurity) throws Exception {
 }
 public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 	authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-}
+	}
 }

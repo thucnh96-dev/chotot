@@ -20,10 +20,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.group4.validation.UniqueEmail;
+import com.group4.validation.UniquePhone;
+import com.group4.validation.UniqueUsername;
+import com.group4.validation.UserNull;
 
 //import org.hibernate.validator.constraints.Length;
 
@@ -36,14 +39,17 @@ public class User implements Serializable {
 	@JsonProperty(value = "_id", access = JsonProperty.Access.READ_ONLY)
 	private UUID id;
 	@Column
-	@NotNull(message = "Name is not null")
+	@UserNull(message = "${nameNull}")
 	private String name;
 	@Column(unique = true)
-	@Email(message = "Email is invalid")
+	@UniqueEmail(message="{emailisExist}")
+	@Email(message = "{emailInvalid}")
 	private String email;
 	@Column(unique = true)
-	@NotNull(message = "Phone is not null")
+	@UniquePhone(message="{phoneisExist}")
+	@UserNull(message = "{phoneNull}")
 	private String phone;
+	@UniqueUsername(message="{userNameisExist}")
 	@Column(unique = true)
 	private String username;
 	@Column

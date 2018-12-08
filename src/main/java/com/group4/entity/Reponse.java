@@ -1,8 +1,19 @@
 package com.group4.entity;
 
+import java.util.UUID;
+
 public class Reponse {
-private int id;
+	private int id;
 	private String name;
+	private UUID uuId;
+
+	public UUID getUuId() {
+		return uuId;
+	}
+
+	public void setUuId(UUID uuId) {
+		this.uuId = uuId;
+	}
 
 	public int getId() {
 		return id;

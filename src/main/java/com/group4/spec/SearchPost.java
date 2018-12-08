@@ -32,4 +32,32 @@ public class SearchPost {
 
 		};
 	}
+//    public static Specification<Post> searchBykey(String text,String city, String district, String ward, String subcate, String cate ) {
+//        return new Specification<Post>() {
+//            @Override
+//            public Predicate toPredicate(Root<Post> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//            	List<Predicate> predicates = new ArrayList<>();
+//            	if (city == null) {
+//					
+//				}
+//				if (" ".equals(text) &" ".equals(subcate)&" ".equals(username)) {
+//				predicates.add(criteriaBuilder.notEqual(root.get("title"), "bdf"));
+//				}
+//				
+//				if (!" ".equals(text)) {
+//					predicates.add(criteriaBuilder.or(criteriaBuilder.like(root.get("title"), "%"+text+"%"),
+//							                           criteriaBuilder.like(root.get("description"), "%"+text+"%"),
+//							                           criteriaBuilder.like(root.get("info"), "%"+text+"%")							                           
+//                ));
+//					
+//				}if (!" ".equals(username)) {
+//					predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("user").get("name"), username)));
+//				}
+//				if (!" ".equals(subcate)) {
+//					predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("subCategory").get("name"), subcate)));
+//				}		
+//				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+//            }
+//        };
+//    }
 }

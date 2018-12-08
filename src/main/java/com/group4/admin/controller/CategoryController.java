@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.group4.Heper.FileStorageService;
 import com.group4.Service.CategoryService;
+import com.group4.Service.PostService;
 import com.group4.entity.Category;
 
 @Controller
@@ -23,6 +25,8 @@ import com.group4.entity.Category;
 public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	PostService postService;
 	@Autowired
 	FileStorageService fileStorageService;
 
@@ -54,7 +58,6 @@ public class CategoryController {
 
 	@GetMapping("/update/{id}")
 	public String updateCategory(@PathVariable UUID id, ModelMap map) {
-		System.out.println(id);
 		Optional<Category> category = categoryService.findById(id);
 		if (!category.isPresent()) {
 			return "error/404";

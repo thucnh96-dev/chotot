@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
+<head>
   <%@include file="/WEB-INF/views/include/title.jsp" %>
 <style type="text/css">
 /*Date: 2016-05-28T14:47:08.528Z*/
@@ -359,7 +360,7 @@
   </script>
 </head>
 <body>
-	 <%@include file="/WEB-INF/views/include/header.jsp" %>
+ <%@include file="/WEB-INF/views/include/header.jsp" %>
 
 	<!-- Navbar -->
 
@@ -402,9 +403,9 @@
 				<div class="alert alert-danger validate-add"></div>
 
 
-				<form:form action="/post/new/upload" modelAttribute="post"
+				<form:form action="/post/update" modelAttribute="post"
 					method="POST" enctype="multipart/form-data">
-
+					<form:input path="id" disabled="" />
 					<div class="dropzone">
 						<div class="dz-default dz-message">
 							<div id="drop">
@@ -434,7 +435,50 @@
 							<input type="file" id="files" name="productImgAdd"
 								onchange="uploadImages()" onclick="hihi()" accept="image/*"
 								multiple />
-							<output id="list"></output>
+							<output id="list">
+								<c:forEach items="${IMAGES}" var="IMAGE">
+									<div class="img-relative" title="${IMAGE.name}"
+										style="background: url(/upload/${IMAGE.name}) center center / contain no-repeat;">
+										<div class="option_container pull-right">
+											<div class="resSvg option_out">
+												<input type="hidden" name="imageIds" value="${IMAGE.id}">
+												<svg class="resizrSvg opstion" onclick="resizrSvg(this)"
+													data-toggle="modal" data-target="#resizeImg"
+													viewBox="0 0 1000 1000"
+													enable-background="new 0 0 1000 1000" width="16px"
+													height="16px" fill="#e90b07" cursor="pointer" stroke="none">
+													<g
+														transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+													<path
+														d="M2278.5,4946.2l-63.8-61.3v-998.3v-995.8h-995.8H220.6l-61.3-63.8c-99.6-97-68.9-260.4,56.2-316.6c40.8-17.9,375.3-28.1,1029-28.1h970.2V-40.4v-2525.2l58.7-53.6l58.7-56.2h2520.1h2520.1v-970.2c0-653.6,10.2-988.1,28.1-1029c56.2-125.1,219.6-155.8,316.6-56.2l63.8,61.3v998.3v995.8h995.8h998.3l61.3,63.8c99.6,97,68.9,260.4-56.2,316.6c-40.8,17.9-375.3,28.1-1029,28.1h-970.2V163.9v2433.3l1059.6,1059.6C9803,4621.9,9900,4726.6,9900,4800.6c0,112.4-97,209.4-209.4,209.4c-74,0-178.7-97-1143.8-1059.6L7487.2,2890.8H5053.9H2623.2V3861c0,653.6-10.2,988.1-28.1,1029C2538.9,5015.1,2375.5,5045.7,2278.5,4946.2z M7065.9,2474.6c0-2.6-998.3-1006-2221.4-2226.5L2623.2-1973.2v2229v2226.5h2221.3C6067.5,2482.3,7065.9,2479.7,7065.9,2474.6z M7372.3-45.5v-2221.3H5145.8h-2229L5138.2-45.5c1220.5,1223,2223.9,2221.3,2226.5,2221.3C7369.7,2175.9,7372.3,1177.5,7372.3-45.5z"></path></g></svg>
+											</div>
+											<div class="deleSvg option_out">
+												<svg class="deleteSvg opstion" onclick="deleteSvg(this)"
+													viewBox="0 0 1000 1000"
+													enable-background="new 0 0 1000 1000" width="16px"
+													height="16px" fill="#01a185" cursor="pointer" stroke="none">
+													<g>
+													<path
+														d="M967,182.7H33c-12.7,0-23-10.3-23-23c0-12.7,10.3-23,23-23H967c12.7,0,23,10.3,23,23C990,172.4,979.7,182.7,967,182.7z"></path>
+													<path
+														d="M744.6,981.6H249.1c-54.8,0-99.3-44.5-99.3-99.3V159.7c0-12.7,10.3-23,23-23c12.7,0,23,10.3,23,23v722.6c0,29.4,23.8,53.3,53.2,53.3h495.5c29.3,0,53.2-23.9,53.2-53.3V235.9c0-12.7,10.3-23.1,23-23.1c12.7,0,23,10.3,23,23.1v646.4C843.9,937.1,799.3,981.6,744.6,981.6z"></path>
+													<path
+														d="M700.2,182.7c-0.3,0-0.6,0-0.9,0H296.7c-8.4,0-16.2-4.6-20.2-12c-4-7.4-3.7-16.4,0.8-23.5l76.2-118.3c4.3-6.6,11.5-10.6,19.4-10.6h254.9c8.1,0,15.6,4.2,19.8,11.1l68.6,113.6c4.4,4.2,7.1,10.1,7.1,16.6C723.3,172.4,713,182.7,700.2,182.7z M339,136.7h319.6l-43.6-72.3H385.5L339,136.7z"></path>
+													<path
+														d="M322.9,862.5c-12.7,0-23.1-10.3-23.1-23.1V286.7c0-12.7,10.4-23.1,23.1-23.1c12.7,0,23,10.3,23,23.1v552.7C346,852.2,335.7,862.5,322.9,862.5z"></path>
+													<path
+														d="M500,862.5c-12.7,0-23-10.3-23-23.1V286.7c0-12.7,10.3-23.1,23-23.1s23.1,10.3,23.1,23.1v552.7C523.1,852.2,512.7,862.5,500,862.5z"></path>
+													<path
+														d="M666,862.5c-12.7,0-23-10.3-23-23.1V286.7c0-12.7,10.3-23.1,23-23.1c12.7,0,23,10.3,23,23.1v552.7C689,852.2,678.7,862.5,666,862.5z"></path></g></svg>
+											</div>
+										</div>
+
+									</div>
+
+
+								</c:forEach>
+
+							</output>
 						</div>
 					</div>
 
@@ -483,7 +527,7 @@
 								</div>
 							</div>
 
-							
+
 							<br>
 
 							<h2 class="text-dark">Giá và số lượng</h2>
@@ -530,7 +574,7 @@
 								<label class="control-label col-sm-2" for="status">Trạng
 									thái:</label>
 								<div class="col-sm-2">
-								
+
 									<form:select path="status" class="form-control" id="status"
 										name="status">
 										<option value="NEW">Mới</option>
@@ -541,10 +585,11 @@
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="Product_Type">Dia
 									chi:</label>
-									<div class="col-sm-3">
+								<div class="col-sm-3">
 									<input type="text" path="info" class="form-control"
-										name="address_string"></div>
-									
+										name="address_string">
+								</div>
+
 								<div class="col-sm-7">
 									<select onchange="hihi()" id="city">
 
@@ -552,19 +597,16 @@
 										<c:forEach items="${CITYS}" var="CITY">
 											<option value="${CITY.id}" selected>${CITY.name}</option>
 										</c:forEach>
-									</select>
-									<select id="districts" onchange="showdistrict()">
+									</select> <select id="districts" onchange="showdistrict()">
 
-									</select>
-									<select id="wards" name="ward_id" onchange="showward()">
+									</select> <select id="wards" name="ward_id" onchange="showward()">
 
 									</select>
 								</div>
-							
+
 							</div>
 
-							<br>
-							<br>
+							<br> <br>
 							<div class="form-group">
 								<div class="col-sm-offset-6 col-sm-10">
 									<a href="/kenh-nguoi-ban"> <input type="button" id="cancel"
@@ -596,7 +638,7 @@
 					<div class="header--resize">
 						<div class="col-sm-7 col-md-offset-2 col-lg-offset-2">
 							<div class="col-sm-1">
-							
+
 								<svg id="zooml" viewBox="0 0 1000 1000"
 									enable-background="new 0 0 1000 1000" width="32px"
 									height="32px" fill="#01a185" cursor="pointer" stroke="none">
@@ -690,7 +732,7 @@
 			style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; transform: scale(.3); background: url(../images/load.gif) center center/contain no-repeat;"></div>
 	</div>
 
-<%@include file="/WEB-INF/views/include/footer.jsp" %>
+	<%@include file="/WEB-INF/views/include/footer.jsp" %>
 
 
 	<!-- js -->
@@ -717,23 +759,23 @@ function GoogleMaps(){var a={lat:10.762936,lng:106.693335},b=new google.maps.Map
 
 	<script src='/js/cropper.min.js'></script>
 	<script type="text/javascript">
-  var watai,init_img,find_base,nam=[],files= [],_arrBase=[],numb=[],sl=0,sl_Img=document.querySelector("p#sl-Img span:first-child"),$result=document.querySelector("div#result"),$duration=$("div#danger-duration"),$zooml=$("svg#zooml"),$zoomn=$("svg#zoomn"),$xoayt=$("svg#xoayt"),$xoayp=$("svg#xoayp"),$reset=$("svg#reset"),$save=$("button#luu"),
-  uploadImages=async()=>{var e=document.querySelector("#list"),t=document.querySelector("#alert--err"),n=(document.querySelector("div.err-danger"),document.querySelector("div.validate-add"),document.querySelector("#alert-err"),document.querySelector("input[type=file]").files),r=(document.querySelector("#filename"),0),l=0,a=0;function i(r){if(/\.(jpe?g|png|gif)$/i.test(r.name)){var i=new FileReader;i.addEventListener("load",function(i){if(-1!==(find_base=_arrBase.indexOf(i.target.result)))a++,$duration.fadeIn(),setTimeout(function(){$duration.fadeOut("slow")},1500);else{l++,_arrBase.push(this.result);let n=document.createElement("div");n.classList.add("img-relative"),n.title=r.name,n.style.background="url("+this.result+") center center / contain no-repeat",createSvg(n),e.appendChild(n),t.style.display="none"}a+l===n.length&&(sl=_arrBase.length,socket.compress(!0).emit("add",_arrBase),sl_Img.innerHTML=sl,sl_Img.style.color=6===sl?"red":"#01a185",nam.splice(0,nam.length),nam.push(_arrBase.length))},!1),i.readAsDataURL(r),removeSpan()}else{let e='không thể được tải lên. Vui lòng chỉ chọn đúng định dạng ảnh&nbsp;<i class="text-primary">( .JPG |.JPEG |.PNG |.GIF )</i>.';t.style.display="block";let n=t.firstElementChild.textContent;t.firstElementChild.innerHTML=n.replace(n,r.name+"&nbsp;"+e),document.querySelector("input[type=file]").value=""}}if(n){let e=[];await function(e,t){for(;r<e.length;)e[r].size<2011515?t.push(e[r++]):numb.push(e[r++].name);return}(n,e),await function(e,t){if(e.length<7){if(0!==numb.length)return watai=`"${numb.toString()}" không thể được tải lên. <br /> - Kích thước tập tin vượt quá 2.0 MB.`,document.querySelector("input[type=file]").value="",t.splice(0,t.length),numb.splice(0,numb.length),void errorMaxlength(watai);{nam.push(t.length);let e=nam.reduce(n,0);function n(e,t){return e+t}if(!(e<7)){let n="Quá số ảnh (6/6) được tải lên.";return sl_Img.innerHTML=0,sl_Img.style.color="#01a185",document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),e=0,sl=0,addSpan(),void errorMaxlength(n)}t.forEach(e=>{i(e)})}}else{if(0!==numb.length)return watai=`"${numb.toString()}" không thể được tải lên. <br /> - Kích thước tập tin vượt quá 2.0 MB.`,document.querySelector("input[type=file]").value="",sl_Img.innerHTML=0,nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),r=0,sl=0,void errorMaxlength(watai);{nam.push(t.length);var r=nam.reduce(n,0);function n(e,t){return e+t}if(!(r<7)){let e="Quá số ảnh (6/6) được tải lên.";
-  return sl_Img.innerHTML=0,document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),r=0,sl=0,addSpan(),void errorMaxlength(e)}t.forEach(e=>{i(e)})}}}(n,e)}
-  var file = $("#files");
-files.push(file.clone());
-document.getElementById("imgArr").innerHTML='';
-if(files.length >0){
-	 for (var i = 0; i < files.length; i++) {
-		 var htmlObject = document.createElement('input');
-		 htmlObject.setAttribute("type", "file");
-		htmlObject.setAttribute("multiple", "multiple");
-		htmlObject.files = files[i][0].files;
-		 htmlObject.setAttribute("name", "images");	 
-			 $("#imgArr").append(htmlObject);	
-	}
- }
-  }; 
+	var watai,init_img,find_base,nam=[],files= [],_arrBase=[],numb=[],sl=0,sl_Img=document.querySelector("p#sl-Img span:first-child"),$result=document.querySelector("div#result"),$duration=$("div#danger-duration"),$zooml=$("svg#zooml"),$zoomn=$("svg#zoomn"),$xoayt=$("svg#xoayt"),$xoayp=$("svg#xoayp"),$reset=$("svg#reset"),$save=$("button#luu"),
+	  uploadImages=async()=>{var e=document.querySelector("#list"),t=document.querySelector("#alert--err"),n=(document.querySelector("div.err-danger"),document.querySelector("div.validate-add"),document.querySelector("#alert-err"),document.querySelector("input[type=file]").files),r=(document.querySelector("#filename"),0),l=0,a=0;function i(r){if(/\.(jpe?g|png|gif)$/i.test(r.name)){var i=new FileReader;i.addEventListener("load",function(i){if(-1!==(find_base=_arrBase.indexOf(i.target.result)))a++,$duration.fadeIn(),setTimeout(function(){$duration.fadeOut("slow")},1500);else{l++,_arrBase.push(this.result);let n=document.createElement("div");n.classList.add("img-relative"),n.title=r.name,n.style.background="url("+this.result+") center center / contain no-repeat",createSvg(n),e.appendChild(n),t.style.display="none"}a+l===n.length&&(sl=_arrBase.length,socket.compress(!0).emit("add",_arrBase),sl_Img.innerHTML=sl,sl_Img.style.color=6===sl?"red":"#01a185",nam.splice(0,nam.length),nam.push(_arrBase.length))},!1),i.readAsDataURL(r),removeSpan()}else{let e='không thể được tải lên. Vui lòng chỉ chọn đúng định dạng ảnh&nbsp;<i class="text-primary">( .JPG |.JPEG |.PNG |.GIF )</i>.';t.style.display="block";let n=t.firstElementChild.textContent;t.firstElementChild.innerHTML=n.replace(n,r.name+"&nbsp;"+e),document.querySelector("input[type=file]").value=""}}if(n){let e=[];await function(e,t){for(;r<e.length;)e[r].size<2011515?t.push(e[r++]):numb.push(e[r++].name);return}(n,e),await function(e,t){if(e.length<7){if(0!==numb.length)return watai=`"${numb.toString()}" không thể được tải lên. <br /> - Kích thước tập tin vượt quá 2.0 MB.`,document.querySelector("input[type=file]").value="",t.splice(0,t.length),numb.splice(0,numb.length),void errorMaxlength(watai);{nam.push(t.length);let e=nam.reduce(n,0);function n(e,t){return e+t}if(!(e<7)){let n="Quá số ảnh (6/6) được tải lên.";return sl_Img.innerHTML=0,sl_Img.style.color="#01a185",document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),e=0,sl=0,addSpan(),void errorMaxlength(n)}t.forEach(e=>{i(e)})}}else{if(0!==numb.length)return watai=`"${numb.toString()}" không thể được tải lên. <br /> - Kích thước tập tin vượt quá 2.0 MB.`,document.querySelector("input[type=file]").value="",sl_Img.innerHTML=0,nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),r=0,sl=0,void errorMaxlength(watai);{nam.push(t.length);var r=nam.reduce(n,0);function n(e,t){return e+t}if(!(r<7)){let e="Quá số ảnh (6/6) được tải lên.";
+	  return sl_Img.innerHTML=0,document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),t.splice(0,t.length),numb.splice(0,numb.length),r=0,sl=0,addSpan(),void errorMaxlength(e)}t.forEach(e=>{i(e)})}}}(n,e)}
+	  var file = $("#files");
+	files.push(file.clone());
+	document.getElementById("imgArr").innerHTML='';
+	if(files.length >0){
+		 for (var i = 0; i < files.length; i++) {
+			 var htmlObject = document.createElement('input');
+			 htmlObject.setAttribute("type", "file");
+			htmlObject.setAttribute("multiple", "multiple");
+			htmlObject.files = files[i][0].files;
+			 htmlObject.setAttribute("name", "images");	 
+				 $("#imgArr").append(htmlObject);	
+		}
+	 }
+	  }; 
 
   socket.on("allD",e=>{document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),numb.splice(0,numb.length),_arrBase.splice(0,_arrBase.length),sl=0,addSpan(),errorMaxlength(e)});var yErr=document.querySelector("#alert--err"),errorMaxlength=e=>{var t=e;yErr.style.display="block";var n=yErr.firstElementChild.textContent;yErr.firstElementChild.innerHTML=n.replace(n,t)};document.getElementById("save").disabled=!0;var addSpan=()=>{document.getElementById("drop").style.display="flex",document.getElementById("save").disabled=!0},removeSpan=()=>{document.getElementById("drop").style.display="none",document.getElementById("save").disabled=!1};function deleteSvg(e){let t=(e.parentNode.parentNode.parentNode.currentStyle||window.getComputedStyle(e.parentNode.parentNode.parentNode,!1)).backgroundImage.slice(4,-1).replace(/"/g,"");e.parentNode.parentNode.parentNode.remove(e);var n=_arrBase.indexOf(t);sl_Img.innerHTML=sl-=1,6!==sl&&(sl_Img.style.color="#01a185"),n>-1&&(_arrBase.splice(n,1),nam.splice(0,nam.length),socket.emit("delete",_arrBase)),nam.push(_arrBase.length),0==nam&&(document.querySelector("#list").innerHTML="",document.querySelector("input[type=file]").value="",nam.splice(0,nam.length),_arrBase.splice(0,_arrBase.length),addSpan())}function resizrSvg(e){let t=(e.parentNode.parentNode.parentNode.currentStyle||window.getComputedStyle(e.parentNode.parentNode.parentNode,!1)).backgroundImage.slice(4,-1).replace(/"/g,""),n=document.createElement("img");n.id="image",n.src=t,$result.innerHTML="",$result.appendChild(n);init_img(t,{aspectRatio:4/3,preview:".img-preview"},e)}function getUrl(e,t,n){let r=_arrBase.indexOf(n);if(r>-1)return _arrBase[r]=t,e.parentNode.parentNode.parentNode.style.background="",e.parentNode.parentNode.parentNode.style.background="url("+t+") center center / contain no-repeat",void socket.emit("change",_arrBase)}function typle(e){let t=document.querySelector("input#first").value,n=document.querySelector("b#unit");n.innerHTML=e===t?"kg":"Sản phẩm"}function createSvg(e){let t="http://www.w3.org/2000/svg",n=e,r=document.createElement("div");r.classList.add("option_container","pull-right");let l=document.createElement("div");l.classList.add("deleSvg","option_out");let a=document.createElement("div");a.classList.add("resSvg","option_out"),n.appendChild(r),r.appendChild(a),r.appendChild(l);let i=document.createElementNS(t,"svg");i.setAttributeNS(null,"class","resizrSvg opstion"),i.setAttributeNS(null,"onclick","resizrSvg(this)"),i.setAttributeNS(null,"data-toggle","modal"),i.setAttributeNS(null,"data-target","#resizeImg"),i.setAttributeNS(null,"viewBox","0 0 1000 1000"),i.setAttributeNS(null,"enable-background","new 0 0 1000 1000"),i.setAttributeNS(null,"width","16px"),i.setAttributeNS(null,"height","16px"),i.setAttributeNS(null,"fill","#e90b07"),i.setAttributeNS(null,"cursor","pointer"),i.setAttributeNS(null,"stroke","none"),a.appendChild(i);let c=document.createElementNS(t,"g");c.setAttributeNS(null,"transform","translate(0.000000,511.000000) scale(0.100000,-0.100000)"),i.appendChild(c);let o=document.createElementNS(t,"path");o.setAttributeNS(null,"d","M2278.5,4946.2l-63.8-61.3v-998.3v-995.8h-995.8H220.6l-61.3-63.8c-99.6-97-68.9-260.4,56.2-316.6c40.8-17.9,375.3-28.1,1029-28.1h970.2V-40.4v-2525.2l58.7-53.6l58.7-56.2h2520.1h2520.1v-970.2c0-653.6,10.2-988.1,28.1-1029c56.2-125.1,219.6-155.8,316.6-56.2l63.8,61.3v998.3v995.8h995.8h998.3l61.3,63.8c99.6,97,68.9,260.4-56.2,316.6c-40.8,17.9-375.3,28.1-1029,28.1h-970.2V163.9v2433.3l1059.6,1059.6C9803,4621.9,9900,4726.6,9900,4800.6c0,112.4-97,209.4-209.4,209.4c-74,0-178.7-97-1143.8-1059.6L7487.2,2890.8H5053.9H2623.2V3861c0,653.6-10.2,988.1-28.1,1029C2538.9,5015.1,2375.5,5045.7,2278.5,4946.2z M7065.9,2474.6c0-2.6-998.3-1006-2221.4-2226.5L2623.2-1973.2v2229v2226.5h2221.3C6067.5,2482.3,7065.9,2479.7,7065.9,2474.6z M7372.3-45.5v-2221.3H5145.8h-2229L5138.2-45.5c1220.5,1223,2223.9,2221.3,2226.5,2221.3C7369.7,2175.9,7372.3,1177.5,7372.3-45.5z"),c.appendChild(o);let s=document.createElementNS(t,"svg");s.setAttributeNS(null,"class","deleteSvg opstion"),s.setAttributeNS(null,"onclick","deleteSvg(this)"),s.setAttributeNS(null,"viewBox","0 0 1000 1000"),s.setAttributeNS(null,"enable-background","new 0 0 1000 1000"),s.setAttributeNS(null,"width","16px"),s.setAttributeNS(null,"height","16px"),s.setAttributeNS(null,"fill","#01a185"),s.setAttributeNS(null,"cursor","pointer"),s.setAttributeNS(null,"stroke","none"),l.appendChild(s);let u=document.createElementNS(t,"g");s.appendChild(u);for(let e=0;e<=5;e++){let n=document.createElementNS(t,"path");switch(e){case 0:var p=n;p.setAttributeNS(null,"d","M967,182.7H33c-12.7,0-23-10.3-23-23c0-12.7,10.3-23,23-23H967c12.7,0,23,10.3,23,23C990,172.4,979.7,182.7,967,182.7z"),u.appendChild(p);break;case 1:var d=n;d.setAttributeNS(null,"d","M744.6,981.6H249.1c-54.8,0-99.3-44.5-99.3-99.3V159.7c0-12.7,10.3-23,23-23c12.7,0,23,10.3,23,23v722.6c0,29.4,23.8,53.3,53.2,53.3h495.5c29.3,0,53.2-23.9,53.2-53.3V235.9c0-12.7,10.3-23.1,23-23.1c12.7,0,23,10.3,23,23.1v646.4C843.9,937.1,799.3,981.6,744.6,981.6z"),u.appendChild(d);break;case 2:var m=n;m.setAttributeNS(null,"d","M700.2,182.7c-0.3,0-0.6,0-0.9,0H296.7c-8.4,0-16.2-4.6-20.2-12c-4-7.4-3.7-16.4,0.8-23.5l76.2-118.3c4.3-6.6,11.5-10.6,19.4-10.6h254.9c8.1,0,15.6,4.2,19.8,11.1l68.6,113.6c4.4,4.2,7.1,10.1,7.1,16.6C723.3,172.4,713,182.7,700.2,182.7z M339,136.7h319.6l-43.6-72.3H385.5L339,136.7z"),u.appendChild(m);break;case 3:var g=n;g.setAttributeNS(null,"d","M322.9,862.5c-12.7,0-23.1-10.3-23.1-23.1V286.7c0-12.7,10.4-23.1,23.1-23.1c12.7,0,23,10.3,23,23.1v552.7C346,852.2,335.7,862.5,322.9,862.5z"),u.appendChild(g);break;case 4:var h=n;h.setAttributeNS(null,"d","M500,862.5c-12.7,0-23-10.3-23-23.1V286.7c0-12.7,10.3-23.1,23-23.1s23.1,10.3,23.1,23.1v552.7C523.1,852.2,512.7,862.5,500,862.5z"),u.appendChild(h);break;case 5:var v=n;v.setAttributeNS(null,"d","M666,862.5c-12.7,0-23-10.3-23-23.1V286.7c0-12.7,10.3-23.1,23-23.1c12.7,0,23,10.3,23,23.1v552.7C689,852.2,678.7,862.5,666,862.5z"),u.appendChild(v)}}}$(document).ready(()=>{$('[data-price="tooltip"]').tooltip(),$("span#proName").text($("input[name=Product_Name]").val().length),$("span#desDetail").text($("textarea[name=Description]").val().length),$("input[name=Product_Name]").keyup(function(){$("span#proName").text($(this).val().length),120===$(this).val().length?$("span#proName").css("color","red"):$("span#proName").css("color","unset")}),$("textarea[name=Description]").keyup(function(){$("span#desDetail").text($(this).val().length),3e3===$(this).val().length?$("span#desDetail").css("color","red"):$("span#desDetail").css("color","unset")}),init_img=function(e,t,n){let r=$("#image");r.on({"build.cropper":function(e){e.type},"built.cropper":function(e){e.type},"cropstart.cropper":function(e){e.type,e.action},"cropmove.cropper":function(e){e.type,e.action},"cropend.cropper":function(e){e.type,e.action},"crop.cropper":function(e){e.type,e.x,e.y,e.width,e.height,e.rotate,e.scaleX,e.scaleY},"zoom.cropper":function(e){e.type,e.ratio}}).cropper(t);$save.click(function(t){t.preventDefault();let l=r.cropper("getCroppedCanvas",{width:1024}).toDataURL();getUrl(n,l,e)}),$zooml.click(function(e){e.preventDefault(),r.cropper("zoom",.1)}),$zoomn.click(function(e){e.preventDefault(),r.cropper("zoom",-.1)}),$xoayt.click(function(e){e.preventDefault(),r.cropper("rotate",45)}),$xoayp.click(function(e){e.preventDefault(),r.cropper("rotate",-45)}),$reset.click(function(e){e.preventDefault(),r.cropper("reset")})}});
   </script>
