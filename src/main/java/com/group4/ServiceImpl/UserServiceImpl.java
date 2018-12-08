@@ -71,10 +71,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findByPhone(String phone) {
 
-<<<<<<< HEAD
-=======
 		// TODO Auto-generated method stub
->>>>>>> feature/trantuyen
 		return userRepository.findByPhone(phone);
 	}
 
@@ -90,10 +87,4 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByRolesIsAdmin();
 	}
 
-<<<<<<< HEAD
-
-	
-
-=======
->>>>>>> feature/trantuyen
 }

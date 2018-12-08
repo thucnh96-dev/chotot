@@ -25,20 +25,10 @@ public interface UserRepository extends CrudRepository<User, UUID>, PagingAndSor
 	User findByEmail(String token);
 
 	User findByPhone(String phone);
-<<<<<<< HEAD
-	@Query(value="select u.* from user_role ur ,role r,user u where ur.user_id=u.id and ur.role_id=r.id and r.id=2;",nativeQuery=true)
-	List<User>findByRolesIsAdmin();
-	Page<User> findAll(Specification<User>spec,Pageable pageable);
-	
-
-	
-	
-=======
 
 	@Query(value = "select u.* from user_role ur ,role r,user u where ur.user_id=u.id and ur.role_id=r.id and r.id=2;", nativeQuery = true)
 	List<User> findByRolesIsAdmin();
 
 	Page<User> findAll(Specification<User> spec, Pageable pageable);
 
->>>>>>> feature/trantuyen
 }
