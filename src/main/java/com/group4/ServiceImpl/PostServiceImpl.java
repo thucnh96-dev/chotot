@@ -132,20 +132,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public long count() {
 		// TODO Auto-generated method stub
 		return postRepository.count();
 	}
 
-	@Override
-	public List<Post> findAll() {
-		// TODO Auto-generated method stub
-		return postRepository.findAll();
-	}
 
 	
-=======
 	public List<Post> search(String text, int city, int district, int wrad, UUID cate, UUID subcate) {
 		List<Post> posts = new ArrayList<>();
 		List<UUID> postIds = new ArrayList<>();
@@ -183,6 +176,11 @@ public class PostServiceImpl implements PostService {
 		posts = postRepository.findAllByTitle(text, postIds);System.out.println(posts.size());
 		return posts;
 	}
->>>>>>> feature/trantuyen
+
+	@Override
+	public Page<Post> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return postRepository.findAll(pageable);
+	}
 
 }

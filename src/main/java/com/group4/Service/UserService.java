@@ -1,6 +1,5 @@
 package com.group4.Service;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,18 +14,22 @@ public interface UserService {
 
 	Optional<User> findById(UUID id);
 
-    User save(User p);
-    User findByUsername(String username);
+	User save(User p);
 
-    void deleteById(UUID id);
-    User findByemail(String email);
-    User findByToken(String token);
-    User findByPhone(String phone);
-    List<User> findByName(String name);
-<<<<<<< HEAD
-    long count();
-    List<User>findByRolesIsAdmin();
-=======
-    List<User> findByPhone(String phone);
->>>>>>> feature/trantuyen
+	User findByUsername(String username);
+
+	void deleteById(UUID id);
+
+	User findByemail(String email);
+
+	User findByToken(String token);
+
+	User findByPhone(String phone);
+
+	List<User> findByName(String name);
+
+	long count();
+
+	List<User> findByRolesIsAdmin();
+
 }

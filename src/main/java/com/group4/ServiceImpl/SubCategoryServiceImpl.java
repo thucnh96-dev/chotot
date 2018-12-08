@@ -56,15 +56,13 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public long count() {
 		// TODO Auto-generated method stub
 		return subCategoryRepository.count();
-=======
+	}
 	public List<SubCategory> findByCategory(Category category) {
 		// TODO Auto-generated method stub
 		return subCategoryRepository.findByCategory(category);
->>>>>>> feature/trantuyen
 	}
 
 	

@@ -17,16 +17,12 @@ public interface SubCategoryService {
 
 	SubCategory save(SubCategory p);
 
-<<<<<<< HEAD
-    void deleteById(UUID id);
-    long count();
-    List<SubCategory> findByName(String name);
-=======
 	void deleteById(UUID id);
+
+	long count();
 
 	List<SubCategory> findByName(String name);
 
 	List<SubCategory> findByCategory(Category category);
 
->>>>>>> feature/trantuyen
 }
