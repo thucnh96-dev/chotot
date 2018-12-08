@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,7 +71,8 @@ public class PostController extends AbtractController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public String createNew(@PathVariable("id") UUID id, Model model, Authentication uthentication, HttpSession session) {
+	public String createNew(@PathVariable("id") UUID id, Model model, Authentication uthentication,
+			HttpSession session) {
 		session.setAttribute("title", "Cap nhat bai dang");
 		User user = this.getCurentUser(uthentication);
 		Post post = postService.findById(id).get();
@@ -96,30 +99,36 @@ public class PostController extends AbtractController {
 		for (int i = 0; i < photos.size(); i++) {
 			for (int j = 0; j < ids.length; j++) {
 				if (photos.get(i).getId() != ids[j]) {
-					
+
 				} else {
-System.out.println(photos.get(i).getId());
+					System.out.println(photos.get(i).getId());
 				}
 			}
 		}
 		if (user == null) {
 			return "redirect:/auth/login";
 		}
-		
+
 //		if (user.getPosts().indexOf(post) < 0) {
 //			return "redirect:/error";
 //		}
 		System.out.println(photos.size());
-		model.addAttribute("post",post);
+		model.addAttribute("post", post);
 		System.out.println("oke");
 		return "post/updatepost";
 	}
 
 	@PostMapping(value = "/new/upload")
-	public String createNew(@ModelAttribute("post") Post post, @RequestParam("images") MultipartFile[] file,
-			@RequestParam int ward_id, @RequestParam String address_string, Model model, Authentication uthentication)
-			throws IOException {
-		System.out.println(file.length);
+	public String createNew(@Valid @ModelAttribute("post") Post post, BindingResult bindingResult,
+			@RequestParam("images") MultipartFile[] file, @RequestParam int ward_id,
+			@RequestParam String address_string, ModelMap model, Authentication uthentication) throws IOException {
+		if (bindingResult.hasErrors()) {
+			return "post/form";
+		}
+		if (file.length > 6 || file.length == 0) {
+			model.addAttribute("ERR_FILE", "Phải chọn ít nhất 1 hình ảnh và không quá 6 ảnh !");
+			return "post/form";
+		}
 		Ward ward = new Ward();
 		ward.setId(ward_id);
 		Address add = new Address();
@@ -149,6 +158,7 @@ System.out.println(photos.get(i).getId());
 
 		return "post/form";
 	}
+
 	@GetMapping(value = "/view/{id}")
 	public String viewPost(@PathVariable UUID id, ModelMap modelMap, HttpSession session) {
 		session.setAttribute("title", "Chi tiet bai dang");
@@ -157,7 +167,7 @@ System.out.println(photos.get(i).getId());
 		List<PostPhoto> photos = postPhotoService.findByPost(post);
 		modelMap.addAttribute("PHOTOS", photos);
 		return "post/view";
-		
+
 	}
 
 }

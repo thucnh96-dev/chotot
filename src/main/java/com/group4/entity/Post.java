@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.group4.validation.NullText;
+import com.group4.validation.TextNull;
 
 @Entity
 public class Post {
@@ -25,7 +25,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty(value = "_id", access = JsonProperty.Access.READ_ONLY)
 	private UUID id;
-	@NullText(message="")
+	@TextNull(message="TiTle Không được để trống")
 	private String title;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -21,18 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
-import org.springframework.context.annotation.PropertySource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.group4.validation.NullText;
-import com.group4.validation.UniqueEmail;
-import com.group4.validation.UniquePhone;
-import com.group4.validation.UniqueUsername;
+import com.group4.validation.UserNull;
 
 //import org.hibernate.validator.constraints.Length;
 
 @Entity
-@PropertySource("classpath:message.properties")
 public class User implements Serializable {
 	private static final long serialVersionUID = 5242398560830588069L;
 	@Id
@@ -41,17 +36,14 @@ public class User implements Serializable {
 	@JsonProperty(value = "_id", access = JsonProperty.Access.READ_ONLY)
 	private UUID id;
 	@Column
-	@NullText(message = "${nameNull}")
+	@UserNull(message = "Tên Không được để trống")
 	private String name;
 	@Column(unique = true)
-	@UniqueEmail(message="{emailisExist}")
-	@Email(message = "{emailInvalid}")
+	@Email(message = "Email sai định dạng")
 	private String email;
 	@Column(unique = true)
-	@UniquePhone(message="{phoneisExist}")
-	@NullText(message = "{phoneNull}")
+	@UserNull(message = "Phone Không được để trống")
 	private String phone;
-	@UniqueUsername(message="{userNameisExist}")
 	@Column(unique = true)
 	private String username;
 	@Column
