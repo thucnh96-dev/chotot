@@ -21,7 +21,7 @@ import com.group4.entity.Category;
 import com.group4.entity.SubCategory;
 
 @Controller
-@RequestMapping("/subCategories")
+@RequestMapping("/admin/subCategories")
 public class SubCategoryController {
 	@Autowired
 	SubCategoryService subCategoryService;
@@ -47,7 +47,7 @@ public class SubCategoryController {
 		if (subCategory2 == null) {
 			return "error/404";
 		}
-		return "redirect:/subCategories";
+		return "redirect:/admin/subCategories";
 	}
 
 	@GetMapping("/create")
@@ -83,7 +83,7 @@ public class SubCategoryController {
 		if (subCate == null) {
 			return "error/404";
 		}
-		return "redirect:/subCategories";
+		return "redirect:/admin/subCategories";
 
 	}
 
@@ -95,7 +95,7 @@ public class SubCategoryController {
 			return "error/404";
 		}
 		subCategoryService.deleteById(id);
-		return "redirect:/subCategories";
+		return "redirect:/admin/subCategories";
 	}
 
 }

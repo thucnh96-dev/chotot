@@ -301,7 +301,7 @@ span.selected{background:#ccf;}
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<%@include file="/WEB-INF/views/include/footer.jsp"%>
+				<%@include file="/WEB-INF/views/admin/include/footer.jsp"%>
 				<!-- partial -->
 			</div>
 			<!-- main-panel ends -->

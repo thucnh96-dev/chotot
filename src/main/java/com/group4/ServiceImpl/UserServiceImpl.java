@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.group4.Repository.UserRepository;
@@ -85,6 +86,12 @@ public class UserServiceImpl implements UserService{
 	public List<User> findByRolesIsAdmin() {
 		// TODO Auto-generated method stub
 		return userRepository.findByRolesIsAdmin();
+	}
+
+	@Override
+	public Page<User> findAll(Specification<User> spec, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return userRepository.findAll(spec, pageable);
 	}
 
 }

@@ -6,11 +6,13 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.group4.entity.User;;
 
 public interface UserService {
 	Page<User> findAll(Pageable pageable);
+	Page<User> findAll(Specification<User> spec, Pageable pageable);
 
 	Optional<User> findById(UUID id);
 

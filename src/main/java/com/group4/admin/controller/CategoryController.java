@@ -21,7 +21,7 @@ import com.group4.Service.PostService;
 import com.group4.entity.Category;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/admin/categories")
 public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
@@ -47,7 +47,7 @@ public class CategoryController {
 			category.setPhoto(fileStorageService.storeFile(file[0]));
 		}
 		categoryService.save(category);
-		return "redirect:/categories";
+		return "redirect:/admin/categories";
 	}
 
 	@GetMapping("/create")
@@ -86,7 +86,7 @@ public class CategoryController {
 		if (category2 == null) {
 			return "error/404";
 		}
-		return "redirect:/categories";
+		return "redirect:/admin/categories";
 
 	}
 	@GetMapping("/delete/{id}")
@@ -97,7 +97,7 @@ public class CategoryController {
 			return "error/404";
 		}
 		categoryService.deleteById(id);
-		return "redirect:/categories";
+		return "redirect:/admin/categories";
 	}
 
 }

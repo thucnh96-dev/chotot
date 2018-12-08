@@ -59,8 +59,8 @@
 														<td class="font-weight-medium">${step}</td>
 														<td>${SUBCATEGORY.name}</td>
 														<td>${SUBCATEGORY.getCategory().getName()}</td>
-														<td><a href="/subCategories/delete/${SUBCATEGORY.id}">Delete</a>||
-															<a href="/subCategories/update/${SUBCATEGORY.id}">Edit</a></td>
+														<td><a href="/admin/subCategories/delete/${SUBCATEGORY.id}">Delete</a>||
+															<a href="/admin/subCategories/update/${SUBCATEGORY.id}">Edit</a></td>
 
 													</tr>
 													<c:set var="step" value="${step +1}"></c:set>
@@ -75,7 +75,7 @@
 
 					<!-- content-wrapper ends -->
 					<!-- partial:partials/_footer.html -->
-			   <%@include file="/WEB-INF/views/include/footer.jsp" %>
+			   <%@include file="/WEB-INF/views/admin/include/footer.jsp" %>
 					<!-- partial -->
 				</div>
 				<!-- main-panel ends -->

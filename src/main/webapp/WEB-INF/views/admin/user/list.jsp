@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Post</title>
+<title>User</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="/adminv1/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -178,18 +178,16 @@
 									<div class="table-responsive">
 
 
-										<%@include file="/WEB-INF/views/admin/post/search.jsp"%>
+										<%@include file="/WEB-INF/views/admin/user/search.jsp"%>
 
 										<table class="table table-bordered" id="postactive">
 											<thead>
 												<tr>
-													<th>Tiêu đề</th>													
-													<th>Thông tin</th>
-													<th>Giá</th>
-													<th>Số Lượng</th>
-													<th>Ngày đăng</th>
-													<th>Danh mục</th>
-													<th>Hình thức</th>
+													<th>Họ tên</th>													
+													<th>Phone</th>
+													<th>Email</th>
+													<th>Ngay gia nhập</th>
+												
 													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
@@ -198,16 +196,13 @@
 												<c:forEach var="p"  items="${datas}">
 												 <tr>
 													
-													<td>${p.getTitle()}</td>
-													<td>${p.getDescription()}</td>
-													<td>${p.getPrice()}</td>
+													<td>${p.name}</td>
+													<td>${p.phone}</td>
+													<td>${p.email}</td>
 													<td class="text-danger">
-													 <i class="mdi mdi-arrow-down">${p.getQuantity()}</i>
+													 <i class="mdi mdi-arrow-down">${p.createdAt}</i>
 													</td>
-													<td>${p.createdAt}</td>
-													<td>${p.subCategory.name}</td>
-													<td>${p.getStatus()}</td>
-													<td>${p.isAccept()}</td>
+													<td>${p.isActive()}</td>
 													<td>
 														<div class="btn-group dropdown">
 															<button type="button"
@@ -229,7 +224,7 @@
 											</tbody>
 										</table>
 									</div>
-									<%@include file="/WEB-INF/views/admin/post/page.jsp"%>
+									<%@include file="/WEB-INF/views/admin/user/page.jsp"%>
 								</div>
 							</div>
 						</div>

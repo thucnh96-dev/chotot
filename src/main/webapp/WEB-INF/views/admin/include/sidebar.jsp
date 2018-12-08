@@ -29,7 +29,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/admin">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Trang chủ</span>
             </a>
@@ -43,24 +43,24 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Danh mục</a>
+                  <a class="nav-link" href="/admin/categories">Danh mục</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Danh mục con</a>
+                  <a class="nav-link" href="/admin/subCategories">Danh mục con</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="/admin/user">
               <i class="menu-icon mdi mdi-backup-restore"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Quản lý user</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/admin/post/content">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">Quản lý bài đăng</span>
             </a>
           </li>
           <li class="nav-item">
