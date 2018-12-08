@@ -12,17 +12,11 @@ import org.springframework.data.jpa.domain.Specification;
 import com.group4.entity.*;
 
 public interface PostService {
-<<<<<<< HEAD
+
 	Page<Post> findAll(Pageable pageable);
     List<Post> findAll();
-=======
-	List<Post> findAll();
-
->>>>>>> feature/trantuyen
 	Optional<Post> findById(UUID id);
-
 	Post save(Post p);
-
 	void deleteById(UUID id);
 	List<List<Post>> findByCategory(UUID id, Pageable pageable);
     List<Post> findAllByUser(User user);
@@ -34,9 +28,9 @@ public interface PostService {
     Page<Post> findAllByUserAndIsAcceptTrue(User user,Pageable pageable);
     Page<Post> findAllByUserAndIsAcceptFalse(User user,Pageable pageable);
     Page<Post> findAll(Specification<Post> spec, Pageable pageable);
-<<<<<<< HEAD
+
     long count();
-=======
+
     List<Post> search(String text, int city, int district, int wrad, UUID cate, UUID subcate);
->>>>>>> feature/trantuyen
+
 }

@@ -69,16 +69,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public User findByPhone(String phone) {
-=======
-	public List<User> findByPhone(String phone) {
->>>>>>> feature/trantuyen
-		// TODO Auto-generated method stub
+
 		return userRepository.findByPhone(phone);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
@@ -91,8 +86,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByRolesIsAdmin();
 	}
 
-=======
->>>>>>> feature/trantuyen
+
 	
 
 }

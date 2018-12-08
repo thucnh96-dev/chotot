@@ -12,21 +12,14 @@ import com.group4.entity.User;;
 
 public interface UserService {
 	Page<User> findAll(Pageable pageable);
-
 	Optional<User> findById(UUID id);
-
     User save(User p);
     User findByUsername(String username);
-
     void deleteById(UUID id);
     User findByemail(String email);
     User findByToken(String token);
     User findByPhone(String phone);
     List<User> findByName(String name);
-<<<<<<< HEAD
     long count();
     List<User>findByRolesIsAdmin();
-=======
-    List<User> findByPhone(String phone);
->>>>>>> feature/trantuyen
 }
