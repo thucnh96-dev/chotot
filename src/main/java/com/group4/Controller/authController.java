@@ -60,19 +60,7 @@ public class authController {
 	public String createUser(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,RedirectAttributes redirectAttributes, ModelMap mm) {
 		
 		
-		User exitsUsername=userService.findByUsername(user.getUsername());
-		System.out.println(exitsUsername);
-		if (exitsUsername!=null) {
-			bindingResult.rejectValue("username", "exitsUsername");
-		}
-		User exitsPhone=userService.findByPhone(user.getPhone());
-		if (exitsPhone!=null) {
-			bindingResult.rejectValue("phone", "exitsPhone");
-		}
-		User exitsEmail=userService.findByemail(user.getEmail());
-		if (exitsEmail!=null) {
-			bindingResult.rejectValue("email", "exitsEmail");
-		}
+
 		if (!(user.getPasssword().equals(user.getConfimpassword()))) {
 			bindingResult.rejectValue("confimpassword", "matchpassword");
 		}

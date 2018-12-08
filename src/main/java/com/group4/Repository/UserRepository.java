@@ -1,6 +1,9 @@
 package com.group4.Repository;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,6 +22,7 @@ public interface UserRepository extends CrudRepository<User, UUID> , PagingAndSo
 	User findByPhone(String phone);
 	@Query(value="select u.* from user_role ur ,role r,user u where ur.user_id=u.id and ur.role_id=r.id and r.id=2;",nativeQuery=true)
 	List<User>findByRolesIsAdmin();
+	Page<User> findAll(Specification<User>spec,Pageable pageable);
 	
 	
 }
