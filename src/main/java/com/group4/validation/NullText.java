@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Constraint(validatedBy = NullValidator.class)
 @Retention(RUNTIME)
-public @interface UserNull {
+public @interface NullText {
 	String message();
 
 	Class<?>[] groups() default {};

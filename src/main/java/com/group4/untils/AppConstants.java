@@ -26,4 +26,8 @@ public class AppConstants {
 	public static final String PNG_FILE_FORMAT = ".png";
 	public static final String JPEG_FILE_FORMAT = ".jpeg";
 	public static final String JPG_FILE_FORMAT = ".jpg";
+	public static final String UBUNTU_CLASSPARTH = "file://" + System.getProperty("user.dir") + "/uploads/";
+	public static final String WINDOW_CLASSPARTH = "file:\\"+System.getProperty("user.dir") + "\\uploads\\";
+	
+	
 }

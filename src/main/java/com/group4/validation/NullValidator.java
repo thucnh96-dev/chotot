@@ -4,11 +4,11 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 
-public class NullValidator implements ConstraintValidator<UserNull,String> {
+public class NullValidator implements ConstraintValidator<NullText,String> {
 
 
     @Override
-    public void initialize(UserNull unique) {
+    public void initialize(NullText unique) {
         unique.message();
     }
 
