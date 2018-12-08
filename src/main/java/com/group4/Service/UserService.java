@@ -23,4 +23,5 @@ public interface UserService {
     User findByToken(String token);
 
     List<User> findByName(String name);
+    List<User> findByPhone(String phone);
 }

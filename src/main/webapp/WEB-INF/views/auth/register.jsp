@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html >
 <head>
-	<!-- meta css info  -->
+  <title>Dang ki</title>
+ <link rel="shortcut icon" type="image/png" href="/upload/favicon.png"/>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -24,7 +25,7 @@
 									</div>
 									<div class="sign-up2">
 										<form:input type="text" path="name" placeholder="Họ tên" maxlength="100" pattern=".{1,35}" />
-										<form:errors path="name" cssClass="error" />
+										<form:errors path="name" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -34,7 +35,7 @@
 									</div>
 									<div class="sign-up2">
 										<form:input type="text" path="email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" />
-										<form:errors path="email" cssClass="error" />
+										<form:errors path="email" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -44,7 +45,7 @@
 									</div>
 									<div class="sign-up2">
 										<form:input type="text" path="phone" placeholder="Số điện thoại" pattern="[0-9]{9,16}" />
-										<form:errors path="phone" cssClass="error" />
+										<form:errors path="phone" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -54,7 +55,7 @@
 									</div>
 									<div class="sign-up2">
 										<form:input type="text" path="username" placeholder="usename" maxlength="100" pattern=".{1,35}" />
-										<form:errors path="username" cssClass="error" />
+										<form:errors path="username" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -64,7 +65,7 @@
 									</div>
 									<div class="sign-up2">
 										<form:input type="password" path="passsword" maxlength="35" placeholder="Mật khẩu" pattern=".{6,35}" />
-										<form:errors path="passsword" cssClass="error" />
+										<form:errors path="passsword" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -74,7 +75,7 @@
 									</div>
 									<div class="sign-up2">
 											<form:input type="password" path="confimpassword" maxlength="35" placeholder="Nhập lại mật khẩu" pattern=".{6,35}" />
-									        <form:errors path="confimpassword" cssClass="error" />
+									        <form:errors path="confimpassword" cssClass="error text-danger" />
 									</div>
 									<div class="clearfix"> </div>
 								</div>																						
