@@ -19,7 +19,11 @@ public class UserUniquePhoneValidator  implements ConstraintValidator<UniquePhon
 
 	@Override
 	public boolean isValid(String phone, ConstraintValidatorContext context) {
+<<<<<<< HEAD
 		if (!phone.equals("") && userService.findByPhone(phone)!=null) {
+=======
+		if (!phone.equals("") && userService.findByPhone(phone) != null) {
+>>>>>>> feature/trantuyen
             return false;
         }
         return true;

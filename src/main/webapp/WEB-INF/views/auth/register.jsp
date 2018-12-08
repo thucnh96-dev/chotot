@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html >
 <head>
+<<<<<<< HEAD
 
 	<!-- meta css info  -->
 	<title>Đăng ký</title>
@@ -11,6 +12,10 @@
   <title>Dang ki</title>
  <link rel="shortcut icon" type="image/png" href="/upload/favicon.png"/>
 
+=======
+	<title>Đăng ký</title>
+ <link rel="shortcut icon" type="image/png" href="/upload/favicon.png"/>
+>>>>>>> feature/trantuyen
 <link rel="stylesheet" href="/css/style.css">
 <style type="text/css">
 .error{
@@ -34,10 +39,15 @@ color: #0000cc;
 										<h4>Họ tên* :</h4>
 									</div>
 									<div class="sign-up2">
+<<<<<<< HEAD
 
 										<form:input type="text" path="name" placeholder="Họ tên" maxlength="100" pattern=".{1,35}" />
 										<form:errors path="name" cssClass="error text-danger" />
 
+=======
+										<form:input type="text" path="name" placeholder="Họ tên" maxlength="100" pattern=".{1,35}" />
+										<form:errors path="name" cssClass="error text-danger" />
+>>>>>>> feature/trantuyen
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -46,10 +56,15 @@ color: #0000cc;
 										<h4>Địa chỉ Email* :</h4>
 									</div>
 									<div class="sign-up2">
+<<<<<<< HEAD
 
 										<form:input type="text" path="email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" />
 										<form:errors path="email" cssClass="error text-danger" />
 
+=======
+										<form:input type="text" path="email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" />
+										<form:errors path="email" cssClass="error text-danger" />
+>>>>>>> feature/trantuyen
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -58,11 +73,16 @@ color: #0000cc;
 										<h4>Số điện thoại* :</h4>
 									</div>
 									<div class="sign-up2">
+<<<<<<< HEAD
 
 
 										<form:input type="text" path="phone" placeholder="Số điện thoại" pattern="[0-9]{9,16}" />
 										<form:errors path="phone" cssClass="error text-danger" />
 
+=======
+										<form:input type="text" path="phone" placeholder="Số điện thoại" pattern="[0-9]{9,16}" />
+										<form:errors path="phone" cssClass="error text-danger" />
+>>>>>>> feature/trantuyen
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -71,11 +91,16 @@ color: #0000cc;
 										<h4>Username* :</h4>
 									</div>
 									<div class="sign-up2">
+<<<<<<< HEAD
 
 
 										<form:input type="text" path="username" placeholder="usename" maxlength="100" pattern=".{1,35}" />
 										<form:errors path="username" cssClass="error text-danger" />
 
+=======
+										<form:input type="text" path="username" placeholder="usename" maxlength="100" pattern=".{1,35}" />
+										<form:errors path="username" cssClass="error text-danger" />
+>>>>>>> feature/trantuyen
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -84,11 +109,16 @@ color: #0000cc;
 										<h4>Mật khẩu* :</h4>
 									</div>
 									<div class="sign-up2">
+<<<<<<< HEAD
 
 
 										<form:input type="password" path="passsword" maxlength="35" placeholder="Mật khẩu" pattern=".{6,35}" />
 										<form:errors path="passsword" cssClass="error text-danger" />
 
+=======
+										<form:input type="password" path="passsword" maxlength="35" placeholder="Mật khẩu" pattern=".{6,35}" required="required" />
+										<form:errors path="passsword" cssClass="error" />
+>>>>>>> feature/trantuyen
 									</div>
 									<div class="clearfix"> </div>
 								</div>

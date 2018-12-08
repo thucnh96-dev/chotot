@@ -13,9 +13,19 @@ public interface SubCategoryService {
 	List<SubCategory> findAll();
 	Optional<SubCategory> findById(UUID id);
 	SubCategory save(SubCategory p);
+<<<<<<< HEAD
     void deleteById(UUID id);
     long count();
     List<SubCategory> findByName(String name);
+=======
+
+	void deleteById(UUID id);
+
+	long count();
+
+	List<SubCategory> findByName(String name);
+
+>>>>>>> feature/trantuyen
 	List<SubCategory> findByCategory(Category category);
 
 }

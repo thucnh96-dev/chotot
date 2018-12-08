@@ -1,6 +1,5 @@
 package com.group4.Service;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -13,6 +12,7 @@ import com.group4.entity.User;;
 public interface UserService {
 	Page<User> findAll(Pageable pageable);
 	Optional<User> findById(UUID id);
+<<<<<<< HEAD
     User save(User p);
     User findByUsername(String username);
     void deleteById(UUID id);
@@ -22,4 +22,25 @@ public interface UserService {
     List<User> findByName(String name);
     long count();
     List<User>findByRolesIsAdmin();
+=======
+
+	User save(User p);
+
+	User findByUsername(String username);
+
+	void deleteById(UUID id);
+
+	User findByemail(String email);
+
+	User findByToken(String token);
+
+	User findByPhone(String phone);
+
+	List<User> findByName(String name);
+
+	long count();
+
+	List<User> findByRolesIsAdmin();
+
+>>>>>>> feature/trantuyen
 }
