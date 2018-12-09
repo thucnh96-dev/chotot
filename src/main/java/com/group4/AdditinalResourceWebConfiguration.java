@@ -11,7 +11,7 @@ public class AdditinalResourceWebConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/upload/**")
-				.addResourceLocations(AppConstants.UBUNTU_CLASSPARTH);
+				.addResourceLocations(AppConstants.WINDOW_CLASSPARTH);
 
 	}
 }
