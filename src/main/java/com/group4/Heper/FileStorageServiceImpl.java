@@ -49,7 +49,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 				|| file.getOriginalFilename().endsWith(AppConstants.JPG_FILE_FORMAT)))
 			throw new FileStorageException(AppConstants.INVALID_FILE_FORMAT);
 
-		File f = new File(AppConstants.TEMP_DIR + file.getOriginalFilename());
+		File f = new File(AppConstants.TEMP_DIR_UBUNTU + file.getOriginalFilename());
 
 		f.createNewFile();
 		FileOutputStream fout = new FileOutputStream(f);

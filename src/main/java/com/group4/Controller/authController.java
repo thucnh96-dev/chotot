@@ -58,8 +58,15 @@ public class authController {
 
 	@PostMapping(value = "/register")
 	public String createUser(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,RedirectAttributes redirectAttributes, ModelMap mm) {
-		
-		
+		if (!user.getPhone().equals("") && userService.findByPhone(user.getPhone()) != null) {
+			bindingResult.rejectValue("phone", "phoneExist");
+		}
+		if (!user.getPhone().equals("") && userService.findByemail(user.getEmail()) != null) {
+			bindingResult.rejectValue("email", "emailExist");
+		}
+		if (!user.getUsername().equals("") && userService.findByUsername(user.getUsername()) != null) {
+			bindingResult.rejectValue("username", "userNameExist");
+		}
 
 		if (!(user.getPasssword().equals(user.getConfimpassword()))) {
 			bindingResult.rejectValue("confimpassword", "matchpassword");
