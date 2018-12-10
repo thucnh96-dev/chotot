@@ -45,4 +45,6 @@ public interface PostService {
 	long count();
 
 	List<Post> search(String text, int city, int district, int wrad, UUID cate, UUID subcate);
+	
+	List<Post> findTop5(int limit);
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%@include file="/WEB-INF/views/include/title.jsp" %>
+<%@include file="/WEB-INF/views/include/title.jsp"%>
 <style type="text/css">
 /*Date: 2016-05-28T14:47:08.528Z*/
 .cropper-container {
@@ -308,6 +308,9 @@
 }
 </style>
 <script type="text/javascript">
+var ward = 0;
+var city =0;
+var district =0;
   function request(url, method, data, callback) {
 		$.ajax({
 				url: url, // Endpoint to call
@@ -323,7 +326,7 @@
 				type: method // Method
 			});	
 	};
-  function hihi(){
+  function hihi(id = null){
 	  var id = document.getElementById("city").value;
 	  var cbdistrict = document.getElementById("districts");
 	  var cbward = document.getElementById("wards"); 
@@ -336,12 +339,15 @@
 		        var option = document.createElement('option');
 		        option.text = data[i].name;
 		        	option.value = data[i].id;
+		        	if(data[i].id == district) {
+		        		option.setAttribute("selected", "selected");
+		        	}
 		        	cbdistrict.add(option, 0);
 		    }
 		 showdistrict();
 	  });
   }
-  function showdistrict(){
+  function showdistrict(cbdistrict = null){
 	  var cbdistrict = document.getElementById("districts").value; 
 	  var cbward = document.getElementById("wards"); 
 	  cbward.innerHTML ="";
@@ -353,14 +359,24 @@
 			        var option = document.createElement('option');
 			        option.text = data[i].name;
 			        	option.value = data[i].id;
+			        	if(data[i].id == ward) {
+			        		option.setAttribute("selected", "selected");
+			        	}
 			        	cbward.add(option, 0);
 			    }
 		  });
   }
+  function loadAddress(wardId, cityId, districtId) {
+	 ward = wardId;
+	  city = cityId;
+	  district = districtId;
+	  hihi(cityId);
+  }
   </script>
 </head>
-<body>
- <%@include file="/WEB-INF/views/include/header.jsp" %>
+<body
+	onload="loadAddress(${post.getAddress().getWard().getId()}, ${post.getAddress().getWard().getCity().getId()}, ${post.getAddress().getWard().getDistric().getId()})">
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 	<!-- Navbar -->
 
@@ -403,9 +419,9 @@
 				<div class="alert alert-danger validate-add"></div>
 
 
-				<form:form action="/post/update" modelAttribute="post"
-					method="POST" enctype="multipart/form-data">
-					<form:input path="id" disabled="" />
+				<form:form action="/post/update" modelAttribute="post" method="POST"
+					enctype="multipart/form-data">
+					<form:hidden path="id"  />
 					<div class="dropzone">
 						<div class="dz-default dz-message">
 							<div id="drop">
@@ -582,12 +598,13 @@
 									</form:select>
 								</div>
 							</div>
+							<form:hidden path="address" />
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="Product_Type">Dia
 									chi:</label>
 								<div class="col-sm-3">
 									<input type="text" path="info" class="form-control"
-										name="address_string">
+										name="address_string" value="${post.getAddress().getAddress()}">
 								</div>
 
 								<div class="col-sm-7">
@@ -595,7 +612,14 @@
 
 										<option label="Dia chi" disabled hidden selected></option>
 										<c:forEach items="${CITYS}" var="CITY">
-											<option value="${CITY.id}" selected>${CITY.name}</option>
+											<c:if
+												test="${post.getAddress().getWard().getCity().getId() != CITY.id }">
+												<option value="${CITY.id}">${CITY.name}</option>
+											</c:if>
+											<c:if
+												test="${post.getAddress().getWard().getCity().getId() == CITY.id }">
+												<option value="${CITY.id}" selected>${CITY.name}</option>
+											</c:if>
 										</c:forEach>
 									</select> <select id="districts" onchange="showdistrict()">
 
@@ -732,7 +756,7 @@
 			style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; transform: scale(.3); background: url(../images/load.gif) center center/contain no-repeat;"></div>
 	</div>
 
-	<%@include file="/WEB-INF/views/include/footer.jsp" %>
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 
 	<!-- js -->

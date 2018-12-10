@@ -2,7 +2,11 @@ package com.group4.Controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -76,7 +80,7 @@ public class PostController extends AbtractController {
 		session.setAttribute("title", "Cap nhat bai dang");
 		User user = this.getCurentUser(uthentication);
 		Post post = postService.findById(id).get();
-		System.out.println(user.getPosts().get(0).getId());
+		System.out.println(post.getPhotos().size());
 		List<PostPhoto> photos = postPhotoService.findByPost(post);
 		if (user.getPosts().indexOf(post) < 0) {
 			return "redirect:/error";
@@ -92,30 +96,90 @@ public class PostController extends AbtractController {
 
 	@PostMapping(value = "update")
 	public String updatePost(@ModelAttribute("post") Post post, @RequestParam("images") MultipartFile[] file,
-			Model model, Authentication uthentication, @RequestParam("imageIds") UUID[] ids) {
+			Model model, Authentication uthentication, @RequestParam(value = "imageIds", required = false) UUID[] ids,
+			@RequestParam int ward_id, @RequestParam String address_string) throws IOException {
+		Address address = null;
 		User user = this.getCurentUser(uthentication);
-		System.out.println(ids.length);
-		List<PostPhoto> photos = postPhotoService.findByPost(post);
-		for (int i = 0; i < photos.size(); i++) {
-			for (int j = 0; j < ids.length; j++) {
-				if (photos.get(i).getId() != ids[j]) {
+		post.setUser(user);
+		HashSet<UUID> photoIDs = new HashSet<>();
+		HashSet<UUID> idNotDel = new HashSet<>();;
+		List<PostPhoto> photoList = postPhotoService.findByPost(post);
+		for (int i = 0; i < photoList.size(); i++) {
+			photoIDs.add(photoList.get(i).getId());
+		}
+		HashSet<UUID> differentSet = (HashSet<UUID>) photoIDs.clone();
+		if (ids != null) {
+			idNotDel = new HashSet<>(Arrays.asList(ids));
+			HashSet<UUID> idNotDelCopy = (HashSet<UUID>) idNotDel.clone();
+			// tìm phần tử khác nhau giữa diffentSet với idNotDel
+			differentSet.removeAll(idNotDel);
 
-				} else {
-					System.out.println(photos.get(i).getId());
+			// tìm phần tử khác nhau giữa idNotDelCopy và photoIDs
+			idNotDelCopy.removeAll(photoIDs);
+			differentSet.addAll(idNotDelCopy);
+		}
+
+		System.out.println(differentSet);
+
+		if (ward_id == post.getAddress().getWard().getId()) {
+			address = post.getAddress();
+			address.setAddress(address_string);
+		} else {
+			address = new Address();
+			Ward ward = new Ward();
+			ward.setId(ward_id);
+			address.setAddress(address_string);
+			address.setWard(ward);
+		}
+
+		Address add = addressService.save(address);
+		post.setAddress(add);
+		if (file.length == 0 && differentSet.size() == 0) {
+
+		}  else {
+			if (differentSet.size() >= file.length) {//
+				int i = 0;
+				for (UUID uuid : differentSet) {
+					if (i <= file.length - 1) { //
+						System.out.println(i <= file.length - 1);
+						PostPhoto photo = postPhotoService.findById(uuid).get();
+						photo.setName(fileStorageService.storeFile(file[i]));
+						photo.setPost(post);
+						postPhotoService.save(photo);
+					} else {
+						postPhotoService.delete(uuid);
+					}
+					i++;
+				}
+			}
+			if (differentSet.size() < file.length) {// so file tahy doi < so file tai len => vua update vua tao moi file
+				UUID[] myArr = new UUID[0];
+				if (differentSet !=null && differentSet.size() >0) {
+					myArr = (UUID[]) differentSet.toArray();
+				}
+				for (int i = 0; i < file.length; i++) {
+					if (i <= myArr.length - 1) {
+						PostPhoto photo = postPhotoService.findById(myArr[i]).get();
+						photo.setName(fileStorageService.storeFile(file[i]));
+						photo.setPost(post);
+						postPhotoService.save(photo);
+					} else {
+						PostPhoto photo = new PostPhoto();
+						photo.setName(fileStorageService.storeFile(file[i]));
+						photo.setPost(post);
+						postPhotoService.save(photo);
+					}
 				}
 			}
 		}
 		if (user == null) {
 			return "redirect:/auth/login";
 		}
-
-//		if (user.getPosts().indexOf(post) < 0) {
-//			return "redirect:/error";
-//		}
-		System.out.println(photos.size());
-		model.addAttribute("post", post);
-		System.out.println("oke");
-		return "post/updatepost";
+		Post postSave = postService.save(post);
+		if (postSave == null) {
+			return "post/updatepost";
+		}
+		return "redirect:/user/manager";
 	}
 
 	@PostMapping(value = "/new/upload")

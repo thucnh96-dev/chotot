@@ -15,9 +15,10 @@ import com.group4.Service.PostService;
 import com.group4.Service.SubCategoryService;
 import com.group4.Service.UserService;
 import com.group4.entity.Post;
+import com.group4.entity.User;
 
 @Controller
-@RequestMapping(value = "/user/manage")
+@RequestMapping(value = "/user/manager")
 public class AdminUserPost extends AbtractController {
 	
 	@Autowired
@@ -29,18 +30,21 @@ public class AdminUserPost extends AbtractController {
 
 	@GetMapping("")
 	public String home(Model model, Authentication authentication, @RequestParam HashMap<String, Object> res) {
-		
-		// view on website
 		String view = "user/manage/post";
+		User user = this.getCurentUser(authentication);
+		System.out.println(user.getEmail());
+		if (user == null) {
+			return "redirect:/auth/login";
+		}
 
 		int page = res.get("page") == null ? 0  : Integer.parseInt(res.get("page").toString());
 		int size = res.get("size") == null ? 10 : Integer.parseInt(res.get("size").toString());
         
-		Page<Post> data = postService.findAllByUser(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
+		Page<Post> data = postService.findAllByUser(user,this.getListUserPostInActive(page, size));
 		Page<Post> datapostactive
-		=postService.findAllByUserAndIsAcceptTrue(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
+		=postService.findAllByUserAndIsAcceptTrue(user,this.getListUserPostInActive(page, size));
 		Page<Post> datapostnotactive
-		=postService.findAllByUserAndIsAcceptFalse(this.getCurentUser(authentication),this.getListUserPostInActive(page, size));
+		=postService.findAllByUserAndIsAcceptFalse(user,this.getListUserPostInActive(page, size));
         model.addAttribute("DATA", data);
         model.addAttribute("total", data.getTotalPages());
         model.addAttribute("totalac", datapostactive.getTotalPages()==0 ?0: datapostactive.getTotalPages());
