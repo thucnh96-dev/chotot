@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,23 +44,33 @@
 							<div class="card">
 								<div class="card-body">
 
-									<h4 class="card-title">${action} Category</h4>
+									<h4 class="card-title">${action}Category</h4>
+									<h4 class="card-title">${errorMessage}</h4>
 									<div class="table-responsive">
-										<form action="/categories/${action}" method="post"
-											enctype="multipart/form-data">
+										<form method="post"
+											enctype="multipart/form-data" action="${action}" >
 											<div class="form-group">
 												<label for="">Ten</label> <input type="text"
-													class="form-control" name="name" value="${CATEGORY.name}">
+													class="form-control" name="name" value="${CATEGORY.name}"
+													required="required">
 											</div>
 											<div class="form-group">
 												<label for="description">Mo ta</label>
-												<textarea class="form-control"
-													name="description" id="description" rows="3">${CATEGORY.description}</textarea>
+												<textarea class="form-control" name="description"
+													id="description" rows="3" required="required">${CATEGORY.description}</textarea>
 											</div>
 											<input type="hidden" name="id" value="${CATEGORY.id}">
+
+											<c:if test="${CATEGORY.photo != null}">
+												<div class="form-group">
+													<img alt="${CATEGORY.name}" src="/upload/${CATEGORY.photo}" style=" width: 100px; height: 100px; margin-left: 30%;">
+												</div>
+											</c:if>
+
 											<div class="form-group">
 												<label for="">Anh </label> <input type="file"
-													class="form-control-file" name="files" multiple>
+													required="required" class="form-control-file" name="files"
+													multiple>
 											</div>
 											<div class="form-group">
 												<label for="">Luu</label> <input type="submit"

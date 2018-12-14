@@ -52,7 +52,7 @@ public class SubCategoryController {
 
 	@GetMapping("/create")
 	public String createSubCategory(ModelMap map) {
-		map.addAttribute("action", "create");
+		map.addAttribute("action", "/admin/subCategories/create");
 		map.addAttribute("CATEGORIES", categoryService.findAll());
 		
 		return "admin/sub_category";
@@ -65,7 +65,7 @@ public class SubCategoryController {
 		if (!subcategory.isPresent()) {
 			return "error/404";
 		}
-		map.addAttribute("action", "update");
+		map.addAttribute("action", "/admin/subCategories/update");
 		map.addAttribute("SUBCATEGORY", subcategory.get());
 		map.addAttribute("CATEGORIES", categoryService.findAll());
 		return "admin/sub_category";

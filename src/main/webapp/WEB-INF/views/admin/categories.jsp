@@ -41,7 +41,7 @@
 						<div class="col-lg-12 grid-margin">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Categories</h4>
+									<h4 class="card-title">Categories  <a class="btn btn-primary" href="/admin/categories/create">Tạo mới</a></h4>
 									<div class="table-responsive">
 										<table class="table table-bordered">
 											<thead>
@@ -61,8 +61,7 @@
 													<tr>
 														<td class="font-weight-medium">${step}</td>
 														<td>${CATEGORY.name}</td>
-														<td><img class="img-thumbnail" alt="photo"
-															src="/uploads/${CATEGORY.photo}"></td>
+														<td><img class="img-thumbnail" alt="photo" src="/upload/${CATEGORY.photo}" ></td>
 														<td><a href="/admin/categories/delete/${CATEGORY.id}">Delete</a>||
 														<a href="/admin/categories/update/${CATEGORY.id}">Edit</a>
 														</td>

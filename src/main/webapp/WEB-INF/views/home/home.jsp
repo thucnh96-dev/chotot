@@ -34,7 +34,7 @@
                   </div>
                 </div>
               </a>
-            </div>${CATEGORY.photo}
+            </div>
             </c:forEach>
          
             <div class="clearfix"></div>

@@ -1,6 +1,7 @@
 package com.group4.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,10 +38,21 @@ public class CategoryController {
 
 	}
 
-	@PostMapping("/create")
+	@PostMapping(value="/create")
 	public String createCategory(@RequestParam String name,@RequestParam("files") MultipartFile[] file, @RequestParam String description,
 			 ModelMap mm) throws IOException {
+		
+		List<Category> list=categoryService.findByName(name);
+		for (Category c :list) {
+			if (c.getName().equalsIgnoreCase(name)) {
+				mm.addAttribute("errorMessage", "Danh mục đã tồn tại");
+				return "admin/category";
+			}
+		}
+		
+		
 		Category category = new Category();
+	
 		category.setName(name);
 		category.setDescription(description);
 		if (!file[0].isEmpty()) {
@@ -52,7 +64,7 @@ public class CategoryController {
 
 	@GetMapping("/create")
 	public String createCategory(ModelMap map) {
-		map.addAttribute("action", "create");
+		map.addAttribute("action", "/admin/categories/create");
 		return "admin/category";
 	}
 
@@ -62,7 +74,7 @@ public class CategoryController {
 		if (!category.isPresent()) {
 			return "error/404";
 		}
-		map.addAttribute("action", "update");
+		map.addAttribute("action", "/admin/categories/update");
 		map.addAttribute("CATEGORY", category.get());
 		return "admin/category";
 	}

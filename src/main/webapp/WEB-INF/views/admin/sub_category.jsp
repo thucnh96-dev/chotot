@@ -46,7 +46,7 @@
 
 									<h4 class="card-title">${action} SubCategory</h4>
 									<div class="table-responsive">
-										<form action="/subCategories/${action}" method="post">
+										<form action="${action}" method="post">
 											<div class="form-group">
 												<label for="">Ten</label> <input type="text"
 													class="form-control" name="name" value="${SUBCATEGORY.name}">
