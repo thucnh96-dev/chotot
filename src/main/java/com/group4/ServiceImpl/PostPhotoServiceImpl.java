@@ -29,7 +29,8 @@ public class PostPhotoServiceImpl implements PostPhotoService {
 
 	@Override
 	public void delete(UUID uuid) {
-		postPhotoRepository.deleteById(uuid);
+		postPhotoRepository.delete(uuid);
+//		postPhotoRepository.de
 		
 	}
 	@Override

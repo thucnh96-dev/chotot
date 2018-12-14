@@ -50,7 +50,11 @@ public class FileStorageServiceImpl implements FileStorageService {
 			throw new FileStorageException(AppConstants.INVALID_FILE_FORMAT);
 
 		File f = new File(AppConstants.TEMP_DIR + file.getOriginalFilename());
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> 4914e0b3cd87b7d72301c87b0bcbdd7f71345026
 		f.createNewFile();
 		FileOutputStream fout = new FileOutputStream(f);
 		fout.write(file.getBytes());

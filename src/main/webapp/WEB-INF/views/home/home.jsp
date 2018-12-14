@@ -44,38 +44,7 @@
       <div class="flex text-center hidden-xs hidden-sm">
         <img class="hoavan" src="/upload/hoavan.png" alt="hoala">
       </div>
-      <div class="trending-ads">
-        <div class="container">
-          <!-- slider -->
-          <div class="trend-ads">
-            <h2>Sản phẩm mới</h2>
-
-            <ul id="new--product">
-            
-                <li class="naem">
-                 
-                    <div class="col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-sm-6 col-md-3 biseller-column">
-                      <a href="/chi-tiet-san-pham/">
-                      <div class="lazy-product img-Product" data-original="" title=""></div>
-                      <span class="price">&#36;</span>
-
-                      <div class="ad-info">
-                        <h5>hoa quas</h5>
-                        <span class="text-dark"></span>
-                      </div>
-                    </a>
-
-                    </div>
-                   
-                </li>
-              
-            </ul>
-          </div>
-          <div class="clearfix"></div>
-          <div class="text-center" style="padding: 35px 0 0;"><a href="/danh-muc/" class="btn btn-success">Xem thêm</a></div>
-        </div>
-        <!-- //slider -->
-      </div>
+     
     </div>
   <hr>
 <%@include file="/WEB-INF/views/include/footer.jsp" %>
@@ -96,7 +65,7 @@
 	<script src='/js/custom.js'></script>
 	<script>
   $(document).ready(function(){$("div.lazy-product, img.lazy-logo, img.lazy-cate, div.lazy-sale, div.lazy-ngung, img.lazy-member, div.lazy-details, div.lazy-lq").lazyload({effect:"fadeIn"});var a=$("#first-disabled2");$("#special").on("click",function(){a.find("option:selected").prop("disabled",!0),a.selectpicker("refresh")}),$("#special2").on("click",function(){a.find("option:disabled").prop("disabled",!1),a.selectpicker("refresh")}),$("#basic2").selectpicker({liveSearch:!0,maxOptions:1}),function(b){b(function(){var c=b("body"),d=b("#menu");d.wrapInner("<div class=\"inner\"></div>"),d._locked=!1,d._lock=function(){return!d._locked&&(d._locked=!0,window.setTimeout(function(){d._locked=!1},350),!0)},d._show=function(){d._lock()&&c.addClass("is-menu-visible")},d._hide=function(){d._lock()&&c.removeClass("is-menu-visible")},d._toggle=function(){d._lock()&&c.toggleClass("is-menu-visible")},d.appendTo(c).on("click",function(e){e.stopPropagation()}).on("click","a",function(e){var f=b(this).attr("href");e.preventDefault(),e.stopPropagation(),d._hide();"#menu"==f||window.setTimeout(function(){window.location.href=f},350)}).append("<a id=\"close--menu\" class=\"close\" href=\"#menu\">Close</a>"),c.on("click","a[href=\"#menu\"]",function(e){e.stopPropagation(),e.preventDefault(),d._toggle()}).on("click",function(){d._hide()}).on("keydown",function(e){27==e.keyCode&&d._hide()})})}(jQuery)});
-function GoogleMaps(){var a={lat:10.762936,lng:106.693335},b=new google.maps.Map(document.getElementById('map'),{zoom:15,center:a}),c=new google.maps.Marker({position:a,map:b})}
+function GoogleMaps(){var a={lat:16.0773318,lng:108.1462627},b=new google.maps.Map(document.getElementById('map'),{zoom:15,center:a}),c=new google.maps.Marker({position:a,map:b})}
 </script>
 
 

@@ -24,17 +24,7 @@
 			<li><a href="#menu">Menu</a></li>
 		</ul>
 	</nav>
-
-	<nav id="menu">
-		<h2 id="h2--menu">Menu</h2>
-		<ul>
-			<li><a href="/">Trang chá»§</a></li>
-			<li><a href="/danh-muc/5af85f65419cadab24fbc6ad">Danh má»¥c</a></li>
-			<li><a href="/kenh-nguoi-ban">KÃªnh NgÆ°á»i BÃ¡n</a></li>
-			<li><a href="/gioi-thieu">Giá»i thiá»u</a></li>
-			<li><a href="/lien-he">LiÃªn há»</a></li>
-		</ul>
-	</nav>
+ <%@include file="/WEB-INF/views/include/menu.jsp" %>
 
 
 	<div class="main-banner banner text-center">
@@ -53,10 +43,9 @@
 			<div class="row">
 			<div class="main-breadcrumb col-sm-12">
 				<ol class="breadcrumb">
-					<li><a href="/">Trang chá»§</a></li>
-					<li><a href="/danh-muc/">Danh má»¥c</a></li>
-					<li class="active"><a href="/danh-muc/"><</a></li>
-					<li class="active">name product/li>
+					<li><a href="/">Trang chủ</a></li>
+					<li><a href="/find/">Bài đăng</a></li>
+					<li class="active"><a href="/post/view/${POST.id}"></a>< ${POST.title} </li>
 				</ol>
 			</div>
 			</div>
@@ -114,11 +103,11 @@
 									cursor='pointer' visibility='hidden' opacity='0' />
                 </svg>
 							<div class="vl-detail__sharing--text">
-								&nbsp;thÃ­ch&nbsp;:&nbsp;<span>7</span>
+								&nbsp;Thích&nbsp;:&nbsp;<span>7</span>
 							</div>
 						</div>
 						<div class="vl-detail__sharing--share-to flex--element">
-							<div class="vl-detail__sharing--share-to-text">chia sáº»
+							<div class="vl-detail__sharing--share-to-text">chia sẻ
 								&nbsp;</div>
 							<ul class="list-inline">
 								<li><a class="fa fa-leaf" href=""></a></li>
@@ -136,12 +125,12 @@
 						<div class="vl-detail-product__info--header">
 							<div id="alertHH" class="alert alert-danger"
 								style="display: none;">
-								<strong>Háº¿t hÃ ng</strong>.
+								<strong>Hết hàng</strong>.
 							</div>
 							<h1>${POST.title}</h1>
 							<div class="vl-detail-product__info--header-brand">
 								<h5 class="text-dark">
-									ThÆ°Æ¡ng hiá»u:&nbsp;<a href="">${POST.title}</a>
+									Thương hiệu:&nbsp;<a href="">${POST.info}</a>
 								</h5>
 							</div>
 						</div>
@@ -150,11 +139,8 @@
 							<div class="vl-detail-product__info--body-price&coupon">
 								<div class="vl-detail-product__info--body--price">
 									<h2 style="color: #f3c500;">${POST.price}
-										â«
+										VND
 									</h2>
-									<div class="vl-detail-product__info--body--coupon">
-										<h4>Hello Coupon!!!</h4>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -162,32 +148,23 @@
 						<div class="vl-detail-product__info--footer">
 							<div class="vl-detail-product__info--footer-quantity">
 								<div class="vl-detail-product__info--footer-quantity-text">
-									sá» lÆ°á»£ng&nbsp;</div>
+									số lượng&nbsp;</div>
 								<div
 									class="vl-detail-product__info--footer-quantity-button col-sm-5">
 									<div class="input-group">
-										<div class="input-group-btn">
-											<button id="sub" class="btn btn-default" type="button"
-												name="button">-</button>
-										</div>
 
 										<input id="vl-detail-product__info--footer-quantity"
-											class="form-control" type="text" name="" value="1">
-
-										<div class="input-group-btn">
-											<button id="add" class="btn btn-default" type="button"
-												name="button">+</button>
-										</div>
+											class="form-control" type="text" name="" value="${POST.quantity}" disabled="disabled">
 									</div>
 								</div>
 
 								<div class="vl-detail-product__info--footer-quantity-text">
-									&nbsp;<span id="soluong">30</span>&nbsp; cÃ³ sáºµn
+									&nbsp;<span id="soluong">30</span>&nbsp; sản phẩm
 								</div>
 							</div>
 							<div class="vl-detail-product__info--footer-status-seller">
 								<div class="vl-detail-product__info--footer-status-text">
-									TÃ¬nh tráº¡ng:&nbsp;</div>
+									Tình trạng:&nbsp;</div>
 								<div class="vl-detail-product__info--footer-status">
 									<h4 style="margin: 0;">${POST.status}</h4>
 								</div>
@@ -206,8 +183,7 @@
 
 							<div class="media">
 								<div class="media-left media-top">
-									<img src="../images/img.jpg" class="media-object"
-										style="width: 60px">
+									<img src="/upload/user.png" class="media-object" style="width: 40px">
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading text-dark">${POST.getUser().getName()}</h4>
@@ -227,19 +203,19 @@
 									readonly disabled> -->
 								<table class="table table-bordered table-hover">
 									<caption>
-										<h4>${POST.getUser().getName()}
-											xin chÃ o !!!
+										<h4> ${POST.getUser().getName()}
+											xin chào !!!
 										</h4>
 									</caption>
 									<thead>
 										<tr class="info">
-											<th colspan="2">ThÃ´ng tin:</th>
+											<th colspan="2">Thông tin:</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<th>NÆ¡i:</th>
-											<td>VPK CNTT</td>
+											<th>Địa chỉ:</th>
+											<td>${POST.getAddress().getAddress()} ${POST.getAddress().getWard().getName()} ${POST.getAddress().getWard().getCity().getName()}</td>
 										</tr>
 										<tr>
 											<th>Phone:</th>
@@ -265,8 +241,7 @@
 			<section class="box-shadow">
 				<div class="vl-detail-product__info--product-details-text text-dark">
 					<div class="panel  panel-primary">
-						<div class="panel-heading lead" style="margin-bottom: 0;">Chi
-							tiáº¿t sáº£n pháº©m</div>
+						<div class="panel-heading lead" style="margin-bottom: 0;">Chi tiết sản phẩm</div>
 						<div class="panel-body">
 							<p>${POST.description}</p>
 						</div>
@@ -275,17 +250,6 @@
 			</section>
 		</div>
 		<br>
-		<div class="vl-detail-product__info-product--same">
-			<section>
-				<div class="text-dark flex--element flex-align-center">
-					<h3>
-						CÃC Sáº¢N PHáº¨M KHÃC Cá»¦A
-						${POST.getUser().getName()}</h3>
-					<!-- <span class="text-primary"><a href="#">Xem táº¥t cáº£</a></span> -->
-				</div>
-		
-			</section>
-		</div>
 	</div>
 	<br>
 	<hr>
@@ -306,7 +270,7 @@
 <script src="/js/hiddenporo.js"></script>
 <script>
   $(document).ready(function(){$("div.lazy-product, img.lazy-logo, img.lazy-cate, div.lazy-sale, div.lazy-ngung, img.lazy-member, div.lazy-details, div.lazy-lq").lazyload({effect:"fadeIn"});var a=$("#first-disabled2");$("#special").on("click",function(){a.find("option:selected").prop("disabled",!0),a.selectpicker("refresh")}),$("#special2").on("click",function(){a.find("option:disabled").prop("disabled",!1),a.selectpicker("refresh")}),$("#basic2").selectpicker({liveSearch:!0,maxOptions:1}),function(b){b(function(){var c=b("body"),d=b("#menu");d.wrapInner("<div class=\"inner\"></div>"),d._locked=!1,d._lock=function(){return!d._locked&&(d._locked=!0,window.setTimeout(function(){d._locked=!1},350),!0)},d._show=function(){d._lock()&&c.addClass("is-menu-visible")},d._hide=function(){d._lock()&&c.removeClass("is-menu-visible")},d._toggle=function(){d._lock()&&c.toggleClass("is-menu-visible")},d.appendTo(c).on("click",function(e){e.stopPropagation()}).on("click","a",function(e){var f=b(this).attr("href");e.preventDefault(),e.stopPropagation(),d._hide();"#menu"==f||window.setTimeout(function(){window.location.href=f},350)}).append("<a id=\"close--menu\" class=\"close\" href=\"#menu\">Close</a>"),c.on("click","a[href=\"#menu\"]",function(e){e.stopPropagation(),e.preventDefault(),d._toggle()}).on("click",function(){d._hide()}).on("keydown",function(e){27==e.keyCode&&d._hide()})})}(jQuery)});
-function GoogleMaps(){var a={lat:10.762936,lng:106.693335},b=new google.maps.Map(document.getElementById('map'),{zoom:15,center:a}),c=new google.maps.Marker({position:a,map:b})}
+function GoogleMaps(){var a={lat:16.0773318,lng:108.1462627},b=new google.maps.Map(document.getElementById('map'),{zoom:15,center:a}),c=new google.maps.Marker({position:a,map:b})}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtTijdOrawSLXkwdTOT1MKXE7Y0-pVcFI&callback=GoogleMaps"></script>
 

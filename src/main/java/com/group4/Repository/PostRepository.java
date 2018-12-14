@@ -6,13 +6,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.group4.entity.Post;
 import com.group4.entity.SubCategory;
@@ -33,7 +34,7 @@ Page<Post> findAllByIsAcceptTrue(Pageable pageable);
 Page<Post> findAllByIsAcceptFalse(Pageable pageable);
 List<Post> findAllByCreatedAtBetween(Date start,Date end);
 List<Post> findBySubCategory(SubCategory subcategory);
-@Query( value = "SELECT * FROM post where title like %?1% and id in ?2", nativeQuery= true)
+@Query( value = "SELECT * FROM post where title like %?1% and id in ?2 and is_accept = 1", nativeQuery= true)
 List<Post> findAllByTitle(String title, List<UUID> ids);
 //List<Post> findAllByAddress(User user);
 List<Post> findByAddress(Address address);
@@ -45,7 +46,13 @@ List<Post> findAllByDistrict(int district);
 List<Post> findAllByward(int ward);
 @Query( value = "SELECT post.* FROM `post`, `category`, `sub_category` where post.sub_category_id = sub_category.id and sub_category.category_id = category.id and category.id = ?1  ;", nativeQuery= true)
 List<Post> findAllByCategory(UUID id);
-@Query( value = "SELECT * FROM post where title like %?1% ", nativeQuery= true)
+@Query( value = "SELECT * FROM post where title like %?1% and is_accept = 1", nativeQuery= true)
 List<Post> findAllByTitle(String title);
+@Query( value = "SELECT * FROM post where is_accept = 1 ORDER BY created_at DESC LIMIT ?1", nativeQuery= true)
+List<Post> findTop5(int limit);
+@Query(value = "DELETE FROM post WHERE id= ?1", nativeQuery = true)
+@Modifying
+@Transactional
+void delete(UUID id);
 
 }

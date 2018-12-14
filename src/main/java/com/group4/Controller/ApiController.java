@@ -20,6 +20,7 @@ import com.group4.Heper.QueryHelper;
 import com.group4.Repository.PostRepository;
 import com.group4.Service.CityService;
 import com.group4.Service.DistrictService;
+import com.group4.Service.PostPhotoService;
 import com.group4.Service.PostService;
 import com.group4.Service.SubCategoryService;
 import com.group4.Service.WardService;
@@ -43,7 +44,7 @@ public class ApiController {
 	@Autowired
 	PostService postService;
 	@Autowired
-	PostRepository postRepository;
+	PostPhotoService postPhotoService;
 	@Autowired
 	SubCategoryService subCategoryService;
 
@@ -91,5 +92,10 @@ public class ApiController {
 		}
 		return reponse;
 	}
-
+	@GetMapping("/categories/photos")
+	public int photos() {
+		Post post = postService.findById(UUID.fromString("de8ff74c-76dd-48fa-8a78-49d60ba18b4e")).get();
+		int postPhoto = postPhotoService.findByPost(post).size();
+		return postPhoto;
+	}
 }

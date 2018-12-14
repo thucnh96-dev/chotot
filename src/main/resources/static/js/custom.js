@@ -34,7 +34,7 @@ function addressShow(id, name) {
 				city = id;
 				var ul = $("#address");
 				ul.html("");
-				var html = "";
+				var html = "<a href='#' style='text-decoration: none;' onclick='showward()' ><li class='list-group-item '>	Tất cả  <i class='fa fa-angle-right fa-5 pull-right'></i></li> </a>";
 				for (var i = 0; i < data.length; i++) {
 					html += "<a href='#' style='text-decoration: none;' onclick='showdistricts("
 							+ data[i].id
@@ -74,7 +74,7 @@ function showdistricts(id) {
 			});
 }
 
-function showward(id) {
+function showward(id = 0) {
 	$(".modal").removeClass("in");
 	$(".modal-backdrop").remove();
 	$('body').removeClass('modal-open');

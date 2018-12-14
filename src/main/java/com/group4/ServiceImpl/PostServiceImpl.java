@@ -19,15 +19,11 @@ import com.group4.Repository.PostRepository;
 import com.group4.Repository.SubCategoryRepository;
 import com.group4.Repository.WardRepository;
 import com.group4.Service.PostService;
-import com.group4.entity.Address;
 import com.group4.entity.Category;
-import com.group4.entity.City;
-import com.group4.entity.Distric;
 import com.group4.entity.Post;
 import com.group4.entity.SubCategory;
 
 import com.group4.entity.User;
-import com.group4.entity.Ward;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -57,7 +53,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public void deleteById(UUID id) {
-		postRepository.deleteById(id);
+		postRepository.delete(id);
 
 	}
 
@@ -156,6 +152,9 @@ public class PostServiceImpl implements PostService {
 			isReturn = true;
 			posts = postRepository.findAllByward(wrad);
 		}
+		if ((city != 0 || district != 0 || wrad != 0) && posts.size() ==0) {
+			return null;
+		}
 		if (cate != null & subcate == null) {
 			isReturn = true;
 			posts.addAll(postRepository.findAllByCategory(cate));
@@ -165,6 +164,9 @@ public class PostServiceImpl implements PostService {
 			SubCategory subCategory = new SubCategory();
 			subCategory.setId(subcate);
 			posts.addAll(postRepository.findBySubCategory(subCategory));
+		}
+		if ((cate != null || subcate != null) && posts.size() ==0) {
+			return null;
 		}
 		for (int i = 0; i < posts.size(); i++) {
 			postIds.add(posts.get(i).getId());
@@ -181,6 +183,12 @@ public class PostServiceImpl implements PostService {
 	public Page<Post> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return postRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Post> findTop5(int limit) {
+		
+		return postRepository.findTop5(limit);
 	}
 
 }
