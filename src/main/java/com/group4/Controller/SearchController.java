@@ -58,7 +58,7 @@ public class SearchController {
 		if (cate == null & subcate == null) {
 			map.addAttribute("CATEGORIES", categoryService.findAll());
 		}
-//		
+		map.addAttribute("TOP5", postService.findTop5(5));
 		map.addAttribute("CITYS", cityService.findAll());
 		return "find/find";
 
