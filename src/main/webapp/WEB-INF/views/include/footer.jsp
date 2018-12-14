@@ -13,17 +13,17 @@
 						<address>
 							<ul class="location">
 								<li><span class="glyphicon glyphicon-map-marker"></span></li>
-								<li>LẦU 7 VĂN PHÒNG KHOA CNTT Đại học Văn Lang</li>
+								<li>Trường cao đẳng thực hành FPT POLYTECHNIC Đà Nẵng</li>
 								<div class="clearfix"></div>
 							</ul>
 							<ul class="location">
 								<li><span class="glyphicon glyphicon-earphone"></span></li>
-								<li>+0 561 111 235</li>
+								<li>0 369 999 031</li>
 								<div class="clearfix"></div>
 							</ul>
 							<ul class="location">
 								<li><span class="glyphicon glyphicon-envelope"></span></li>
-								<li><a href="mailto:chototvlu@example.com">chototvlu@example.com</a></li>
+								<li><a href="mailto:chototvlu@example.com">cholatot@gmail.com</a></li>
 								<div class="clearfix"></div>
 							</ul>
 						</address>
