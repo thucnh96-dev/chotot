@@ -190,7 +190,7 @@
 					<c:forEach items="${POSTS}" var="POST">
 						<div class="media">
 							<a href="/post/view/${POST.id}"> <img class="media-left"
-								width="120" height="120" alt="Image" src="/upload/${TOP.getPhotos().get(0).getName()}"></a>
+								width="120" height="120" alt="Image" src="/upload/${POST.getPhotos().get(0).getName()}"></a>
 							<div class="media-body">
 								<h3 class="card-title">${POST.title}</h3>
 								<p class="card-text">${POST.price}</p>

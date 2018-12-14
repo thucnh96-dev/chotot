@@ -72,7 +72,7 @@ public class CategoryController {
 		Optional<Category> cate = categoryService.findById(id);
 		Category category = new Category();
 		if (!cate.isPresent()) {
-			return "error/404";
+			return "redirect:/error";
 		} 
 		String photoName = cate.get().getPhoto();
 		if (!file[0].isEmpty()) {
@@ -84,7 +84,7 @@ public class CategoryController {
 		category.setPhoto(photoName);
 		Category category2 =categoryService.save(category);
 		if (category2 == null) {
-			return "error/404";
+			return "redirect:/error";
 		}
 		return "redirect:/admin/categories";
 
@@ -94,7 +94,7 @@ public class CategoryController {
 		System.out.println(id);
 		Optional<Category> category = categoryService.findById(id);
 		if (!category.isPresent()) {
-			return "error/404";
+			return "redirect:/error";
 		}
 		categoryService.deleteById(id);
 		return "redirect:/admin/categories";

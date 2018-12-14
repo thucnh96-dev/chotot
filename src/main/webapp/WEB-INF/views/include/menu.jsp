@@ -5,7 +5,7 @@
     <ul>
       <li><a href="/">Trang chủ</a></li>
       <li><a href="/find">Tim Kiem</a></li>
-      <li><a href="/user/manage">Kênh Người Bán</a></li>
+      <li><a href="/user/manager">Kênh Người Bán</a></li>
       <li><a href="/about">Giới thiệu</a></li>
       <li><a href="#">Liên hệ</a></li>
     </ul>

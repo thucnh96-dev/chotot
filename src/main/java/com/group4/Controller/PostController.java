@@ -220,7 +220,7 @@ public class PostController extends AbtractController {
 			postPhotoService.save(p);
 		}
 
-		return "post/form";
+		return "redirect:/user/manager";
 	}
 
 	@GetMapping(value = "/view/{id}")
@@ -233,5 +233,19 @@ public class PostController extends AbtractController {
 		return "post/view";
 
 	}
+	@GetMapping(value = "/delete/{id}")
+	public String deletePost(@PathVariable UUID id,  Authentication uthentication) {
+		User user = this.getCurentUser(uthentication);
+		Post post = postService.findById(id).get();
+		if (post == null) {
+			return "redirect:/error";
+		}
+		if (!user.getPosts().contains(post)) {
+			return "redirect:/error";
+		}
+		postService.deleteById(id);
+		return "redirect:/user/manager";
+		
 
+	}
 }

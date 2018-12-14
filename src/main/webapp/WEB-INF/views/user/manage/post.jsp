@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,32 +35,30 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- inclue menu -->
-			 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <div class="nav-link">
-              <div class="user-wrapper">
-                <div class="profile-image">
-                  <img src="/adminv1/images/faces/face1.jpg" alt="profile image">
-                </div>
-  
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="menu-icon mdi mdi-television"></i>
-              <span class="menu-title">Trang chủ</span>
-            </a>
-          </li>
- 
-        </ul>
-      </nav>
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<ul class="nav">
+					<li class="nav-item nav-profile">
+						<div class="nav-link">
+							<div class="user-wrapper">
+								<div class="profile-image">
+									<img src="/adminv1/images/faces/face1.jpg" alt="profile image">
+								</div>
+
+							</div>
+						</div>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/"> <i
+							class="menu-icon mdi mdi-television"></i> <span
+							class="menu-title">Trang chủ</span>
+					</a></li>
+
+				</ul>
+			</nav>
 
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-				
+
 					<div class="row">
 						<div
 							class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
@@ -73,7 +71,8 @@
 										<div class="float-right">
 											<p class="mb-0 text-right">Bạn đã tổng</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">${total} -> bài đăng</h3>
+												<h3 class="font-weight-medium text-right mb-0">${total}
+													-> bài đăng</h3>
 											</div>
 										</div>
 									</div>
@@ -95,7 +94,8 @@
 										<div class="float-right">
 											<p class="mb-0 text-right">Đã duyệt</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">${totalac} -> bài đăng</h3>
+												<h3 class="font-weight-medium text-right mb-0">${totalac}
+													-> bài đăng</h3>
 											</div>
 										</div>
 									</div>
@@ -118,15 +118,13 @@
 											<p class="mb-0 text-right">Chưa được duyệt</p>
 											<div class="fluid-container">
 												<h3 class="font-weight-medium text-right mb-0">
-												${totalnot} -> bài đăng
-											
-												</h3>
+													${totalnot} -> bài đăng</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
-										<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>
-										Bài đăng
+										<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Bài
+										đăng
 									</p>
 								</div>
 							</div>
@@ -142,13 +140,14 @@
 										<div class="float-right">
 											<p class="mb-0 text-right">Bài đăng đang sẵn sàng</p>
 											<div class="fluid-container">
-												<h3 class="font-weight-medium text-right mb-0">${totalac} -> bài đăng</h3>
+												<h3 class="font-weight-medium text-right mb-0">${totalac}
+													-> bài đăng</h3>
 											</div>
 										</div>
 									</div>
 									<p class="text-muted mt-3 mb-0">
-										<i class="mdi mdi-reload mr-1" aria-hidden="true"></i>
-										Bài đăng
+										<i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Bài
+										đăng
 									</p>
 								</div>
 							</div>
@@ -160,15 +159,16 @@
 							<div class="card">
 								<div class="card-body">
 									<h4 class="card-title">Quản lý bài post</h4>
+
 									<div class="table-responsive">
+										<a class="btn btn-primary text-white" href="/post/new"> Thêm bài đăng</a> <br>
 
 
-								
 
 										<table class="table table-bordered" id="postactive">
 											<thead>
 												<tr>
-													<th>Tiêu đề</th>													
+													<th>Tiêu đề</th>
 													<th>Thông tin</th>
 													<th>Giá</th>
 													<th>Số Lượng</th>
@@ -180,47 +180,49 @@
 												</tr>
 											</thead>
 											<tbody>
-											<c:forEach var="p" items="${DATA.content}">
-												<tr>
-													
-													<td>${p.title}</td>
-													<td>${p.description}</td>
-													<td>${p.price}</td>
-													<td class="text-danger">
-													 <i class="mdi mdi-arrow-down">${p.quantity}</i>
-													</td>
-													<td>${p.createdAt}</td>
-													<td>${p.subCategory.name}</td>
-													<td>${p.status}</td>
-													<td>${p.isAccept()}</td>
-													<td>
-														<div class="btn-group dropdown">
-															<button type="button"
-																class="btn btn-success dropdown-toggle btn-sm"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false">Chức năng</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#"> <i
-																	class="fa fa-reply fa-fw"></i>Xem
-																</a> <a class="dropdown-item" href="#"> <i
-																	class="fa fa-history fa-fw"></i>Xóa
-																</a>
-																<div class="dropdown-divider"></div>
+												<c:forEach var="p" items="${DATA.content}">
+													<tr>
+
+														<td>${p.title}</td>
+														<td>${p.description}</td>
+														<td>${p.price}</td>
+														<td class="text-danger"><i class="mdi mdi-arrow-down">${p.quantity}</i>
+														</td>
+														<td>${p.createdAt}</td>
+														<td>${p.subCategory.name}</td>
+														<td>${p.status}</td>
+														<td>${p.isAccept()}</td>
+														<td>
+															<div class="btn-group dropdown">
+																<button type="button"
+																	class="btn btn-success dropdown-toggle btn-sm"
+																	data-toggle="dropdown" aria-haspopup="true"
+																	aria-expanded="false">Chức năng</button>
+																<div class="dropdown-menu">
+																	<a class="dropdown-item" href="/post/view/${p.id}"> <i
+																		class="fa fa-reply fa-fw"></i>Xem
+																	</a> <a class="dropdown-item" href="/post/${p.id}"> <i
+																		class="fa fa-history fa-fw"></i>Sửa
+																	</a>
+																	<a class="dropdown-item" href="/post/delete/${p.id}"> <i
+																		class="fa fa-history fa-fw"></i>Xóa
+																	</a>
+																	<div class="dropdown-divider"></div>
+																</div>
 															</div>
-														</div>
-													</td>
-												</tr>
+														</td>
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
 
-                                <%@include file="/WEB-INF/views/user/manage/include/page.jsp"%>
+										<%@include file="/WEB-INF/views/user/manage/include/page.jsp"%>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
